@@ -100,6 +100,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await apiService.logout();
       setUser(null);
       localStorage.removeItem('keepLoggedIn');
+      localStorage.clear();
       toast.success('Logged out successfully!');
       navigate('/login');
     } catch (error: any) {
