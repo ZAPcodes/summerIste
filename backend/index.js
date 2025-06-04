@@ -13,10 +13,11 @@ connectDB();
 
 const app = express();
 
-allowedOrigins = {
-  "http://localhost:8080",
-  "https://summer-iste.vercel.app"
-}
+const allowedOrigins = [
+  "http://localhost:8080", // For local development
+  "https://summer-iste.vercel.app", // Your deployed frontend
+];
+
 
 app.use(cookieParser());
 app.use(cors({
