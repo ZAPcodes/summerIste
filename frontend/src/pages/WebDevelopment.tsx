@@ -5,12 +5,13 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Calendar, Clock, CheckCircle, PlayCircle, FileText, Brain, ChevronDown, ChevronRight, ExternalLink, Video, BookOpen, ArrowLeft } from "lucide-react";
+import { Calendar, Clock, CheckCircle, PlayCircle, FileText, Brain, ChevronDown, ChevronRight, ExternalLink, Video, BookOpen, ArrowLeft, Trophy } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
 import { webDevCurriculum, Task as CurriculumTask, WeekData as CurriculumWeekData } from "@/data/webDevCurriculum";
 import { useProgress } from "@/hooks/useProgress";
+import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { webDevQuizzes } from "@/data/webDevQuizzes";
 import { toast } from "react-toastify";
 
@@ -117,12 +118,13 @@ const WebDevelopment = () => {
     setCurrentView('quiz');
   };
 
-  const handleQuizComplete = async (score: number, totalQuestions: number, answers: number[]) => {
+  const handleQuizComplete = async (score: number, totalQuestions: number, answers: { [key: string]: number }, timeUsed: number) => {
     const quizData = webDevQuizzes.find((q) => q.weekId === currentQuizWeek);
     if (!quizData) return;
 
-    setQuizResults({ score, totalQuestions, answers, quizData });
+    setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
+    setCurrentView('results');
 
     const passed = score >= quizData.passingScore;
 
@@ -145,6 +147,85 @@ const WebDevelopment = () => {
     setQuizResults(null);
   };
 
+  const QuizSection = ({ week }: { week: Week }) => {
+    const { status, loading: scheduleLoading } = useQuizSchedule("webdev", week.id);
+
+    const getQuizButtonText = () => {
+      if (week.quizCompleted) return "Quiz Passed";
+      if (!week.quizAvailable) return "Complete Tasks First";
+      if (scheduleLoading) return "Checking...";
+      if (!status.schedule) return "Quiz Not Scheduled";
+      if (status.hasEnded) return "Quiz Ended";
+      if (!status.hasStarted) return `Starts ${new Date(status.schedule.startTime).toLocaleString()}`;
+      if (status.isLive) return "Take Quiz";
+      return "Quiz Not Available";
+    };
+
+    const isQuizDisabled = () => {
+      return !week.quizAvailable || week.quizCompleted || !status.isLive || scheduleLoading;
+    };
+
+    return (
+      <div className="border-t border-gray-700 pt-4">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <Brain className="w-5 h-5 text-purple-400" />
+            <span className="font-medium">Week {week.id} Quiz</span>
+            {week.quizCompleted && (
+              <Badge className="bg-green-900 text-green-300">
+                Completed ({Math.round(week.quizScore || 0)}%)
+              </Badge>
+            )}
+            {status.isLive && week.quizAvailable && !week.quizCompleted && (
+              <Badge className="bg-green-600 text-white animate-pulse">LIVE</Badge>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(`/leaderboard/webdev/${week.id}`)}
+              className="text-purple-400 border-purple-400 hover:bg-purple-400/10"
+            >
+              <Trophy className="w-4 h-4 mr-1" />
+              Leaderboard
+            </Button>
+            <Button
+              disabled={isQuizDisabled()}
+              onClick={() => handleTakeQuiz(week.id)}
+              className={`${
+                week.quizAvailable && status.isLive && !week.quizCompleted
+                  ? "bg-purple-600 hover:bg-purple-700"
+                  : "bg-gray-600"
+              }`}
+            >
+              {getQuizButtonText()}
+              <Clock className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </div>
+        {status.schedule && (
+          <div className="text-sm text-gray-400">
+            {status.isLive && status.timeRemaining && (
+              <p className="text-green-400">
+                Time remaining: {Math.floor(status.timeRemaining / 60)}m {status.timeRemaining % 60}s
+              </p>
+            )}
+            {!status.hasStarted && status.timeUntilStart && (
+              <p className="text-yellow-400">
+                Starts in: {Math.floor(status.timeUntilStart / 60)}m {status.timeUntilStart % 60}s
+              </p>
+            )}
+            {!status.isLive && status.hasStarted && !status.hasEnded && (
+              <p className="text-red-400">Quiz is not currently active</p>
+            )}
+            <p>Duration: {status.schedule.duration} minutes | Passing score: 70%</p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   if (loading) {
     return <div className="text-white text-center">Loading progress...</div>;
   }
@@ -156,9 +237,16 @@ const WebDevelopment = () => {
   if (currentView === 'quiz' && currentQuizWeek) {
     const quizData = webDevQuizzes.find((q) => q.weekId === currentQuizWeek);
     if (quizData) {
+      // Add domain and weekId to quiz data
+      const enhancedQuizData = {
+        ...quizData,
+        domain: "webdev",
+        weekId: currentQuizWeek
+      };
+      
       return (
         <QuizInterface 
-          quiz={quizData} 
+          quiz={enhancedQuizData} 
           onComplete={handleQuizComplete}
         />
       );
@@ -168,20 +256,17 @@ const WebDevelopment = () => {
   if (currentView === 'results' && currentQuizWeek && quizResults) {
     const quizData = webDevQuizzes.find((q) => q.weekId === currentQuizWeek);
     if (quizData) {
-      const answersObject = quizResults.answers.reduce((acc, answer, index) => {
-        acc[index.toString()] = answer;
-        return acc;
-      }, {} as { [key: string]: number });
-
       return (
         <QuizResults
           score={quizResults.score}
           totalQuestions={quizResults.totalQuestions}
           passingScore={quizData.passingScore}
-          timeUsed={0}
+          timeUsed={quizResults.timeUsed || 0}
           timeLimit={quizData.timeLimit}
-          answers={answersObject}
+          answers={quizResults.answers}
           questions={quizData.questions}
+          domain="webdev"
+          week={currentQuizWeek}
           onRetake={handleRetakeQuiz}
           onBackToCourse={handleBackToCourse}
         />
@@ -346,36 +431,7 @@ const WebDevelopment = () => {
                           </div>
                         )}
 
-                        <div className="border-t border-gray-700 pt-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <Brain className="w-5 h-5 text-purple-400" />
-                              <span className="font-medium">Week {week.id} Quiz</span>
-                              {week.quizCompleted && (
-                                <Badge className="bg-green-900 text-green-300">
-                                  Completed ({Math.round(week.quizScore || 0)}%)
-                                </Badge>
-                              )}
-                            </div>
-                            <Button
-                              disabled={!week.quizAvailable || week.quizCompleted}
-                              onClick={() => handleTakeQuiz(week.id)}
-                              className={`${
-                                week.quizAvailable && !week.quizCompleted
-                                  ? "bg-purple-600 hover:bg-purple-700"
-                                  : "bg-gray-600"
-                              }`}
-                            >
-                              {week.quizCompleted ? "Quiz Passed" : week.quizAvailable ? "Take Quiz" : "Complete Tasks First"}
-                              <Clock className="w-4 h-4 ml-2" />
-                            </Button>
-                          </div>
-                          {week.quizAvailable && !week.quizCompleted && (
-                            <p className="text-sm text-gray-400 mt-2">
-                              Time limit: 20 minutes | 10 questions | Passing score: 70%
-                            </p>
-                          )}
-                        </div>
+                        <QuizSection week={week} />
                       </div>
                     </CardContent>
                   )}

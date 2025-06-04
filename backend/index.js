@@ -6,6 +6,7 @@ const authRouter = require('./routes/auth.routes.js');
 const connectDB = require('./config/db.js');
 const cookieParser = require('cookie-parser');
 const progressRouter = require('./routes/progress.routes.js');
+const quizRouter = require('./routes/quiz.routes.js');
 
 dotenv.config();
 connectDB();
@@ -29,6 +30,7 @@ app.listen(process.env.PORT || 5000, () => {
 
 app.use('/api/auth', authRouter);
 app.use('/api/progress', progressRouter);
+app.use('/api/quiz', quizRouter);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the backend server!');

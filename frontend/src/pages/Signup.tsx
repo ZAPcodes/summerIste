@@ -1,3 +1,4 @@
+
 // src/components/Signup.tsx
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -75,21 +76,21 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white flex items-center justify-center p-6">
-      <Card className="w-full max-w-md bg-black/40 backdrop-blur-sm border-blue-800/50">
-        <CardHeader className="text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-white" />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white flex items-center justify-center p-4 sm:p-6">
+      <Card className="w-full max-w-sm sm:max-w-md bg-black/40 backdrop-blur-sm border-blue-800/50">
+        <CardHeader className="text-center px-4 sm:px-6">
+          <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <BookOpen className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
             </div>
-            <span className="text-xl font-bold">ISTE Summer School</span>
+            <span className="text-lg sm:text-xl font-bold truncate">ISTE Summer School</span>
           </div>
-          <CardTitle className="text-2xl text-white">Create Account</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl text-white">Create Account</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 sm:px-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="name" className="text-gray-300">
+              <Label htmlFor="name" className="text-gray-300 text-sm">
                 Name
               </Label>
               <Input
@@ -100,12 +101,13 @@ const Signup = () => {
                 onChange={handleInputChange}
                 required
                 disabled={isLoading}
-                className="bg-gray-800/50 border-gray-600 text-white"
+                className="bg-gray-800/50 border-gray-600 text-white mt-1"
+                placeholder="Enter your full name"
               />
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-gray-300">
+              <Label htmlFor="email" className="text-gray-300 text-sm">
                 Email
               </Label>
               <Input
@@ -116,12 +118,13 @@ const Signup = () => {
                 onChange={handleInputChange}
                 required
                 disabled={isLoading}
-                className="bg-gray-800/50 border-gray-600 text-white"
+                className="bg-gray-800/50 border-gray-600 text-white mt-1"
+                placeholder="Enter your email"
               />
             </div>
 
             <div>
-              <Label htmlFor="registrationId" className="text-gray-300">
+              <Label htmlFor="registrationId" className="text-gray-300 text-sm">
                 Registration No.
               </Label>
               <Input
@@ -132,12 +135,13 @@ const Signup = () => {
                 onChange={handleInputChange}
                 required
                 disabled={isLoading}
-                className="bg-gray-800/50 border-gray-600 text-white"
+                className="bg-gray-800/50 border-gray-600 text-white mt-1"
+                placeholder="Enter registration number"
               />
             </div>
 
             <div>
-              <Label htmlFor="branch" className="text-gray-300">
+              <Label htmlFor="branch" className="text-gray-300 text-sm">
                 Branch
               </Label>
               <Input
@@ -148,12 +152,13 @@ const Signup = () => {
                 onChange={handleInputChange}
                 required
                 disabled={isLoading}
-                className="bg-gray-800/50 border-gray-600 text-white"
+                className="bg-gray-800/50 border-gray-600 text-white mt-1"
+                placeholder="Enter your branch"
               />
             </div>
 
             <div>
-              <Label htmlFor="password" className="text-gray-300">
+              <Label htmlFor="password" className="text-gray-300 text-sm">
                 Password
               </Label>
               <Input
@@ -164,13 +169,14 @@ const Signup = () => {
                 onChange={handleInputChange}
                 required
                 disabled={isLoading}
-                className="bg-gray-800/50 border-gray-600 text-white"
+                className="bg-gray-800/50 border-gray-600 text-white mt-1"
+                placeholder="Create a password"
               />
             </div>
 
             <div>
-              <Label className="text-gray-300 mb-3 block">Select Domains to Enroll</Label>
-              <div className="space-y-2 max-h-32 overflow-y-auto">
+              <Label className="text-gray-300 mb-2 block text-sm">Select Domains to Enroll</Label>
+              <div className="space-y-2 max-h-32 overflow-y-auto bg-gray-800/30 rounded-md p-3">
                 {domains.map((domain) => (
                   <div key={domain.id} className="flex items-center space-x-2">
                     <Checkbox
@@ -180,7 +186,7 @@ const Signup = () => {
                       disabled={isLoading}
                       className="border-gray-600"
                     />
-                    <Label htmlFor={domain.id} className="text-sm text-gray-300">
+                    <Label htmlFor={domain.id} className="text-sm text-gray-300 flex-1 leading-relaxed">
                       {domain.label}
                     </Label>
                   </div>
@@ -191,14 +197,14 @@ const Signup = () => {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
+              className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-sm sm:text-base py-2 sm:py-3"
             >
               {isLoading ? 'Creating Account...' : 'Create Account'}
             </Button>
 
-            <div className="text-center">
+            <div className="text-center text-sm">
               <span className="text-gray-400">Already have an account? </span>
-              <Link to="/login" className="text-blue-400 hover:text-blue-300">
+              <Link to="/login" className="text-blue-400 hover:text-blue-300 break-words">
                 Login here
               </Link>
             </div>

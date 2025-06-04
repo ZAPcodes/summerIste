@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,8 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Clock, CheckCircle, XCircle, ArrowRight, ArrowLeft } from "lucide-react";
+import { apiService } from "@/services/api";
+import { toast } from "react-toastify";
 
 interface QuizQuestion {
   id: number | string;
@@ -19,12 +20,14 @@ interface WeekQuiz {
   title: string;
   timeLimit: number;
   questions: QuizQuestion[];
+  weekId?: number;
+  domain?: string;
 }
 
 interface QuizInterfaceProps {
   quiz?: WeekQuiz;
   quizData?: WeekQuiz;
-  onComplete: (score: number, totalQuestions: number, answers: number[]) => void;
+  onComplete: (score: number, totalQuestions: number, answers: { [key: string]: number }, timeUsed: number) => void;
   onClose?: () => void;
 }
 
@@ -39,6 +42,7 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
   const [answers, setAnswers] = useState<number[]>(new Array(quizToUse.questions.length).fill(-1));
   const [timeLeft, setTimeLeft] = useState(quizToUse.timeLimit * 60);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [startTime, setStartTime] = useState<number>(0);
 
   // Timer effect
   useEffect(() => {
@@ -81,7 +85,10 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
     }
   };
 
-  const handleSubmitQuiz = () => {
+  const handleSubmitQuiz = async () => {
+    const endTime = Date.now();
+    const timeUsed = Math.floor((endTime - startTime) / 1000);
+    
     let correctAnswers = 0;
     quizToUse.questions.forEach((question, index) => {
       if (answers[index] === question.correctAnswer) {
@@ -89,11 +96,37 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
       }
     });
 
-    onComplete(correctAnswers, quizToUse.questions.length, answers);
+    const score = Math.round((correctAnswers / quizToUse.questions.length) * 100);
+    
+    // Convert answers array to object with question IDs as keys
+    const answersObject = answers.reduce((acc: { [key: string]: number }, answer: number, index: number) => {
+      acc[quizToUse.questions[index].id.toString()] = answer;
+      return acc;
+    }, {});
+
+    // Submit to API if domain and week are available
+    if (quizToUse.domain && quizToUse.weekId) {
+      try {
+        await apiService.submitQuizResult({
+          domain: quizToUse.domain,
+          week: quizToUse.weekId,
+          answers: answers,
+          score: score,
+          completionTime: timeUsed
+        });
+        toast.success("Quiz submitted successfully!");
+      } catch (error) {
+        console.error("Failed to submit quiz:", error);
+        toast.error("Failed to submit quiz to server");
+      }
+    }
+
+    onComplete(score, quizToUse.questions.length, answersObject, timeUsed);
   };
 
   const startQuiz = () => {
     setQuizStarted(true);
+    setStartTime(Date.now());
   };
 
   if (!quizStarted) {

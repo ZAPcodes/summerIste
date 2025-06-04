@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +12,7 @@ import Design from "./pages/Design";
 import Cybersecurity from "./pages/Cybersecurity";
 import AppDevelopment from "./pages/AppDevelopment";
 import DataStructures from "./pages/DataStructures";
+import DomainLeaderboard from "./pages/DomainLeaderboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
@@ -63,7 +65,7 @@ const App = () => (
             }
           />
           <Route
-            path="/webdevelopment"
+            path="/webdev"
             element={
               <ProtectedRoute domain="webdev">
                 <WebDevelopment />
@@ -87,7 +89,7 @@ const App = () => (
             }
           />
           <Route
-            path="/cybersecurity"
+            path="/cybersec"
             element={
               <ProtectedRoute domain="cybersec">
                 <Cybersecurity />
@@ -110,6 +112,15 @@ const App = () => (
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/leaderboard/:domain/:week"
+            element={
+              <ProtectedRoute>
+                <DomainLeaderboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </TooltipProvider>

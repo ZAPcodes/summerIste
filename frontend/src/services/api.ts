@@ -1,6 +1,6 @@
+
 // src/services/api.ts
 import { API_BASE_URL } from '@/config';
-
 
 export interface User {
   _id: string;
@@ -41,6 +41,28 @@ export interface QuizSubmission {
   passed: boolean;
 }
 
+export interface LeaderboardEntry {
+  _id: string;
+  userId: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  domain: string;
+  week: number;
+  score: number;
+  completionTime: number;
+  completedAt: string;
+}
+
+export interface QuizSchedule {
+  _id: string;
+  domain: string;
+  week: number;
+  startTime: string;
+  duration: number;
+}
+
 class ApiService {
   private async request(endpoint: string, options: RequestInit = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
@@ -60,11 +82,8 @@ class ApiService {
         console.error(`API error (${endpoint}):`, error);
         
         if (response.status === 401) {
-          // Only remove keepLoggedIn flag on auth error
           localStorage.removeItem('keepLoggedIn');
-          // Do not throw an explicit error here. Let the auth context handle the unauthenticated state.
-          // throw new Error('Session expired. Please log in again.');
-        } else { // Handle other non-OK responses as general errors
+        } else {
           throw new Error(error.message || 'Request failed');
         }
       }
@@ -147,6 +166,47 @@ class ApiService {
       body: JSON.stringify({ userId, quizId, answers }),
     });
   }
+
+  async submitQuizResult(data: {
+    domain: string;
+    week: number;
+    answers: number[];
+    score: number;
+    completionTime: number;
+  }): Promise<{ message: string; quizResult: any }> {
+    return this.request('/quizzes/submit-result', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getLeaderboard(domain: string, week: number): Promise<LeaderboardEntry[]> {
+    return this.request(`/quizzes/leaderboard/${domain}/${week}`);
+  }
+
+  async getQuizSchedule(domain: string, week: number): Promise<QuizSchedule> {
+    return this.request(`/quizzes/schedule/${domain}/${week}`);
+  }
+
+  async setQuizSchedule(data: {
+    domain: string;
+    week: number;
+    startTime: string;
+    duration: number;
+  }): Promise<{ message: string; schedule: QuizSchedule }> {
+    return this.request('/quizzes/schedule', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
 }
 
 export const apiService = new ApiService();
+
+export const getLeaderboard = async (domain: string, week: number): Promise<LeaderboardEntry[]> => {
+  return apiService.getLeaderboard(domain, week);
+};
+
+export const getQuizSchedule = async (domain: string, week: number): Promise<QuizSchedule> => {
+  return apiService.getQuizSchedule(domain, week);
+};

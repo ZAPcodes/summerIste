@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Smartphone, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clock, Target, ChevronDown, ChevronRight, FileText } from "lucide-react";
+import { ArrowLeft, Smartphone, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clock, Target, ChevronDown, ChevronRight, FileText, Trophy } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
 import { appdevQuizzes } from "@/data/appdevQuizzes";
 import { useProgress } from "@/hooks/useProgress";
+import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { appDevCurriculum, Resource as CurriculumResource, CurriculumTaskData, CurriculumWeekData } from "@/data/appDevCurriculum";
@@ -131,11 +132,11 @@ const AppDevelopment = () => {
     setQuizState("in_progress");
   };
 
-  const handleQuizComplete = async (score: number, totalQuestions: number, answers: number[]) => {
+  const handleQuizComplete = async (score: number, totalQuestions: number, answers: { [key: string]: number }, timeUsed: number) => {
     const quizData = appdevQuizzes.find((q) => q.weekId === currentQuizWeek);
     if (!quizData) return;
 
-    setQuizResults({ score, totalQuestions, answers, quizData });
+    setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
 
     const passed = score >= quizData.passingScore;
@@ -163,6 +164,82 @@ const AppDevelopment = () => {
       prevWeeks.map((week, index) =>
         index === weekIndex ? { ...week, isExpanded: !week.isExpanded } : week
       )
+    );
+  };
+
+  const QuizSection = ({ week }: { week: Week }) => {
+    const { status, loading: scheduleLoading } = useQuizSchedule("appdev", week.id);
+
+    const getQuizButtonText = () => {
+      if (week.quizCompleted) return "Quiz Passed";
+      if (!week.quizAvailable) return "Complete Tasks First";
+      if (scheduleLoading) return "Checking...";
+      if (!status.schedule) return "Quiz Not Scheduled";
+      if (status.hasEnded) return "Quiz Ended";
+      if (!status.hasStarted) return `Starts ${new Date(status.schedule.startTime).toLocaleString()}`;
+      if (status.isLive) return "Take Quiz";
+      return "Quiz Not Available";
+    };
+
+    const isQuizDisabled = () => {
+      return !week.quizAvailable || week.quizCompleted || !status.isLive || scheduleLoading;
+    };
+
+    return (
+      <div className="border-t border-gray-700 pt-4">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <Smartphone className="w-5 h-5 text-green-400" />
+            <span className="font-medium">Week {week.id} Quiz</span>
+            {week.quizCompleted && (
+              <Badge className="bg-green-900 text-green-300">
+                Completed ({Math.round(week.quizScore || 0)}%)
+              </Badge>
+            )}
+            {status.isLive && week.quizAvailable && !week.quizCompleted && (
+              <Badge className="bg-green-600 text-white animate-pulse">LIVE</Badge>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(`/leaderboard/appdev/${week.id}`)}
+              className="text-green-400 border-green-400 hover:bg-green-400/10"
+            >
+              <Trophy className="w-4 h-4 mr-1" />
+              Leaderboard
+            </Button>
+            <Button
+              disabled={isQuizDisabled()}
+              onClick={() => startQuiz(week.id)}
+              className={`${
+                week.quizAvailable && status.isLive && !week.quizCompleted
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-gray-600"
+              }`}
+            >
+              {getQuizButtonText()}
+              <Clock className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </div>
+        {status.schedule && (
+          <div className="text-sm text-gray-400">
+            {status.isLive && status.timeRemaining && (
+              <p className="text-green-400">
+                Time remaining: {Math.floor(status.timeRemaining / 60)}m {status.timeRemaining % 60}s
+              </p>
+            )}
+            {!status.hasStarted && status.timeUntilStart && (
+              <p className="text-yellow-400">
+                Starts in: {Math.floor(status.timeUntilStart / 60)}m {status.timeUntilStart % 60}s
+              </p>
+            )}
+            <p>Duration: {status.schedule.duration} minutes | Passing score: 70%</p>
+          </div>
+        )}
+      </div>
     );
   };
 
@@ -201,16 +278,18 @@ const AppDevelopment = () => {
     }
   }
 
-  if (quizState === "completed" && quizResults) {
+  if (quizState === "completed" && quizResults && currentQuizWeek) {
     return (
       <QuizResults
         score={quizResults.score}
         totalQuestions={quizResults.totalQuestions}
         passingScore={quizResults.quizData.passingScore}
-        timeUsed={0}
+        timeUsed={quizResults.timeUsed || 0}
         timeLimit={quizResults.quizData.timeLimit}
         answers={quizResults.answers}
         questions={quizResults.quizData.questions}
+        domain="appdev"
+        week={currentQuizWeek}
         onRetake={retakeQuiz}
         onBackToCourse={backToCourse}
       />
@@ -373,35 +452,7 @@ const AppDevelopment = () => {
                           </div>
                         )}
 
-                        <div className="border-t border-gray-700 pt-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <Smartphone className="w-5 h-5 text-green-400" />
-                              <span className="font-medium">Week {week.id} Quiz</span>
-                              {week.quizCompleted && (
-                                <Badge className="bg-green-900 text-green-300">
-                                  Completed ({Math.round(week.quizScore || 0)}%)
-                                </Badge>
-                              )}
-                            </div>
-                            <Button
-                              disabled={!week.quizAvailable || week.quizCompleted}
-                              onClick={() => startQuiz(week.id)}
-                              className={`${
-                                week.quizAvailable && !week.quizCompleted
-                                  ? "bg-green-600 hover:bg-green-700"
-                                  : "bg-gray-600"
-                              }`}                            >
-                              {week.quizCompleted ? "Quiz Passed" : week.quizAvailable ? "Take Quiz" : "Complete Tasks First"}
-                              <Clock className="w-4 h-4 ml-2" />
-                            </Button>
-                          </div>
-                          {week.quizAvailable && !week.quizCompleted && (
-                            <p className="text-sm text-gray-400 mt-2">
-                              Time limit: 20 minutes | 10 questions | Passing score: 70%
-                            </p>
-                          )}
-                        </div>
+                        <QuizSection week={week} />
                       </div>
                     </CardContent>
                   )}

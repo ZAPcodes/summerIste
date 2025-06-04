@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { apiService } from "@/services/api";
 import { webDevCurriculum, WeekData as WebDevWeekData } from "@/data/webDevCurriculum";
-import { dsaCurriculum, WeekData as DsaWeekData } from "@/data/dsaCurriculum";
-import { aimlCurriculum, WeekData as AiMlWeekData } from "@/data/aimlCurriculum";
-import { appDevCurriculum, WeekData as AppDevWeekData } from "@/data/appDevCurriculum";
-import { cybersecCurriculum, WeekData as CybersecWeekData } from "@/data/cybersecCurriculum";
-import { designCurriculum, WeekData as DesignWeekData } from "@/data/designCurriculum";
+import { dsaCurriculum } from "@/data/dsaCurriculum";
+import { aimlCurriculum } from "@/data/aimlCurriculum";
+import { appDevCurriculum } from "@/data/appDevCurriculum";
+import { cybersecCurriculum } from "@/data/cybersecCurriculum";
+import { designCurriculum } from "@/data/designCurriculum";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const Profile = () => {
     console.log(`Profile.tsx: Backend progress for ${domainId}:`, backendProgress);
     console.log(`Profile.tsx: Backend weeks for ${domainId}:`, weeks);
 
-    let curriculum: WebDevWeekData[] | DsaWeekData[] | AiMlWeekData[] | AppDevWeekData[] | CybersecWeekData[] | DesignWeekData[];
+    let curriculum: any[];
     switch (domainId) {
       case "webdev":
         curriculum = webDevCurriculum;
