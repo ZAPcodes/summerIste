@@ -31,7 +31,15 @@ export const aimlCurriculum: CurriculumWeekData[] = [
       { id: "1-4", title: "Understand ML math foundations", description: "Grasp the mathematical concepts underlying Machine Learning algorithms.", type: "reading" },
       { id: "1-5", title: "Explore ML libraries", description: "Discover and understand popular Machine Learning libraries like Scikit-learn, TensorFlow, and PyTorch.", type: "video" }
     ],
-    resources: [],
+    resources: [
+      { id: "1-resource-1", title: "Python for ML", type: "video", url: "https://www.youtube.com/watch?app=desktop&v=7eh4d6sabA0&t=640s" },
+      { id: "1-resource-2", title: "NumPy Tutorial", type: "video", url: "https://youtu.be/QUT1VHiLmmI?si=oHvKXETBFXFcwLfW" },
+      { id: "1-resource-3", title: "Pandas Tutorial", type: "video", url: "https://youtu.be/vmEHCJofslg?si=lzeBhdk94JTdAhU" },
+      { id: "1-resource-4", title: "Linear Algebra (3Blue1Brown)", type: "video", url: "https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&feature=shared" },
+      { id: "1-resource-5", title: "Calculus (3Blue1Brown)", type: "video", url: "https://m.youtube.com/watch?v=WUvTyaaNkzM&list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" },
+      { id: "1-resource-6", title: "Probability Theory (MIT OCW)", type: "documentation", url: "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/" },
+      { id: "1-resource-7", title: "Intro to Scikit-learn", type: "video", url: "https://www.youtube.com/watch?v=-IvNzmrcyUM" }
+    ],
   },
   {
     id: 2,
@@ -42,7 +50,14 @@ export const aimlCurriculum: CurriculumWeekData[] = [
       { id: "2-3", title: "Perform feature engineering", description: "Understand how to create new features from existing data to improve model performance.", type: "reading" },
       { id: "2-4", title: "Implement regression and classification models", description: "Apply basic regression and classification algorithms to solve real-world problems.", type: "assignment" }
     ],
-    resources: [],
+    resources: [
+      { id: "2-resource-1", title: "Data Preprocessing Techniques", type: "video", url: "https://youtube.com/playlist?list=PLfP3JxW-T70HkhNxdgZeApdpiOfL6KAQE&si=CVu9Bv0SQbHuoEPl" },
+      { id: "2-resource-2", title: "Matplotlib Tutorial", type: "video", url: "https://youtu.be/3Xc3CA655Y4?si=PMqyJFOUl_DF0MfN" },
+      { id: "2-resource-3", title: "Seaborn Tutorial", type: "video", url: "https://youtu.be/ooqXQ37XHMM?si=zf8VqNsIGGoFHO5v" },
+      { id: "2-resource-4", title: "Andrew Ng ML (Weeks 1 & 2)", type: "documentation", url: "https://www.coursera.org/learn/machine-learning?specialization=machine-learning-introduction" },
+      { id: "2-resource-5", title: "Linear Regression from Scratch", type: "video", url: "https://youtu.be/VmbA0pi2cRQ?si=MfBl_YphuFN8OVno" },
+      { id: "2-resource-6", title: "Logistic Regression (Coursera)", type: "documentation", url: "https://www.coursera.org/learn/machine-learning-with-python/home/week/4" }
+    ],
   },
   {
     id: 3,

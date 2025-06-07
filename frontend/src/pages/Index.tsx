@@ -104,9 +104,9 @@ const Index = () => {
   ];
 
   const stats = [
-    { icon: Users, label: "Active Students", value: "250+", color: "text-blue-400" },
+    { icon: Users, label: "Active Students", value: "200+", color: "text-blue-400" },
     { icon: BookOpen, label: "Course Domains", value: "6", color: "text-green-400" },
-    { icon: Award, label: "Completion Rate", value: "85%", color: "text-purple-400" },
+    { icon: Award, label: "Completion Rate", value: "95%", color: "text-purple-400" },
     { icon: Clock, label: "Duration", value: "5-6 Weeks", color: "text-orange-400" }
   ];
 
@@ -220,8 +220,7 @@ const Index = () => {
             <span className="text-5xl">This Summer</span>
           </h2>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Join our intensive 5-6 week ISTE summer school program. Learn from industry experts, 
-            complete weekly challenges, and track your progress through interactive quizzes.
+            Join our intensive 5-6 week ISTE summer school program.
           </p>
           
           {/* Enhanced Stats */}

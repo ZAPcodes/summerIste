@@ -23,15 +23,29 @@ export interface CurriculumWeekData {
 export const designCurriculum: CurriculumWeekData[] = [
   {
     id: 1,
-    title: "Design Fundamentals and Figma Basics",
+    title: "Design Foundations",
     tasks: [
-      { id: "1-1", title: "Learn design principles", description: "Understand core design concepts like balance, contrast, and hierarchy.", type: "reading" },
-      { id: "1-2", title: "Set up Figma", description: "Install and configure Figma, the collaborative interface design tool.", type: "video" },
-      { id: "1-3", title: "Understand Figma interface", description: "Familiarize yourself with Figma's tools, panels, and shortcuts.", type: "video" },
-      { id: "1-4", title: "Create basic shapes and layouts", description: "Practice creating fundamental shapes and arranging them into simple layouts in Figma.", type: "assignment" },
-      { id: "1-5", title: "Design a simple landing page", description: "Apply basic design principles to create a minimalist landing page in Figma.", type: "assignment" }
+      {
+        id: "1-1",
+        title: "Explore Figma & Canva",
+        description: "Play around with core features in both tools to understand their interfaces and capabilities.",
+        type: "assignment",
+      },
+      {
+        id: "1-2",
+        title: "Mini-task: TeamWars",
+        description: "Engage in a fun team-based design challenge using either Canva or Figma.",
+        type: "assignment",
+      },
     ],
-    resources: [],
+    resources: [
+      { id: "1-resource-1", title: "Figma Basics - Video", type: "video", url: "https://youtu.be/ezldKx-jPag?si=B2Ts7Wly-xtLBITR" },
+      { id: "1-resource-2", title: "Figma Basics - Playlist", type: "video", url: "https://youtube.com/playlist?list=PLXDU_eVOJTx6zk5MDarIs0asNoZqlRG23&si=jXvmRcdH-tx1FQFi" },
+      { id: "1-resource-3", title: "Figma Advanced", type: "video", url: "https://youtu.be/31wzhvz0vsw?si=T49Mobu_qTJ9cOvv" },
+      { id: "1-resource-4", title: "Canva Basics", type: "video", url: "https://www.youtube.com/watch?v=Llnmf5BXLBA" },
+      { id: "1-resource-5", title: "Canva for Students - Playlist", type: "video", url: "https://www.youtube.com/playlist?list=PLATYfhN6gQz9_rE-vkyUDNiM-M9vH-klX" },
+      { id: "1-resource-6", title: "Canva Advanced", type: "video", url: "https://www.youtube.com/watch?v=O1rMZkk7fBE" },
+    ],
   },
   {
     id: 2,

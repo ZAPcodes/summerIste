@@ -14,7 +14,8 @@ connectDB();
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:8080", // For local development
+  "http://localhost:8080", // For local development (e.g., direct Vite dev server)
+  "http://localhost",    // For frontend served by Nginx on port 80
   "https://summer-iste.vercel.app", // Your deployed frontend
 ];
 

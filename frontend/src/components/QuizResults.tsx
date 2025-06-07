@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 interface QuizResultsProps {
   score: number;
   totalQuestions: number;
+  passingScore: number;
   timeUsed: number; // in seconds
   timeLimit: number; // in minutes
   answers: { [key: string]: number };
@@ -25,6 +26,7 @@ interface QuizResultsProps {
 const QuizResults = ({
   score,
   totalQuestions,
+  passingScore,
   timeUsed,
   timeLimit,
   answers,

@@ -96,10 +96,10 @@ const Design = () => {
   };
 
   const getResourceTitle = (resource: CurriculumResource) => {
-    if (resource.url.includes('youtu.be') || resource.url.includes('youtube.com')) {
-      return 'YouTube Video/Playlist';
-    }
-    return 'Resource Link';
+    // if (resource.url.includes('youtu.be') || resource.url.includes('youtube.com')) {
+    //   return 'YouTube Video/Playlist';
+    // }
+    return resource.title;
   };
 
   const getTaskIcon = (type: string | undefined) => {

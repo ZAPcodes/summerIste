@@ -507,16 +507,37 @@ const DataStructures = () => {
                           <h4 className="text-lg font-semibold text-white mb-3">Tasks</h4>
                           <div className="space-y-3">
                             {week.tasks.map((task, taskIndex) => (
-                              <div key={task.id} className="flex items-center gap-3 p-3 rounded-lg border border-gray-600/30 bg-gray-800/40">
-                                <Checkbox 
-                                  checked={task.completed}
-                                  onCheckedChange={() => handleToggleTask(week.id, task.id)}
-                                  className="border-gray-400"
-                                />
-                                {getTaskIcon(task.type)}
-                                <span className={`flex-1 ${task.completed ? "text-green-400" : "text-white"}`}>
-                                  {task.title}
-                                </span>
+                              <div key={task.id} className="flex flex-col gap-3 p-3 rounded-lg border border-gray-600/30 bg-gray-800/40">
+                                <div className="flex items-center gap-3">
+                                  <Checkbox 
+                                    checked={task.completed}
+                                    onCheckedChange={() => handleToggleTask(week.id, task.id)}
+                                    className="border-gray-400"
+                                  />
+                                  {getTaskIcon(task.type)}
+                                  <span className={`flex-1 ${task.completed ? "text-green-400" : "text-white"}`}>
+                                    {task.title}
+                                  </span>
+                                </div>
+                                {task.resources && task.resources.length > 0 && (
+                                  <div className="ml-8 space-y-2">
+                                    {task.resources.map((resource) => (
+                                      <div key={resource.id} className="flex items-center gap-3 p-2 bg-gray-800/20 rounded border border-gray-700/30">
+                                        {getResourceIcon(resource.type)}
+                                        <span className="text-sm text-gray-300 flex-1">{resource.title}</span>
+                                        <Button 
+                                          size="sm" 
+                                          variant="ghost" 
+                                          className="h-8 px-3 text-orange-400 hover:text-orange-300"
+                                          onClick={() => window.open(resource.url, '_blank')}
+                                        >
+                                          Open
+                                          <ExternalLink className="w-3 h-3 ml-1" />
+                                        </Button>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>

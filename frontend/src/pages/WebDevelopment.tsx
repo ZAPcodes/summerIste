@@ -19,13 +19,14 @@ interface Task {
   id: string;
   title: string;
   completed: boolean;
+  resources?: { id: string; title: string; type: string; url: string; }[];
 }
 
 interface Week {
   id: number;
   title: string;
   tasks: Task[];
-  resources: string[];
+  resources: { id: string; title: string; type: string; url: string; }[];
   isUnlocked: boolean;
   quizCompleted: boolean;
   quizScore?: number;
@@ -107,11 +108,8 @@ const WebDevelopment = () => {
     }
   };
 
-  const getResourceTitle = (url: string) => {
-    if (url.includes('youtu.be') || url.includes('youtube.com')) {
-      return 'YouTube Video/Playlist';
-    }
-    return 'Resource Link';
+  const getResourceTitle = (resource: { id: string; title: string; type: string; url: string; }) => {
+    return resource.title;
   };
 
   const handleTakeQuiz = (weekNumber: number) => {
@@ -340,6 +338,7 @@ const WebDevelopment = () => {
           score={quizResults.score}
           totalQuestions={quizResults.totalQuestions}
           timeUsed={quizResults.timeUsed || 0}
+          passingScore={quizData.passingScore}
           timeLimit={quizData.timeLimit}
           answers={quizResults.answers}
           questions={quizData.questions}
@@ -481,6 +480,29 @@ const WebDevelopment = () => {
                                 <span className={`flex-1 ${week.tasks[taskIndex].completed ? "text-green-400" : "text-white"}`}>
                                   {task.title}
                                 </span>
+                                {task.resources && task.resources.length > 0 && (
+                                  <div className="mt-2 pl-6 space-y-2">
+                                    <h5 className="text-md font-semibold text-white mb-2">Task Resources</h5>
+                                    {task.resources.map((resource, resIndex) => (
+                                      <div key={resIndex} className="flex items-center gap-3 p-2 bg-gray-700/30 rounded border border-gray-600/30">
+                                        {resource.type === 'video' || resource.type === 'playlist' ? 
+                                          <PlayCircle className="w-4 h-4 text-blue-400" /> : 
+                                          <FileText className="w-4 h-4 text-blue-400" />
+                                        }
+                                        <span className="text-sm text-gray-300 flex-1">{getResourceTitle(resource)}</span>
+                                        <Button 
+                                          size="sm" 
+                                          variant="ghost" 
+                                          className="h-7 px-2 text-blue-400 hover:text-blue-300"
+                                          onClick={() => window.open(resource.url, '_blank')}
+                                        >
+                                          Open
+                                          <ExternalLink className="w-3 h-3 ml-1" />
+                                        </Button>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>
@@ -488,7 +510,7 @@ const WebDevelopment = () => {
 
                         {week.resources.length > 0 && (
                           <div>
-                            <h4 className="text-lg font-semibold text-white mb-3">Resources</h4>
+                            <h4 className="text-lg font-semibold text-white mb-3">Week Resources</h4>
                             <div className="space-y-2">
                               {week.resources.map((resource, resourceIndex) => (
                                 <div key={resourceIndex} className="flex items-center gap-3 p-3 bg-gray-800/20 rounded border border-gray-700/30">
@@ -498,7 +520,7 @@ const WebDevelopment = () => {
                                     size="sm" 
                                     variant="ghost" 
                                     className="h-8 px-3 text-purple-400 hover:text-purple-300"
-                                    onClick={() => window.open(resource, '_blank')}
+                                    onClick={() => window.open(resource.url, '_blank')}
                                   >
                                     Open
                                     <ExternalLink className="w-3 h-3 ml-1" />

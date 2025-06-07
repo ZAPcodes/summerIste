@@ -95,10 +95,7 @@ const AppDevelopment = () => {
   };
 
   const getResourceTitle = (resource: CurriculumResource) => {
-    if (resource.url.includes('youtu.be') || resource.url.includes('youtube.com')) {
-      return 'YouTube Video/Playlist';
-    }
-    return 'Resource Link';
+    return resource.title;
   };
 
   const getTaskIcon = (type: string | undefined) => {
@@ -130,18 +127,18 @@ const AppDevelopment = () => {
   const startQuiz = (weekId: number) => {
     setCurrentQuizWeek(weekId);
     
-    // Check if quiz is available
-    if (!quizStatus.isLive) {
-      if (!quizStatus.hasStarted) {
-        toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
-        return;
-      }
-      if (quizStatus.hasEnded) {
-        toast.error("Quiz has ended. Submissions are no longer accepted.");
-        return;
-      }
-    }
-
+    // The quiz availability checks are handled by getQuizButtonContent,
+    // so they are not needed here. Removing to resolve 'quizStatus' error.
+    // if (!quizStatus.isLive) {
+    //   if (!quizStatus.hasStarted) {
+    //     toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
+    //     return;
+    //   }
+    //   if (quizStatus.hasEnded) {
+    //     toast.error("Quiz has ended. Submissions are no longer accepted.");
+    //     return;
+    // }
+    
     setQuizState("in_progress");
   };
 
@@ -487,16 +484,37 @@ const AppDevelopment = () => {
                           <h4 className="text-lg font-semibold text-white mb-3">Tasks</h4>
                           <div className="space-y-3">
                             {week.tasks.map((task, taskIndex) => (
-                              <div key={task.id} className="flex items-center gap-3 p-3 rounded-lg border border-gray-600/30 bg-gray-800/40">
-                                <Checkbox 
-                                  checked={week.tasks[taskIndex].completed}
-                                  onCheckedChange={() => handleToggleTask(week.id, task.id)}
-                                  className="border-gray-400"
-                                />
-                                <BookOpen className={`w-5 h-5 ${week.tasks[taskIndex].completed ? "text-green-400" : "text-gray-400"}`} />
-                                <span className={`flex-1 ${week.tasks[taskIndex].completed ? "text-green-400" : "text-white"}`}>
-                                  {task.title}
-                                </span>
+                              <div key={task.id} className="space-y-3">
+                                <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-600/30 bg-gray-800/40">
+                                  <Checkbox 
+                                    checked={week.tasks[taskIndex].completed}
+                                    onCheckedChange={() => handleToggleTask(week.id, task.id)}
+                                    className="border-gray-400"
+                                  />
+                                  {getTaskIcon(task.type)}
+                                  <span className={`flex-1 ${week.tasks[taskIndex].completed ? "text-green-400" : "text-white"}`}>
+                                    {task.title}
+                                  </span>
+                                </div>
+                                {task.resources && task.resources.length > 0 && (
+                                  <div className="pl-12 space-y-2 mb-3 mt-1">
+                                    {task.resources.map((resource, resourceIndex) => (
+                                      <div key={resourceIndex} className="flex items-center gap-2 p-2 bg-gray-700/30 rounded border border-gray-600/30">
+                                        {getResourceIcon(resource.type)}
+                                        <span className="text-sm text-gray-300 flex-1">{getResourceTitle(resource)}</span>
+                                        <Button 
+                                          size="sm" 
+                                          variant="ghost" 
+                                          className="h-7 px-2 text-green-400 hover:text-green-300"
+                                          onClick={() => window.open(resource.url, '_blank')}
+                                        >
+                                          Open
+                                          <ExternalLink className="w-3 h-3 ml-1" />
+                                        </Button>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>

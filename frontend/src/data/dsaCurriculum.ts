@@ -23,7 +23,7 @@ export interface WeekData {
 export const dsaCurriculum: WeekData[] = [
   {
     id: 1,
-    title: "Language Basics and Arrays",
+    title: "Language Foundations + Arrays & Sorting",
     tasks: [
       { 
         id: "1-1", 
@@ -31,65 +31,68 @@ export const dsaCurriculum: WeekData[] = [
         description: "Master fundamental programming concepts", 
         type: "video",
         resources: [
-          { id: "r1-1", title: "C++ Programming Tutorial", type: "video", url: "https://youtube.com/watch?v=example1" },
-          { id: "r1-2", title: "Java Basics Guide", type: "documentation", url: "https://docs.oracle.com/javase/" }
+          { id: "r1-1", title: "C++ Programming Tutorial", type: "video", url: "https://www.youtube.com/watch?v=EAR7De6Goz4" },
+          { id: "r1-2", title: "Java Basics", type: "video", url: "https://www.youtube.com/watch?v=UmnCZ7-9yDY" }
         ]
       },
       { 
         id: "1-2", 
         title: "Use STL or Collections", 
         description: "Learn standard template library usage", 
-        type: "assignment",
+        type: "video",
         resources: [
-          { id: "r1-3", title: "STL Reference", type: "documentation", url: "https://cppreference.com/w/cpp/container" }
+          { id: "r1-3", title: "STL Reference", type: "documentation", url: "https://cppreference.com/w/cpp/container" },
+          { id: "r1-4", title: "STL in C++", type: "video", url: "https://www.youtube.com/watch?v=okhdtEk1iKk" },
+          { id: "r1-5", title: "Collections in Java", type: "video", url: "https://www.youtube.com/watch?v=rzA7UJ-hQn4" }
         ]
       },
       { 
         id: "1-3", 
         title: "Work with 1D and 2D arrays", 
-        description: "Practice array manipulation problems", 
-        type: "assignment",
+        description: "Learn Basics of Arrays", 
+        type: "video",
         resources: [
-          { id: "r1-4", title: "Array Problems Tutorial", type: "video", url: "https://youtube.com/watch?v=example2" }
+          { id: "r1-6", title: "Arrays Basics", type: "video", url: "https://www.youtube.com/watch?v=8wmn7k1TTcI" },
+          { id: "r1-7", title: "Vectors", type: "video", url: "https://www.youtube.com/watch?v=NWg38xWYzEg" }
         ]
       },
       { 
         id: "1-4", 
-        title: "Implement sorting algorithms", 
+        title: "Code bubble sort, selection sort, and merge sort", 
         description: "Code bubble sort, selection sort, and merge sort", 
         type: "assignment"
       },
       { 
         id: "1-5", 
-        title: "Participate in code-along", 
-        description: "Join live coding session", 
-        type: "video"
+        title: "Code sequential search, binary search", 
+        description: "Code sequential search, binary search", 
+        type: "assignment"
       },
       { 
         id: "1-6", 
-        title: "Complete HackerRank array problems", 
+        title: "Solve 5 array problems on HackerRank", 
         description: "Solve 5 array problems on HackerRank", 
-        type: "assignment",
-        resources: [
-          { id: "r1-5", title: "HackerRank Arrays", type: "article", url: "https://hackerrank.com/domains/data-structures" }
-        ]
+        type: "assignment"
       }
     ],
     resources: [],
   },
   {
     id: 2,
-    title: "Recursion and Linear Data Structures",
+    title: "Recursion, Advanced Sorting algorithms and Linear Data Structures",
     tasks: [
       { 
         id: "2-1", 
         title: "Understand recursion", 
         description: "Learn recursive thinking and implementation", 
-        type: "video"
+        type: "video",
+        resources: [
+          { id: "r2-1", title: "Recursion", type: "video", url: "https://youtu.be/M2uO2nMT0Bk?si=d4tz3uJpJ75xlUp1" }
+        ]
       },
       { 
         id: "2-2", 
-        title: "Implement advanced sorting", 
+        title: "Implement advanced sorting(Code quick sort and heap sort)", 
         description: "Code quick sort and heap sort", 
         type: "assignment"
       },
@@ -97,19 +100,26 @@ export const dsaCurriculum: WeekData[] = [
         id: "2-3", 
         title: "Perform string manipulations", 
         description: "Practice string algorithms", 
-        type: "assignment"
+        type: "video",
+        resources: [
+          { id: "r2-2", title: "String Manipulation Part 1", type: "video", url: "https://youtu.be/MOSjYaVymcU?si=ywfXAsk8VSA1kUpU" },
+          { id: "r2-3", title: "String Manipulation Part 2", type: "video", url: "https://youtu.be/dSRFgEs3a6A?si=pzHFz9X5O7FIpkOD" }
+        ]
       },
       { 
         id: "2-4", 
         title: "Use stacks and queues", 
         description: "Implement and use linear data structures", 
-        type: "assignment"
+        type: "video",
+        resources: [
+          { id: "r2-4", title: "Stacks & Queues", type: "video", url: "https://youtu.be/tqQ5fTamIN4?si=95OuxFtbR-u7pBtm" }
+        ]
       },
       { 
         id: "2-5", 
-        title: "Participate in code-along", 
-        description: "Join recursion coding session", 
-        type: "video"
+        title: "Practice shared recursion questions(Link in discord)", 
+        description: "Practice shared recursion questions", 
+        type: "assignment"
       },
       { 
         id: "2-6", 
@@ -119,7 +129,7 @@ export const dsaCurriculum: WeekData[] = [
       },
       { 
         id: "2-7", 
-        title: "Complete HackerRank problems", 
+        title: "Solve recursion and stack/queue problems", 
         description: "Solve recursion and stack/queue problems", 
         type: "assignment"
       }
