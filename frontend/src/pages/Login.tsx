@@ -50,9 +50,9 @@ const Login = () => {
         <CardHeader className="text-center px-4 sm:px-6">
           <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-4">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              <img src="/ISTE.png" alt="ISTE" className="w-full h-full object-cover" />
             </div>
-            <span className="text-lg sm:text-xl font-bold truncate">ISTE Summer School</span>
+            <span className="text-lg sm:text-xl font-bold truncate text-white">ISTE Summer School</span>
           </div>
           <CardTitle className="text-xl sm:text-2xl text-white">Welcome Back</CardTitle>
         </CardHeader>

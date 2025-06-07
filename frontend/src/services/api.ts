@@ -156,16 +156,16 @@ class ApiService {
     return this.request(`/progress/${userId}/${domain}`);
   }
 
-  async getQuiz(domain: string, weekNumber: number): Promise<Quiz> {
-    return this.request(`/quizzes/${domain}/${weekNumber}`);
-  }
+  // async getQuiz(domain: string, weekNumber: number): Promise<Quiz> {
+  //   return this.request(`/quizzes/${domain}/${weekNumber}`);
+  // }
 
-  async submitQuiz(userId: string, quizId: string, answers: number[]): Promise<QuizSubmission> {
-    return this.request('/quizzes/submit', {
-      method: 'POST',
-      body: JSON.stringify({ userId, quizId, answers }),
-    });
-  }
+  // async submitQuiz(userId: string, quizId: string, answers: number[]): Promise<QuizSubmission> {
+  //   return this.request('/quizzes/submit', {
+  //     method: 'POST',
+  //     body: JSON.stringify({ userId, quizId, answers }),
+  //   });
+  // }
 
   async submitQuizResult(data: {
     domain: string;
@@ -174,18 +174,18 @@ class ApiService {
     score: number;
     completionTime: number;
   }): Promise<{ message: string; quizResult: any }> {
-    return this.request('/quizzes/submit-result', {
+    return this.request('/quiz/submit', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
   async getLeaderboard(domain: string, week: number): Promise<LeaderboardEntry[]> {
-    return this.request(`/quizzes/leaderboard/${domain}/${week}`);
+    return this.request(`/quiz/leaderboard/${domain}/${week}`);
   }
 
   async getQuizSchedule(domain: string, week: number): Promise<QuizSchedule> {
-    return this.request(`/quizzes/schedule/${domain}/${week}`);
+    return this.request(`/quiz/schedule/${domain}/${week}`);
   }
 
   async setQuizSchedule(data: {
@@ -194,7 +194,7 @@ class ApiService {
     startTime: string;
     duration: number;
   }): Promise<{ message: string; schedule: QuizSchedule }> {
-    return this.request('/quizzes/schedule', {
+    return this.request('/quiz/schedule', {
       method: 'POST',
       body: JSON.stringify(data),
     });

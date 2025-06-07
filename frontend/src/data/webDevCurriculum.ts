@@ -74,8 +74,6 @@ export const webDevCurriculum: WeekData[] = [
       { id: "5-1", title: "Build a full-stack app" },
       { id: "5-2", title: "Deploy frontend to Vercel or Netlify" },
       { id: "5-3", title: "Deploy backend to Render or Railway" },
-      { id: "5-4", title: "Add environment variables" },
-      { id: "5-5", title: "Update GitHub repository with README" }
     ],
     resources: [],
   }

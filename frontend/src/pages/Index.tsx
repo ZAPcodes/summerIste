@@ -364,7 +364,7 @@ const Index = () => {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-4 mb-6">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-                <BookOpen className="w-6 h-6 text-white" />
+                <img src="/ISTE.png" alt="ISTE" className="w-full h-full object-cover" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                 ISTE Summer School 2025

@@ -65,8 +65,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('keepLoggedIn', 'true');
       toast.success('Logged in successfully!');
       navigate('/dashboard');
+      window.location.reload();
     } catch (error: any) {
-      toast.error(error.message || 'Login failed');
+      let errorMessage = 'Login failed. Please try again.';
+      if (error.message === 'Password mismatched') {
+        errorMessage = 'Invalid credentials. Please check your password.';
+      } else if (error.message === 'User does not exist') {
+        errorMessage = 'Invalid credentials. User not found.';
+      }
+      toast.error(errorMessage);
       throw error;
     }
   };

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +13,8 @@ interface LeaderboardEntry {
     name: string;
     email: string;
   };
+  domain: string; // Added
+  week: number;   // Added
   score: number;
   completionTime: number;
   completedAt: string;
@@ -87,7 +88,7 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
       cybersec: "from-red-500 to-orange-500",
       design: "from-green-500 to-teal-500",
       appdev: "from-indigo-500 to-purple-500",
-      dsa: "from-yellow-500 to-orange-500"
+      dsa: "from-yellow-500 to-orange-500",
     };
     return colors[domain as keyof typeof colors] || "from-gray-500 to-gray-700";
   };
@@ -99,7 +100,7 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
       cybersec: "Cybersecurity",
       design: "Design",
       appdev: "App Development",
-      dsa: "Data Structures & Algorithms"
+      dsa: "Data Structures & Algorithms",
     };
     return names[domain as keyof typeof names] || domain;
   };
@@ -122,7 +123,11 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
           <CardContent className="text-center p-6 sm:p-8">
             <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-4" />
             <p className="text-red-200 text-sm sm:text-lg mb-4">{error}</p>
-            <Button onClick={onClose} variant="outline" className="border-red-400 text-red-400 hover:bg-red-400 hover:text-red-900 text-sm sm:text-base">
+            <Button
+              onClick={onClose}
+              variant="outline"
+              className="border-red-400 text-red-400 hover:bg-red-400 hover:text-red-900 text-sm sm:text-base"
+            >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Go Back
             </Button>
@@ -137,23 +142,25 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <Button 
-            onClick={onClose} 
-            variant="ghost" 
+          <Button
+            onClick={onClose}
+            variant="ghost"
             className="absolute top-4 left-4 sm:top-6 sm:left-6 text-white/80 hover:text-white hover:bg-white/10 text-sm sm:text-base"
           >
             <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
             <span className="hidden sm:inline">Back to Course</span>
             <span className="sm:hidden">Back</span>
           </Button>
-          
+
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
             <Trophy className="w-8 h-8 sm:w-12 sm:h-12 text-yellow-400" />
-            <h1 className="text-2xl sm:text-4xl font-bold bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl">
+            <h1 className="text-2xl sm:text-4xl font-bold bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounde
+
+d-2xl">
               Leaderboard
             </h1>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-white/90 text-sm sm:text-base">
             <div className="flex items-center gap-2">
               <Target className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -172,38 +179,44 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
           </div>
         </div>
 
-        {/* Top 3 Podium - Mobile Optimized */}
+        {/* Top 3 Podium */}
         {leaderboard.length > 0 && (
-          <div className="mb-8 sm:mb-12">
-            <div className="flex justify-center items-end gap-2 sm:gap-4 mb-6 sm:mb-8">
-              {/* Second Place */}
-              {leaderboard[1] && (
-                <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-white/20 transform hover:scale-105 transition-transform duration-300">
-                    <Avatar className="w-10 h-10 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 ring-2 sm:ring-4 ring-gray-400">
-                      <AvatarFallback className="bg-gray-400 text-gray-900 text-sm sm:text-lg font-bold">
-                        {leaderboard[1].userId.name.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className={getPositionBadge(2)}>2nd</div>
-                    <h3 className="font-bold text-sm sm:text-lg mt-2 mb-1 truncate">{leaderboard[1].userId.name}</h3>
-                    <p className="text-lg sm:text-2xl font-bold text-gray-300 mb-1">{leaderboard[1].score}%</p>
-                    <p className="text-xs sm:text-sm text-white/70 flex items-center justify-center gap-1">
-                      <Clock className="w-2 h-2 sm:w-3 sm:h-3" />
-                      {formatTime(leaderboard[1].completionTime)}
-                    </p>
-                  </div>
+          <div className={`flex justify-center items-end gap-2 sm:gap-4 mb-6 sm:mb-8 ${leaderboard.length === 1 ? 'justify-center' : 'justify-between'}`}>
+            {/* Second Place */}
+            {leaderboard.length >= 2 && leaderboard[1] && (
+              <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-white/20 transform hover:scale-105 transition-transform duration-300">
+                  <Avatar className="w-10 h-10 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 ring-2 sm:ring-4 ring-gray-400">
+                    <AvatarFallback
+                      className="bg-gray-400 text-gray-900 text-sm sm:text-lg font-bold"
+                      aria-label={`Avatar for ${leaderboard[1].userId.name}`}
+                    >
+                      {leaderboard[1].userId.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className={getPositionBadge(2)}>2nd</div>
+                  <h3 className="font-bold text-sm sm:text-lg mt-2 mb-1 truncate">{leaderboard[1].userId.name}</h3>
+                  <p className="text-lg sm:text-2xl font-bold text-gray-300 mb-1">{leaderboard[1].score}%</p>
+                  <p className="text-xs sm:text-sm text-white/70 flex items-center justify-center gap-1">
+                    <Clock className="w-2 h-2 sm:w-3 sm:h-3" />
+                    {formatTime(leaderboard[1].completionTime)}
+                  </p>
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* First Place */}
+            {/* First Place */}
+            {leaderboard.length >= 1 && (
               <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 <div className="bg-gradient-to-b from-yellow-400/20 to-yellow-600/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-yellow-400/30 transform hover:scale-105 transition-transform duration-300 relative">
                   <div className="absolute -top-2 sm:-top-4 left-1/2 transform -translate-x-1/2">
-                    <Crown className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" />
+                    <Crown className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" aria-hidden="true" />
                   </div>
                   <Avatar className="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-2 sm:mb-4 ring-2 sm:ring-4 ring-yellow-400">
-                    <AvatarFallback className="bg-yellow-400 text-yellow-900 text-base sm:text-xl font-bold">
+                    <AvatarFallback
+                      className="bg-yellow-400 text-yellow-900 text-base sm:text-xl font-bold"
+                      aria-label={`Avatar for ${leaderboard[0].userId.name}`}
+                    >
                       {leaderboard[0].userId.name.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -216,27 +229,30 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
                   </p>
                 </div>
               </div>
+            )}
 
-              {/* Third Place */}
-              {leaderboard[2] && (
-                <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-white/20 transform hover:scale-105 transition-transform duration-300">
-                    <Avatar className="w-10 h-10 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 ring-2 sm:ring-4 ring-amber-600">
-                      <AvatarFallback className="bg-amber-600 text-amber-900 text-sm sm:text-lg font-bold">
-                        {leaderboard[2].userId.name.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className={getPositionBadge(3)}>3rd</div>
-                    <h3 className="font-bold text-sm sm:text-lg mt-2 mb-1 truncate">{leaderboard[2].userId.name}</h3>
-                    <p className="text-lg sm:text-2xl font-bold text-amber-400 mb-1">{leaderboard[2].score}%</p>
-                    <p className="text-xs sm:text-sm text-white/70 flex items-center justify-center gap-1">
-                      <Clock className="w-2 h-2 sm:w-3 sm:h-3" />
-                      {formatTime(leaderboard[2].completionTime)}
-                    </p>
-                  </div>
+            {/* Third Place */}
+            {leaderboard.length >= 3 && leaderboard[2] && (
+              <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-white/20 transform hover:scale-105 transition-transform duration-300">
+                  <Avatar className="w-10 h-10 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 ring-2 sm:ring-4 ring-amber-600">
+                    <AvatarFallback
+                      className="bg-amber-600 text-amber-900 text-sm sm:text-lg font-bold"
+                      aria-label={`Avatar for ${leaderboard[2].userId.name}`}
+                    >
+                      {leaderboard[2].userId.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className={getPositionBadge(3)}>3rd</div>
+                  <h3 className="font-bold text-sm sm:text-lg mt-2 mb-1 truncate">{leaderboard[2].userId.name}</h3>
+                  <p className="text-lg sm:text-2xl font-bold text-amber-400 mb-1">{leaderboard[2].score}%</p>
+                  <p className="text-xs sm:text-sm text-white/70 flex items-center justify-center gap-1">
+                    <Clock className="w-2 h-2 sm:w-3 sm:h-3" />
+                    {formatTime(leaderboard[2].completionTime)}
+                  </p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -244,14 +260,14 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
         <Card className="bg-white/10 backdrop-blur-sm border-white/20">
           <CardHeader className="px-4 sm:px-6">
             <CardTitle className="text-white flex items-center gap-2 text-lg sm:text-xl">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" aria-hidden="true" />
               Complete Rankings
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {leaderboard.length === 0 ? (
               <div className="text-center py-8 sm:py-12 px-4">
-                <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-white/40 mx-auto mb-4" />
+                <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-white/40 mx-auto mb-4" aria-hidden="true" />
                 <p className="text-white/70 text-base sm:text-lg mb-2">No submissions yet for this quiz.</p>
                 <p className="text-white/50 text-sm sm:text-base">Be the first to take the quiz and claim the top spot!</p>
               </div>
@@ -267,28 +283,31 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
                   >
                     <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
                       <div className="flex items-center gap-2 sm:gap-3">
-                        {getPositionIcon(index + 1)}
+                        <span aria-hidden="true">{getPositionIcon(index + 1)}</span>
                         <span className="text-lg sm:text-2xl font-bold text-white/80 min-w-[2rem] sm:min-w-[3rem]">
                           #{index + 1}
                         </span>
                       </div>
-                      
+
                       <Avatar className="w-8 h-8 sm:w-12 sm:h-12 flex-shrink-0">
-                        <AvatarFallback className={`text-white font-bold text-sm sm:text-base ${
-                          index === 0 ? 'bg-yellow-500' : 
-                          index === 1 ? 'bg-gray-500' : 
-                          index === 2 ? 'bg-amber-600' : 'bg-gray-600'
-                        }`}>
+                        <AvatarFallback
+                          className={`text-white font-bold text-sm sm:text-base ${
+                            index === 0 ? 'bg-yellow-500' : 
+                            index === 1 ? 'bg-gray-500' : 
+                            index === 2 ? 'bg-amber-600' : 'bg-gray-600'
+                          }`}
+                          aria-label={`Avatar for ${entry.userId.name}`}
+                        >
                           {entry.userId.name.charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
-                      
-                      <div className="min-w-0 flex-1">
+
+                      <div className="min-w-0 flex-1 max-w-[150px] sm:max-w-[200px]">
                         <h4 className="font-bold text-white text-sm sm:text-lg truncate">{entry.userId.name}</h4>
                         <p className="text-white/70 text-xs sm:text-sm truncate">{entry.userId.email}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-2 sm:gap-6 flex-shrink-0">
                       <div className="text-right">
                         <p className="text-lg sm:text-2xl font-bold text-white">{entry.score}%</p>
@@ -297,8 +316,8 @@ const Leaderboard = ({ domain, week, onClose }: LeaderboardProps) => {
                           {formatTime(entry.completionTime)}
                         </p>
                       </div>
-                      
-                      <Badge 
+
+                      <Badge
                         className={`${
                           entry.score >= 90 ? 'bg-green-500/80 text-green-100' :
                           entry.score >= 80 ? 'bg-blue-500/80 text-blue-100' :

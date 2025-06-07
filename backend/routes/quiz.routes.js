@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { submitQuizResult, getLeaderboard } = require("../controllers/quiz.controllers");
-const {protect} = require("../middlewares/auth.middlewares.js");
+const { submitQuizResult, getLeaderboard, getQuizSchedule, setQuizSchedule } = require("../controllers/quiz.controllers.js");
+const { protect } = require("../middlewares/auth.middlewares");
+const adminMiddleware = require("../middlewares/admin.middlewares");
 
-// Submit quiz result (protected route)
 router.post("/submit", protect, submitQuizResult);
-
-// Get leaderboard for a specific domain and week
 router.get("/leaderboard/:domain/:week", getLeaderboard);
+router.get("/schedule/:domain/:week", getQuizSchedule);
+router.post("/schedule", protect, adminMiddleware, setQuizSchedule);
 
 module.exports = router;

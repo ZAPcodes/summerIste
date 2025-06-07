@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Smartphone, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clock, Target, ChevronDown, ChevronRight, FileText, Trophy } from "lucide-react";
+import { ArrowLeft, Smartphone, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clock, Target, ChevronDown, ChevronRight, FileText, Trophy, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
@@ -72,7 +72,7 @@ const AppDevelopment = () => {
           resources: weekData.resources,
           isUnlocked,
           quizCompleted: quizPassed,
-          quizScore: backendWeek?.quizScore,
+          quizScore: backendWeek?.quizScore || 0,
           progress: progressPercentage,
           quizAvailable: progressPercentage === 100 && !quizPassed,
           isExpanded: index === 0,
@@ -129,6 +129,19 @@ const AppDevelopment = () => {
 
   const startQuiz = (weekId: number) => {
     setCurrentQuizWeek(weekId);
+    
+    // Check if quiz is available
+    if (!quizStatus.isLive) {
+      if (!quizStatus.hasStarted) {
+        toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
+        return;
+      }
+      if (quizStatus.hasEnded) {
+        toast.error("Quiz has ended. Submissions are no longer accepted.");
+        return;
+      }
+    }
+
     setQuizState("in_progress");
   };
 
@@ -139,7 +152,7 @@ const AppDevelopment = () => {
     setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
 
-    const passed = score >= quizData.passingScore;
+    const passed = true;
 
     try {
       await updateQuizProgress("appdev", currentQuizWeek!, passed, score);
@@ -167,23 +180,61 @@ const AppDevelopment = () => {
     );
   };
 
+  const formatTimeRemaining = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    }
+    return `${minutes}m ${secs}s`;
+  };
+
+  const getQuizButtonContent = (week: Week, weekId: number) => {
+    // Use the hook directly inside getQuizButtonContent
+    const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("appdev", weekId);
+
+    if (!currentQuizWeek || currentQuizWeek !== weekId) {
+      if (week.quizCompleted) {
+        return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
+      }
+      if (!week.quizAvailable) {
+        return { text: "Complete Tasks First", disabled: true, variant: "secondary" as const };
+      }
+      return { text: "Check Quiz Status", disabled: false, variant: "default" as const };
+    }
+
+    if (scheduleLoading) {
+      return { text: "Checking...", disabled: true, variant: "secondary" as const };
+    }
+
+    if (!quizStatus.hasStarted && quizStatus.timeUntilStart) {
+      return { 
+        text: `Starts in ${formatTimeRemaining(quizStatus.timeUntilStart)}`, 
+        disabled: true, 
+        variant: "secondary" as const 
+      };
+    }
+
+    if (quizStatus.hasEnded) {
+      return { text: "Quiz Ended", disabled: true, variant: "secondary" as const };
+    }
+
+    if (quizStatus.isLive) {
+      return { 
+        text: `Take Quiz (${formatTimeRemaining(quizStatus.timeRemaining || 0)} left)`, 
+        disabled: false, 
+        variant: "default" as const 
+      };
+    }
+
+    return { text: "Quiz Not Available", disabled: true, variant: "secondary" as const };
+  };
+
   const QuizSection = ({ week }: { week: Week }) => {
+    // Use the hook directly inside QuizSection
     const { status, loading: scheduleLoading } = useQuizSchedule("appdev", week.id);
-
-    const getQuizButtonText = () => {
-      if (week.quizCompleted) return "Quiz Passed";
-      if (!week.quizAvailable) return "Complete Tasks First";
-      if (scheduleLoading) return "Checking...";
-      if (!status.schedule) return "Quiz Not Scheduled";
-      if (status.hasEnded) return "Quiz Ended";
-      if (!status.hasStarted) return `Starts ${new Date(status.schedule.startTime).toLocaleString()}`;
-      if (status.isLive) return "Take Quiz";
-      return "Quiz Not Available";
-    };
-
-    const isQuizDisabled = () => {
-      return !week.quizAvailable || week.quizCompleted || !status.isLive || scheduleLoading;
-    };
 
     return (
       <div className="border-t border-gray-700 pt-4">
@@ -196,8 +247,11 @@ const AppDevelopment = () => {
                 Completed ({Math.round(week.quizScore || 0)}%)
               </Badge>
             )}
-            {status.isLive && week.quizAvailable && !week.quizCompleted && (
-              <Badge className="bg-green-600 text-white animate-pulse">LIVE</Badge>
+            {currentQuizWeek === week.id && status.isLive && (
+              <Badge className="bg-green-600 text-white animate-pulse">
+                <div className="w-2 h-2 bg-white rounded-full mr-1"></div>
+                LIVE
+              </Badge>
             )}
           </div>
           <div className="flex gap-2">
@@ -210,33 +264,52 @@ const AppDevelopment = () => {
               <Trophy className="w-4 h-4 mr-1" />
               Leaderboard
             </Button>
-            <Button
-              disabled={isQuizDisabled()}
-              onClick={() => startQuiz(week.id)}
-              className={`${
-                week.quizAvailable && status.isLive && !week.quizCompleted
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "bg-gray-600"
-              }`}
-            >
-              {getQuizButtonText()}
-              <Clock className="w-4 h-4 ml-2" />
-            </Button>
+            {(() => {
+              const buttonConfig = getQuizButtonContent(week, week.id);
+              return (
+                <Button
+                  disabled={buttonConfig.disabled}
+                  onClick={() => {
+                    if (buttonConfig.text === "Check Quiz Status") {
+                      setCurrentQuizWeek(week.id); // Trigger useQuizSchedule for this week
+                    } else if (buttonConfig.text.includes("Take Quiz")) {
+                      startQuiz(week.id);
+                    }
+                  }}
+                  className={`${
+                    buttonConfig.variant === "default"
+                      ? "bg-green-600 hover:bg-green-700"
+                      : "bg-gray-600"
+                  }`}
+                >
+                  {buttonConfig.text}
+                  <Clock className="w-4 h-4 ml-2" />
+                </Button>
+              );
+            })()}
           </div>
         </div>
-        {status.schedule && (
-          <div className="text-sm text-gray-400">
-            {status.isLive && status.timeRemaining && (
-              <p className="text-green-400">
-                Time remaining: {Math.floor(status.timeRemaining / 60)}m {status.timeRemaining % 60}s
-              </p>
-            )}
-            {!status.hasStarted && status.timeUntilStart && (
-              <p className="text-yellow-400">
-                Starts in: {Math.floor(status.timeUntilStart / 60)}m {status.timeUntilStart % 60}s
-              </p>
-            )}
-            <p>Duration: {status.schedule.duration} minutes | Passing score: 70%</p>
+        {currentQuizWeek === week.id && !scheduleLoading && (
+          <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
+            <div className="flex items-start gap-2">
+              {status.isLive ? (
+                <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
+              ) : (
+                <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
+              )}
+              <div>
+                <p className="text-sm font-medium text-blue-200">
+                  {status.isLive ? "Quiz is Live!" : 
+                   !status.hasStarted ? "Quiz hasn't started yet" : "Quiz has ended"}
+                </p>
+                {status.schedule && (
+                  <p className="text-xs text-blue-300 mt-1">
+                    Scheduled: {new Date(status.schedule.startTime).toLocaleString()} 
+                    ({status.schedule.duration} minutes)
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -399,8 +472,8 @@ const AppDevelopment = () => {
                     <div className="text-right">
                       <div className="text-sm text-gray-400 mb-1">Progress</div>
                       <div className="text-lg font-semibold text-green-400">{Math.round(week.progress)}%</div>
-                      {week.quizScore && (
-                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore)}%</div>
+                      {week.quizScore !== undefined && (
+                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore || 0)}%</div>
                       )}
                     </div>
                   </div>

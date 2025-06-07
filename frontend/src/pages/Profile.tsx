@@ -111,23 +111,23 @@ const Profile = () => {
 
     const totalProgressPercentage = curriculum.reduce((sum, curriculumWeek) => {
       const backendWeek = weeks.find((w: any) => w.weekNumber === curriculumWeek.id);
-      console.log(`Profile.tsx: Processing week ${curriculumWeek.id} for ${domainId}:`);
-      console.log("Profile.tsx:   Curriculum week data:", curriculumWeek);
-      console.log("Profile.tsx:   Backend week data:", backendWeek);
+      // console.log(`Profile.tsx: Processing week ${curriculumWeek.id} for ${domainId}:`);
+      // console.log("Profile.tsx:   Curriculum week data:", curriculumWeek);
+      // console.log("Profile.tsx:   Backend week data:", backendWeek);
 
       const completedTasksCount = backendWeek ? backendWeek.tasksCompleted.length : 0;
       const totalTasksInWeek = curriculumWeek.tasks.length;
-      console.log("Profile.tsx:   Completed tasks for week:", completedTasksCount);
-      console.log("Profile.tsx:   Total tasks in week from curriculum:", totalTasksInWeek);
+      // console.log("Profile.tsx:   Completed tasks for week:", completedTasksCount);
+      // console.log("Profile.tsx:   Total tasks in week from curriculum:", totalTasksInWeek);
       
       const weekProgress = totalTasksInWeek > 0 ? (completedTasksCount / totalTasksInWeek) * 100 : 0;
-      console.log("Profile.tsx:   Week progress for week:", weekProgress);
+      // console.log("Profile.tsx:   Week progress for week:", weekProgress);
       return sum + weekProgress;
     }, 0);
 
     const averageProgress = totalProgressPercentage / curriculum.length;
-    console.log(`Profile.tsx: Total progress percentage for ${domainId}:`, totalProgressPercentage);
-    console.log(`Profile.tsx: Average progress for ${domainId}:`, averageProgress);
+    // console.log(`Profile.tsx: Total progress percentage for ${domainId}:`, totalProgressPercentage);
+    // console.log(`Profile.tsx: Average progress for ${domainId}:`, averageProgress);
 
     return isNaN(averageProgress) ? 0 : Math.round(averageProgress);
   };
@@ -171,7 +171,7 @@ const Profile = () => {
             </Button>
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-white" />
+                <img src="/ISTE.png" alt="ISTE" className="w-full h-full object-cover" />
               </div>
               <span className="text-lg font-semibold">ISTE Summer School</span>
             </div>

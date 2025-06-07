@@ -73,7 +73,7 @@ const Cybersecurity = () => {
           resources: weekData.resources,
           isUnlocked,
           quizCompleted: quizPassed,
-          quizScore: backendWeek?.quizScore,
+          quizScore: backendWeek?.quizScore || 0,
           progress: progressPercentage,
           quizAvailable: progressPercentage === 100 && !quizPassed,
           isExpanded: index === 0,
@@ -153,7 +153,7 @@ const Cybersecurity = () => {
     setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
 
-    const passed = score >= quizData.passingScore;
+    const passed = true;
 
     try {
       await updateQuizProgress("cybersec", currentQuizWeek!, passed, score);
@@ -270,7 +270,6 @@ const Cybersecurity = () => {
       <QuizResults
         score={quizResults.score}
         totalQuestions={quizResults.totalQuestions}
-        passingScore={quizResults.quizData.passingScore}
         timeUsed={quizResults.timeUsed || 0}
         timeLimit={quizResults.quizData.timeLimit}
         answers={quizResults.answers}
@@ -300,13 +299,6 @@ const Cybersecurity = () => {
               <h1 className="text-3xl font-bold mb-2">ISTE Cybersecurity Course</h1>
               <p className="text-gray-300">Defend against cyber threats and master digital security with ISTE</p>
             </div>
-            <Button
-              onClick={() => navigate("/leaderboard/cybersec")}
-              className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600"
-            >
-              <Trophy className="w-4 h-4 mr-2" />
-              View Leaderboard
-            </Button>
           </div>
         </div>
 
@@ -398,8 +390,8 @@ const Cybersecurity = () => {
                     <div className="text-right">
                       <div className="text-sm text-gray-400 mb-1">Progress</div>
                       <div className="text-lg font-semibold text-red-400">{Math.round(week.progress)}%</div>
-                      {week.quizScore && (
-                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore)}%</div>
+                      {week.quizScore !== undefined && (
+                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore || 0)}%</div>
                       )}
                     </div>
                   </div>
@@ -468,29 +460,40 @@ const Cybersecurity = () => {
                                 </Badge>
                               )}
                             </div>
-                            {(() => {
-                              const buttonConfig = getQuizButtonContent(week, week.id);
-                              return (
-                                <Button
-                                  disabled={buttonConfig.disabled}
-                                  onClick={() => {
-                                    if (buttonConfig.text === "Check Quiz Status") {
-                                      setCurrentQuizWeek(week.id);
-                                    } else if (buttonConfig.text.includes("Take Quiz")) {
-                                      startQuiz(week.id);
-                                    }
-                                  }}
-                                  className={`${
-                                    buttonConfig.variant === "default"
-                                      ? "bg-red-600 hover:bg-red-700"
-                                      : "bg-gray-600"
-                                  }`}
-                                >
-                                  {buttonConfig.text}
-                                  <Clock className="w-4 h-4 ml-2" />
-                                </Button>
-                              );
-                            })()}
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => navigate(`/leaderboard/cybersec/${week.id}`)}
+                                className="text-red-400 border-red-400 hover:bg-red-400/10"
+                              >
+                                <Trophy className="w-4 h-4 mr-1" />
+                                Leaderboard
+                              </Button>
+                              {(() => {
+                                const buttonConfig = getQuizButtonContent(week, week.id);
+                                return (
+                                  <Button
+                                    disabled={buttonConfig.disabled}
+                                    onClick={() => {
+                                      if (buttonConfig.text === "Check Quiz Status") {
+                                        setCurrentQuizWeek(week.id);
+                                      } else if (buttonConfig.text.includes("Take Quiz")) {
+                                        startQuiz(week.id);
+                                      }
+                                    }}
+                                    className={`${
+                                      buttonConfig.variant === "default"
+                                        ? "bg-red-600 hover:bg-red-700"
+                                        : "bg-gray-600"
+                                    }`}
+                                  >
+                                    {buttonConfig.text}
+                                    <Clock className="w-4 h-4 ml-2" />
+                                  </Button>
+                                );
+                              })()}
+                            </div>
                           </div>
                           {currentQuizWeek === week.id && !scheduleLoading && (
                             <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">

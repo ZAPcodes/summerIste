@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Calendar, Clock, CheckCircle, PlayCircle, FileText, Brain, ChevronDown, ChevronRight, ExternalLink, Video, BookOpen, Database, ArrowLeft, Target, Trophy } from "lucide-react";
+import { Calendar, Clock, CheckCircle, PlayCircle, FileText, Brain, ChevronDown, ChevronRight, ExternalLink, Video, BookOpen, Database, ArrowLeft, Target, Trophy, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
@@ -51,6 +51,7 @@ const DataStructures = () => {
   const [quizState, setQuizState] = useState<"not_started" | "in_progress" | "completed">("not_started");
   const [quizResults, setQuizResults] = useState<any>(null);
   const [weeks, setWeeks] = useState<Week[]>([]);
+  const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("dsa", currentQuizWeek || 1);
 
   const staticCurriculum: CurriculumWeekData[] = dsaCurriculum;
 
@@ -79,7 +80,7 @@ const DataStructures = () => {
           tasks: tasksWithCompletion,
           isUnlocked,
           quizCompleted: quizPassed,
-          quizScore: backendWeek?.quizScore,
+          quizScore: backendWeek?.quizScore || 0,
           progress: progressPercentage,
           quizAvailable: progressPercentage === 100 && !quizPassed,
           isExpanded: index === 0,
@@ -142,6 +143,19 @@ const DataStructures = () => {
 
   const startQuiz = (weekId: number) => {
     setCurrentQuizWeek(weekId);
+    
+    // Check if quiz is available
+    if (!quizStatus.isLive) {
+      if (!quizStatus.hasStarted) {
+        toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
+        return;
+      }
+      if (quizStatus.hasEnded) {
+        toast.error("Quiz has ended. Submissions are no longer accepted.");
+        return;
+      }
+    }
+
     setQuizState("in_progress");
   };
 
@@ -152,7 +166,7 @@ const DataStructures = () => {
     setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
 
-    const passed = score >= quizData.passingScore;
+    const passed = true;
 
     try {
       await updateQuizProgress("dsa", currentQuizWeek!, passed, score);
@@ -172,6 +186,18 @@ const DataStructures = () => {
     setQuizResults(null);
   };
 
+  const resetQuizStatus = async (weekId: number) => {
+    try {
+      await updateQuizProgress("dsa", weekId, false, 0); // Set quizPassed to false and score to 0
+      toast.info(`Quiz status for Week ${weekId} reset.`);
+      // Re-fetch progress to update the UI
+      // You might need to call fetchProgress if it's not automatically triggered by state changes
+      // For now, let's rely on the useEffect that listens to 'progress' changes.
+    } catch (err) {
+      toast.error("Failed to reset quiz status");
+    }
+  };
+
   const toggleWeekExpansion = (weekIndex: number) => {
     setWeeks(prevWeeks =>
       prevWeeks.map((week, index) =>
@@ -180,24 +206,56 @@ const DataStructures = () => {
     );
   };
 
+  const formatTimeRemaining = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    }
+    return `${minutes}m ${secs}s`;
+  };
+
+  const getQuizButtonContent = (week: Week, weekId: number, quizStatus: any, scheduleLoading: boolean) => {
+    if (!currentQuizWeek || currentQuizWeek !== weekId) {
+      if (week.quizCompleted) {
+        return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
+      }
+      if (!week.quizAvailable) {
+        return { text: "Complete Tasks First", disabled: true, variant: "secondary" as const };
+      }
+      return { text: "Check Quiz Status", disabled: false, variant: "default" as const };
+    }
+
+    if (scheduleLoading) {
+      return { text: "Checking...", disabled: true, variant: "secondary" as const };
+    }
+
+    if (!quizStatus.hasStarted && quizStatus.timeUntilStart) {
+      return { 
+        text: `Starts in ${formatTimeRemaining(quizStatus.timeUntilStart)}`, 
+        disabled: true, 
+        variant: "secondary" as const 
+      };
+    }
+
+    if (quizStatus.hasEnded) {
+      return { text: "Quiz Ended", disabled: true, variant: "secondary" as const };
+    }
+
+    if (quizStatus.isLive) {
+      return { 
+        text: `Take Quiz (${formatTimeRemaining(quizStatus.timeRemaining || 0)} left)`, 
+        disabled: false, 
+        variant: "default" as const 
+      };
+    }
+
+    return { text: "Quiz Not Available", disabled: true, variant: "secondary" as const };
+  };
+
   const QuizSection = ({ week }: { week: Week }) => {
-    const { status, loading: scheduleLoading } = useQuizSchedule("dsa", week.id);
-
-    const getQuizButtonText = () => {
-      if (week.quizCompleted) return "Quiz Passed";
-      if (!week.quizAvailable) return "Complete Tasks First";
-      if (scheduleLoading) return "Checking...";
-      if (!status.schedule) return "Quiz Not Scheduled";
-      if (status.hasEnded) return "Quiz Ended";
-      if (!status.hasStarted) return `Starts ${new Date(status.schedule.startTime).toLocaleString()}`;
-      if (status.isLive) return "Take Quiz";
-      return "Quiz Not Available";
-    };
-
-    const isQuizDisabled = () => {
-      return !week.quizAvailable || week.quizCompleted || !status.isLive || scheduleLoading;
-    };
-
     return (
       <div className="border-t border-gray-700 pt-4">
         <div className="flex items-center justify-between mb-2">
@@ -209,8 +267,11 @@ const DataStructures = () => {
                 Completed ({Math.round(week.quizScore || 0)}%)
               </Badge>
             )}
-            {status.isLive && week.quizAvailable && !week.quizCompleted && (
-              <Badge className="bg-green-600 text-white animate-pulse">LIVE</Badge>
+            {currentQuizWeek === week.id && quizStatus.isLive && (
+              <Badge className="bg-green-600 text-white animate-pulse">
+                <div className="w-2 h-2 bg-white rounded-full mr-1"></div>
+                LIVE
+              </Badge>
             )}
           </div>
           <div className="flex gap-2">
@@ -223,33 +284,52 @@ const DataStructures = () => {
               <Trophy className="w-4 h-4 mr-1" />
               Leaderboard
             </Button>
-            <Button
-              disabled={isQuizDisabled()}
-              onClick={() => startQuiz(week.id)}
-              className={`${
-                week.quizAvailable && status.isLive && !week.quizCompleted
-                  ? "bg-orange-600 hover:bg-orange-700"
-                  : "bg-gray-600"
-              }`}
-            >
-              {getQuizButtonText()}
-              <Clock className="w-4 h-4 ml-2" />
-            </Button>
+            {(() => {
+              const buttonConfig = getQuizButtonContent(week, week.id, quizStatus, scheduleLoading);
+              return (
+                <Button
+                  disabled={buttonConfig.disabled}
+                  onClick={() => {
+                    if (buttonConfig.text === "Check Quiz Status") {
+                      setCurrentQuizWeek(week.id); // Trigger useQuizSchedule for this week
+                    } else if (buttonConfig.text.includes("Take Quiz")) {
+                      startQuiz(week.id);
+                    }
+                  }}
+                  className={`${
+                    buttonConfig.variant === "default"
+                      ? "bg-orange-600 hover:bg-orange-700"
+                      : "bg-gray-600"
+                  }`}
+                >
+                  {buttonConfig.text}
+                  <Clock className="w-4 h-4 ml-2" />
+                </Button>
+              );
+            })()}
           </div>
         </div>
-        {status.schedule && (
-          <div className="text-sm text-gray-400">
-            {status.isLive && status.timeRemaining && (
-              <p className="text-green-400">
-                Time remaining: {Math.floor(status.timeRemaining / 60)}m {status.timeRemaining % 60}s
-              </p>
-            )}
-            {!status.hasStarted && status.timeUntilStart && (
-              <p className="text-yellow-400">
-                Starts in: {Math.floor(status.timeUntilStart / 60)}m {status.timeUntilStart % 60}s
-              </p>
-            )}
-            <p>Duration: {status.schedule.duration} minutes | Passing score: 70%</p>
+        {currentQuizWeek === week.id && !scheduleLoading && (
+          <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
+            <div className="flex items-start gap-2">
+              {quizStatus.isLive ? (
+                <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
+              ) : (
+                <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
+              )}
+              <div>
+                <p className="text-sm font-medium text-blue-200">
+                  {quizStatus.isLive ? "Quiz is Live!" : 
+                   !quizStatus.hasStarted ? "Quiz hasn't started yet" : "Quiz has ended"}
+                </p>
+                {quizStatus.schedule && (
+                  <p className="text-xs text-blue-300 mt-1">
+                    Scheduled: {new Date(quizStatus.schedule.startTime).toLocaleString()} 
+                    ({quizStatus.schedule.duration} minutes)
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -296,7 +376,7 @@ const DataStructures = () => {
       <QuizResults
         score={quizResults.score}
         totalQuestions={quizResults.totalQuestions}
-        passingScore={quizResults.quizData.passingScore}
+        // passingScore={quizResults.quizData.passingScore}
         timeUsed={quizResults.timeUsed || 0}
         timeLimit={quizResults.quizData.timeLimit}
         answers={quizResults.answers}
@@ -413,7 +493,7 @@ const DataStructures = () => {
                       <div className="text-sm text-gray-400 mb-1">Progress</div>
                       <div className="text-lg font-semibold text-orange-400">{Math.round(week.progress)}%</div>
                       {week.quizScore && (
-                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore)}%</div>
+                        <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore || 0)}%</div>
                       )}
                     </div>
                   </div>

@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None',
+      sameSite: 'lax',
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
       path: '/',
     });
@@ -59,7 +59,7 @@ exports.logout = (req, res) => {
     res.clearCookie('jwt', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None',
+      sameSite: 'lax',
       path: '/'
     });
     res.json({ message: 'Logged out successfully' });
@@ -68,7 +68,7 @@ exports.logout = (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    console.log('User:', user);
+    // console.log('User:', user);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }

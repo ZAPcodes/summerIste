@@ -36,6 +36,7 @@ exports.updateTaskProgress = async (req, res) => {
             weekNumber,
             tasksCompleted: [taskIndex],
             quizPassed: false,
+            quizScore: 0,
             completedAt: new Date()
           }]
         });
@@ -51,6 +52,7 @@ exports.updateTaskProgress = async (req, res) => {
             weekNumber,
             tasksCompleted: [taskIndex],
             quizPassed: false,
+            quizScore: 0,
             completedAt: new Date()
           });
         }

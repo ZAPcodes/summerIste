@@ -159,6 +159,7 @@ export const useProgress = (domain: string): UseProgressReturn => {
         setLocalProgress(domain, updatedProgress);
       } catch (err: any) {
         console.error('Failed to update quiz progress to backend:', err);
+        setError(err.message || 'Failed to update quiz progress');
       }
     }
   };
