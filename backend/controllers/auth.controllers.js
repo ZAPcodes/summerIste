@@ -8,6 +8,7 @@ exports.signup = async (req, res) => {
     const { name, email, password, enrolledDomains, registrationId, branch } = req.body;
     // const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ name, email, password, enrolledDomains, registrationId, branch });
+    console.log(user.registrationId);
     const existingUser = await User.find({ registrationId: user.registrationId });
     if (existingUser.length > 0) {
       return res.status(400).json({ message: 'User already exists' });

@@ -15,6 +15,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  registrationId: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  branch: {
+    type: String,
+    required: true,
+  },
+  enrolledDomains: [{
+    type: String,
+    enum: ["webdev", "aiml", "cybersec", "design", "appdev", "dsa"],
+  }],
   role: {
     type: String,
     enum: ["user", "admin"],
