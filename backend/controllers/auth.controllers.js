@@ -2,19 +2,42 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.models.js');
 const { errorHandler } = require('../utils/errorHandler');
+const validateUser = require('../utils/validateUser');
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password, enrolledDomains, registrationId, branch } = req.body;
-    // const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, email, password, enrolledDomains, registrationId, branch });
-    console.log(user.registrationId);
-    const existingUser = await User.find({ registrationId: user.registrationId });
-    if (existingUser.length > 0) {
+    const { registrationId, email, password, enrolledDomains } = req.body;
+
+    // Validate user against JSON files
+    const validation = validateUser(registrationId, email);
+    if (!validation.isValid) {
+      return res.status(400).json({ message: validation.message });
+    }
+
+    // Check if user already exists
+    const existingUser = await User.findOne({
+      $or: [
+        { registrationId },
+        { email: email }
+      ]
+    });
+
+    if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
+
+    // Create new user with validated data
+    const user = new User({
+      name: validation.userData.name,
+      email: email,
+      password,
+      registrationId,
+      branch: validation.userData.branch,
+      enrolledDomains: enrolledDomains || validation.userData.domains
+    });
+
     await user.save();
-    res.status(201).json({ user, message: 'User created' });
+    res.status(201).json({ user, message: 'User created successfully' });
   } catch (error) {
     errorHandler(error, res);
   }
@@ -23,16 +46,18 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { registrationId, password } = req.body;
+
+    // Find user by registrationId only
     const user = await User.findOne({ registrationId });
-    if(!user) {
+
+    if (!user) {
       return res.status(401).json({ message: 'User does not exist' });
     }
-    if(!(await bcrypt.compare(password, user.password))) {
+
+    if (!(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Password mismatched' });
     }
-    // if (!user || !(await bcrypt.compare(password, user.password))) {
-    //   return res.status(401).json({ message: 'Invalid credentials' });
-    // }
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
     res.cookie('jwt', token, {
       httpOnly: true,
