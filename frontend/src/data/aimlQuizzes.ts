@@ -1,4 +1,3 @@
-
 export interface QuizQuestion {
   id: string;
   question: string;
@@ -13,89 +12,135 @@ export interface WeekQuiz {
   timeLimit: number; // in minutes
   passingScore: number; // percentage
   questions: QuizQuestion[];
+  domain?: string;
 }
 
 export const aimlQuizzes: WeekQuiz[] = [
   {
-    weekId: 1,
-    title: "AI and Python Fundamentals Quiz",
-    timeLimit: 20,
-    passingScore: 70,
-    questions: [
+    "weekId": 1,
+    "title": "AI and Python Foundations Quiz",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
       {
-        id: "aiml-1-1",
-        question: "What is artificial intelligence?",
-        options: [
-          "A computer program that can think like humans",
-          "The simulation of human intelligence in machines",
-          "A type of robot",
-          "Advanced computer graphics"
+        "id": "aiml-1-1",
+        "question": "Which of the following Python data structures is most commonly used to represent labeled datasets?",
+        "options": [
+          "List",
+          "Tuple",
+          "Dictionary",
+          "DataFrame"
         ],
-        correctAnswer: 1,
-        explanation: "AI is the simulation of human intelligence processes by machines, especially computer systems."
+        "correctAnswer": 3,
+        "explanation": "DataFrames have tabular structure where each column has a label and each row represents a data point, allowing efficient manipulation, analysis, and processing of labeled datasets."
       },
       {
-        id: "aiml-1-2",
-        question: "Which Python library is primarily used for numerical computing?",
-        options: ["Pandas", "NumPy", "Matplotlib", "Scikit-learn"],
-        correctAnswer: 1,
-        explanation: "NumPy is the fundamental package for numerical computing in Python."
+        "id": "aiml-1-2",
+        "question": "Which of the following is considered good practice when working with datasets in Python for ML tasks?",
+        "options": [
+          "Using global variables to store datasets",
+          "Performing transformations directly on raw files",
+          "Using Jupyter magic commands inside model training loops",
+          "Separating data loading, preprocessing, and modeling into modular code blocks"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Separating data loading, processing, and modeling improves code reusability and maintainability."
       },
       {
-        id: "aiml-1-3",
-        question: "What does ML stand for in the context of AI?",
-        options: ["Machine Language", "Machine Learning", "Mathematical Logic", "Memory Load"],
-        correctAnswer: 1,
-        explanation: "ML stands for Machine Learning, a subset of AI that enables computers to learn without being explicitly programmed."
+        "id": "aiml-1-3",
+        "question": "What will be the output of the following NumPy operation?\n\n```python\nimport numpy as np\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[2, 0], [1, 2]])\nprint(np.dot(A, B))\n```",
+        "options": [
+          "[[4, 2], [10, 8]]",
+          "[[4, 2], [6, 4]]",
+          "[[2, 4], [2, 10]]",
+          "[[6, 4], [10, 8]]"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Matrix multiplication: [[1*2 + 2*1, 1*0 + 2*2], [3*2 + 4*1, 3*0 + 4*2]] = [[4, 4], [10, 8]]"
       },
       {
-        id: "aiml-1-4",
-        question: "Which of the following is NOT a type of machine learning?",
-        options: ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Procedural Learning"],
-        correctAnswer: 3,
-        explanation: "Procedural Learning is not a recognized type of machine learning. The main types are supervised, unsupervised, and reinforcement learning."
+        "id": "aiml-1-4",
+        "question": "Which of the following Pandas operations would you use to get the number of missing values in each column of a DataFrame `df`?",
+        "options": [
+          "df.missing().sum()",
+          "df.isnull().count()",
+          "df.countna()",
+          "df.isnull().sum()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The method `df.isnull().sum()` returns the count of missing values column-wise."
       },
       {
-        id: "aiml-1-5",
-        question: "What is the primary purpose of Pandas in data science?",
-        options: ["Data visualization", "Data manipulation and analysis", "Machine learning algorithms", "Web scraping"],
-        correctAnswer: 1,
-        explanation: "Pandas is primarily used for data manipulation and analysis, providing data structures like DataFrames."
+        "id": "aiml-1-5",
+        "question": "What is the difference between `.loc[]` and `.iloc[]` in Pandas?",
+        "options": [
+          ".loc[] is used for label-based indexing, .iloc[] is used for position-based indexing",
+          ".iloc[] is faster than .loc[] and only works on strings",
+          "They both perform the same operation",
+          ".loc[] is used to slice by rows only, .iloc[] is for both rows and columns"
+        ],
+        "correctAnswer": 0,
+        "explanation": ".loc[] accesses rows/columns by labels, while .iloc[] uses integer positions."
       },
       {
-        id: "aiml-1-6",
-        question: "In Python, which operator is used for exponentiation?",
-        options: ["^", "**", "exp()", "pow()"],
-        correctAnswer: 1,
-        explanation: "The ** operator is used for exponentiation in Python (e.g., 2**3 = 8)."
+        "id": "aiml-1-6",
+        "question": "Which method in Pandas would you use to apply a function to each row of a DataFrame?",
+        "options": [
+          "map()",
+          "filter()",
+          "apply()",
+          "groupby()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The apply() method in Python is primarily used to apply a function along an axis of a DataFrame or on the values of a Series."
       },
       {
-        id: "aiml-1-7",
-        question: "What is a neural network inspired by?",
-        options: ["Computer circuits", "The human brain", "Mathematical equations", "Database structures"],
-        correctAnswer: 1,
-        explanation: "Neural networks are inspired by the structure and function of biological neural networks in the human brain."
+        "id": "aiml-1-7",
+        "question": "Which of the following is a correct statement about the Jacobian matrix?",
+        "options": [
+          "It represents the second-order partial derivatives of a scalar function",
+          "It is only used in probability theory",
+          "It maps a function from R^n to R^m by linear approximations via partial derivatives",
+          "It is only defined for functions of a single variable"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Jacobian matrix contains all first-order partial derivatives of a vector-valued function."
       },
       {
-        id: "aiml-1-8",
-        question: "Which Python data type is mutable?",
-        options: ["Tuple", "String", "List", "Integer"],
-        correctAnswer: 2,
-        explanation: "Lists are mutable in Python, meaning their contents can be changed after creation."
+        "id": "aiml-1-8",
+        "question": "What is the derivative of the sigmoid function σ(x) = 1 / (1 + e^(-x)) with respect to x?",
+        "options": [
+          "σ(x)",
+          "σ(x)^2",
+          "σ(x)(1 - σ(x))",
+          "1 - σ(x)^2"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The derivative of the sigmoid is σ(x)(1 - σ(x)), which is used in backpropagation."
       },
       {
-        id: "aiml-1-9",
-        question: "What does API stand for?",
-        options: ["Application Programming Interface", "Automated Program Integration", "Advanced Programming Instructions", "Application Process Integration"],
-        correctAnswer: 0,
-        explanation: "API stands for Application Programming Interface, which allows different software applications to communicate."
+        "id": "aiml-1-9",
+        "question": "In probability, what does the Law of Total Probability state?",
+        "options": [
+          "P(A ∪ B) = P(A) + P(B)",
+          "P(A | B) = P(A ∩ B) / P(B)",
+          "If {B₁, B₂, ..., Bₙ} is a partition of the sample space, then P(A) = Σ P(A | Bᵢ) P(Bᵢ)",
+          "P(A ∩ B) = P(A) / P(B)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Law of Total Probability expands P(A) over mutually exclusive and exhaustive events Bᵢ."
       },
       {
-        id: "aiml-1-10",
-        question: "Which of the following is a popular Python IDE?",
-        options: ["Notepad", "PyCharm", "Calculator", "Browser"],
-        correctAnswer: 1,
-        explanation: "PyCharm is a popular Integrated Development Environment (IDE) specifically designed for Python programming."
+        "id": "aiml-1-10",
+        "question": "What does the eigenvalue decomposition of a square matrix represent in ML?",
+        "options": [
+          "The transpose of a matrix",
+          "Matrix factorization into identity and diagonal",
+          "Transformation of the matrix into a set of orthogonal axes",
+          "Sum of rows and columns"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Eigenvalue decomposition effectively transforms the original matrix into a new coordinate system where the axes are aligned with the eigenvectors, and the scaling along each axis is determined by the corresponding eigenvalue. "
       }
     ]
   },

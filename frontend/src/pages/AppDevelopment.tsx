@@ -8,7 +8,7 @@ import { ArrowLeft, Smartphone, BookOpen, PlayCircle, ExternalLink, CheckCircle,
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
-import { appdevQuizzes } from "@/data/appdevQuizzes";
+import { appdevQuizzes, WeekQuiz } from "@/data/appdevQuizzes";
 import { useProgress } from "@/hooks/useProgress";
 import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
@@ -42,6 +42,7 @@ const AppDevelopment = () => {
   const [quizState, setQuizState] = useState<"not_started" | "in_progress" | "completed">("not_started");
   const [quizResults, setQuizResults] = useState<any>(null);
   const [weeks, setWeeks] = useState<Week[]>([]);
+  const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("appdev", currentQuizWeek || 1);
 
   const staticCurriculum: CurriculumWeekData[] = appDevCurriculum;
 
@@ -127,18 +128,24 @@ const AppDevelopment = () => {
   const startQuiz = (weekId: number) => {
     setCurrentQuizWeek(weekId);
     
-    // The quiz availability checks are handled by getQuizButtonContent,
-    // so they are not needed here. Removing to resolve 'quizStatus' error.
-    // if (!quizStatus.isLive) {
-    //   if (!quizStatus.hasStarted) {
-    //     toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
-    //     return;
-    //   }
-    //   if (quizStatus.hasEnded) {
-    //     toast.error("Quiz has ended. Submissions are no longer accepted.");
-    //     return;
-    // }
-    
+    // Check if quiz is available
+    if (!quizStatus.isLive) {
+      if (!quizStatus.hasStarted) {
+        toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
+        return;
+      }
+      if (quizStatus.hasEnded) {
+        toast.error("Quiz has ended. Submissions are no longer accepted.");
+        return;
+      }
+    }
+
+    // Add domain to quiz data
+    const quizData = appdevQuizzes.find((q) => q.weekId === weekId);
+    if (quizData) {
+      (quizData as WeekQuiz).domain = "appdev";
+    }
+
     setQuizState("in_progress");
   };
 
@@ -188,10 +195,7 @@ const AppDevelopment = () => {
     return `${minutes}m ${secs}s`;
   };
 
-  const getQuizButtonContent = (week: Week, weekId: number) => {
-    // Use the hook directly inside getQuizButtonContent
-    const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("appdev", weekId);
-
+  const getQuizButtonContent = (week: Week, weekId: number, quizStatus: any, scheduleLoading: boolean) => {
     if (!currentQuizWeek || currentQuizWeek !== weekId) {
       if (week.quizCompleted) {
         return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
@@ -229,10 +233,7 @@ const AppDevelopment = () => {
     return { text: "Quiz Not Available", disabled: true, variant: "secondary" as const };
   };
 
-  const QuizSection = ({ week }: { week: Week }) => {
-    // Use the hook directly inside QuizSection
-    const { status, loading: scheduleLoading } = useQuizSchedule("appdev", week.id);
-
+  const QuizSection = ({ week, quizStatus, scheduleLoading }: { week: Week; quizStatus: any; scheduleLoading: boolean }) => {
     return (
       <div className="border-t border-gray-700 pt-4">
         <div className="flex items-center justify-between mb-2">
@@ -244,7 +245,7 @@ const AppDevelopment = () => {
                 Completed ({Math.round(week.quizScore || 0)}%)
               </Badge>
             )}
-            {currentQuizWeek === week.id && status.isLive && (
+            {currentQuizWeek === week.id && quizStatus.isLive && (
               <Badge className="bg-green-600 text-white animate-pulse">
                 <div className="w-2 h-2 bg-white rounded-full mr-1"></div>
                 LIVE
@@ -262,7 +263,7 @@ const AppDevelopment = () => {
               Leaderboard
             </Button>
             {(() => {
-              const buttonConfig = getQuizButtonContent(week, week.id);
+              const buttonConfig = getQuizButtonContent(week, week.id, quizStatus, scheduleLoading);
               return (
                 <Button
                   disabled={buttonConfig.disabled}
@@ -289,20 +290,20 @@ const AppDevelopment = () => {
         {currentQuizWeek === week.id && !scheduleLoading && (
           <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
             <div className="flex items-start gap-2">
-              {status.isLive ? (
+              {quizStatus.isLive ? (
                 <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
               ) : (
                 <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
               )}
               <div>
                 <p className="text-sm font-medium text-blue-200">
-                  {status.isLive ? "Quiz is Live!" : 
-                   !status.hasStarted ? "Quiz hasn't started yet" : "Quiz has ended"}
+                  {quizStatus.isLive ? "Quiz is Live!" : 
+                   !quizStatus.hasStarted ? "Quiz hasn't started yet" : "Quiz has ended"}
                 </p>
-                {status.schedule && (
+                {quizStatus.schedule && (
                   <p className="text-xs text-blue-300 mt-1">
-                    Scheduled: {new Date(status.schedule.startTime).toLocaleString()} 
-                    ({status.schedule.duration} minutes)
+                    Scheduled: {new Date(quizStatus.schedule.startTime).toLocaleString()} 
+                    ({quizStatus.schedule.duration} minutes)
                   </p>
                 )}
               </div>
@@ -543,7 +544,7 @@ const AppDevelopment = () => {
                           </div>
                         )}
 
-                        <QuizSection week={week} />
+                        <QuizSection week={week} quizStatus={quizStatus} scheduleLoading={scheduleLoading} />
                       </div>
                     </CardContent>
                   )}

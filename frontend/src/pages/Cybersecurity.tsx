@@ -8,7 +8,7 @@ import { ArrowLeft, Shield, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clo
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
-import { cybersecQuizzes } from "@/data/cybersecQuizzes";
+import { cybersecQuizzes, WeekQuiz } from "@/data/cybersecQuizzes";
 import { useProgress } from "@/hooks/useProgress";
 import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
@@ -141,6 +141,12 @@ const Cybersecurity = () => {
         toast.error("Quiz has ended. Submissions are no longer accepted.");
         return;
       }
+    }
+
+    // Add domain to quiz data
+    const quizData = cybersecQuizzes.find((q) => q.weekId === weekId);
+    if (quizData) {
+      (quizData as WeekQuiz).domain = "cybersec";
     }
     
     setQuizState("in_progress");
@@ -276,6 +282,7 @@ const Cybersecurity = () => {
         questions={quizResults.quizData.questions}
         domain="cybersec"
         week={currentQuizWeek}
+        passingScore={70}
         onRetake={retakeQuiz}
         onBackToCourse={backToCourse}
       />

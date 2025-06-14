@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,84 +44,86 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/webdev"
-            element={
-              <ProtectedRoute domain="webdev">
-                <WebDevelopment />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/aiml"
-            element={
-              <ProtectedRoute domain="aiml">
-                <AiMl />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/design"
-            element={
-              <ProtectedRoute domain="design">
-                <Design />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/cybersec"
-            element={
-              <ProtectedRoute domain="cybersec">
-                <Cybersecurity />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/appdev"
-            element={
-              <ProtectedRoute domain="appdev">
-                <AppDevelopment />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dsa"
-            element={
-              <ProtectedRoute domain="dsa">
-                <DataStructures />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/leaderboard/:domain/:week"
-            element={
-              <ProtectedRoute>
-                <DomainLeaderboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="overflow-x-hidden">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Index />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/webdev"
+              element={
+                <ProtectedRoute domain="webdev">
+                  <WebDevelopment />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/aiml"
+              element={
+                <ProtectedRoute domain="aiml">
+                  <AiMl />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/design"
+              element={
+                <ProtectedRoute domain="design">
+                  <Design />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cybersec"
+              element={
+                <ProtectedRoute domain="cybersec">
+                  <Cybersecurity />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/appdev"
+              element={
+                <ProtectedRoute domain="appdev">
+                  <AppDevelopment />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dsa"
+              element={
+                <ProtectedRoute domain="dsa">
+                  <DataStructures />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/leaderboard/:domain/:week"
+              element={
+                <ProtectedRoute>
+                  <DomainLeaderboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>

@@ -1,69 +1,131 @@
-export const dsaQuizzes = [
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+}
+
+export interface WeekQuiz {
+  weekId: number;
+  title: string;
+  timeLimit: number;
+  passingScore: number;
+  questions: QuizQuestion[];
+  domain?: string;
+}
+
+export const dsaQuizzes: WeekQuiz[] = [
   {
-    weekId: 1,
-    title: "Week 1 Quiz - Language Basics and Arrays",
-    timeLimit: 30,
-    passingScore: 70,
-    questions: [
+    "weekId": 1,
+    "title": "Week 1 Quiz - Programming Basics and Arrays",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
       {
-        id: "1",
-        question: "Which of the following is the correct way to declare an array in C++?",
-        options: [
-          "int arr[10];",
-          "array<int> arr[10];",
-          "int arr = new array[10];",
-          "declare arr as int[10];"
+        "id": "1",
+        "question": "What is an array?",
+        "options": [
+          "A variable that holds a single value",
+          "A collection of elements of the same type stored at contiguous memory locations",
+          "A function that returns multiple values",
+          "A type of loop used to repeat a block of code"
         ],
-        correctAnswer: 0,
-        explanation: "In C++, arrays are declared using the syntax: datatype arrayname[size];"
+        "correctAnswer": 1,
+        "explanation": "An array stores multiple elements of the same type in contiguous memory."
       },
       {
-        id: "2",
-        question: "What is the time complexity of bubble sort?",
-        options: [
-          "O(n)",
-          "O(n log n)",
-          "O(n²)",
-          "O(1)"
-        ],
-        correctAnswer: 2,
-        explanation: "Bubble sort has a time complexity of O(n²) in the worst and average cases."
+        "id": "2",
+        "question": "What is the time complexity of bubble sort in the worst case?",
+        "options": ["O(n)", "O(n log n)", "O(n²)", "O(1)"],
+        "correctAnswer": 2,
+        "explanation": "Bubble sort compares adjacent pairs, resulting in O(n²) in the worst case."
       },
       {
-        id: "3",
-        question: "Which STL container should be used for dynamic arrays in C++?",
-        options: [
-          "array",
-          "vector",
-          "list",
-          "stack"
-        ],
-        correctAnswer: 1,
-        explanation: "std::vector is the STL container that provides dynamic array functionality."
+        "id": "3",
+        "question": "Which data structure is ideal for dynamically resizing arrays?",
+        "options": ["Static array", "Linked list", "Dynamic array", "Queue"],
+        "correctAnswer": 2,
+        "explanation": "Dynamic arrays can grow or shrink in size as needed during runtime."
       },
       {
-        id: "4",
-        question: "What is the correct way to access the first element of a 2D array arr?",
-        options: [
-          "arr[1][1]",
-          "arr[0][0]",
-          "arr.first()",
-          "arr(0,0)"
+        "id": "4",
+        "question": "What does a 2D array represent?",
+        "options": [
+          "A single list of elements",
+          "A table or grid of elements with rows and columns",
+          "A collection of unrelated elements",
+          "An array that stores strings only"
         ],
-        correctAnswer: 1,
-        explanation: "Arrays in most programming languages are 0-indexed, so the first element is at [0][0]."
+        "correctAnswer": 1,
+        "explanation": "A 2D array is like a table with rows and columns of elements."
       },
       {
-        id: "5",
-        question: "Which sorting algorithm is stable?",
-        options: [
+        "id": "5",
+        "question": "Which sorting algorithm maintains the order of equal elements?",
+        "options": [
           "Quick sort",
           "Heap sort",
           "Merge sort",
           "Selection sort"
         ],
-        correctAnswer: 2,
-        explanation: "Merge sort is a stable sorting algorithm that maintains the relative order of equal elements."
+        "correctAnswer": 2,
+        "explanation": "Merge sort is a stable sort that preserves the order of equal elements."
+      },
+      {
+        "id": "6",
+        "question": "What is the best-case time complexity of linear search?",
+        "options": ["O(n)", "O(log n)", "O(1)", "O(n²)"],
+        "correctAnswer": 2,
+        "explanation": "If the element is found at the first position, linear search completes in O(1)."
+      },
+      {
+        "id": "7",
+        "question": "In binary search, what must be true about the array?",
+        "options": [
+          "It should contain only integers",
+          "It must be sorted",
+          "It must have even number of elements",
+          "It must contain unique values"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Binary search only works on sorted arrays."
+      },
+      {
+        "id": "8",
+        "question": "What is the main idea behind selection sort?",
+        "options": [
+          "Divide the array into halves recursively",
+          "Move the largest element to the end repeatedly",
+          "Select the smallest element and place it at the correct position",
+          "Compare adjacent elements and swap them"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Selection sort repeatedly finds the minimum and places it at the start."
+      },
+      {
+        "id": "9",
+        "question": "Which operation is typically used to insert an element at the end of a dynamic list?",
+        "options": [
+          "insertEnd()",
+          "addLast()",
+          "append()",
+          "pushLast()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Appending adds an element to the end of a list in most programming environments."
+      },
+      {
+        "id": "10",
+        "question": "What is the purpose of a search algorithm?",
+        "options": [
+          "To sort the data",
+          "To delete elements from a data structure",
+          "To find the location or presence of an element",
+          "To convert data types"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Search algorithms locate an element in a collection of data."
       }
     ]
   },

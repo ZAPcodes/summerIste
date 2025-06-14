@@ -49,15 +49,39 @@ export const designCurriculum: CurriculumWeekData[] = [
   },
   {
     id: 2,
-    title: "Typography and Color Theory",
+    title: "Graphic Design: Canva and Adobe Illustrator Basics",
     tasks: [
-      { id: "2-1", title: "Learn typography basics", description: "Explore principles of typography, including font selection, pairing, and hierarchy.", type: "reading" },
-      { id: "2-2", title: "Understand color theory", description: "Learn about color psychology, color harmonies, and their application in UI design.", type: "video" },
-      { id: "2-3", title: "Apply typography in Figma", description: "Practice incorporating effective typography into your Figma designs.", type: "assignment" },
-      { id: "2-4", title: "Create a color palette", description: "Develop a cohesive color palette suitable for a user interface.", type: "assignment" },
-      { id: "2-5", title: "Redesign landing page with new styles", description: "Revise your previously designed landing page using new typography and color schemes.", type: "assignment" }
+      { id: "2-1", title: "Design a Poster using Canva", description: "Create an eye-catching poster for an event or theme of your choice using Canva.", type: "assignment" },
+      { id: "2-2", title: "Create an Instagram Carousel Post", description: "Design a multi-slide Instagram carousel post focusing on a consistent visual theme.", type: "assignment" },
+      { id: "2-3", title: "Learn Adobe Illustrator Basics", description: "Get introduced to Adobe Illustrator and its core features used for vector design.", type: "video" },
+      { id: "2-4", title: "Practice Logo Design in Illustrator", description: "Create a simple logo using Illustrator tools and techniques learned.", type: "assignment" }
     ],
-    resources: [],
+    resources: [
+      {
+        id: "2-resource-1",
+        title: "Adobe Illustrator for Beginners | FREE COURSE (Envato Tuts)",
+        type: "video",
+        url: "https://www.youtube.com/watch?v=Ib8UBwu3yGA"
+      },
+      {
+        id: "2-resource-2",
+        title: "Illustrator Full Course Tutorial (6+ Hours)",
+        type: "video",
+        url: "https://www.youtube.com/watch?v=3RTqLQ1MaQU"
+      },
+      {
+        id: "2-resource-3",
+        title: "Learn Illustrator in 5 MINUTES!",
+        type: "video",
+        url: "https://www.youtube.com/watch?v=3GzumUieDPY"
+      },
+      {
+        id: "2-resource-4",
+        title: "Practice Repo: Adobe Illustrator for Beginners",
+        type: "documentation",
+        url: "https://github.com/tutsplus/adobe-illustrator-for-beginners"
+      }
+    ]
   },
   {
     id: 3,

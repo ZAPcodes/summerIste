@@ -27,93 +27,89 @@ export const webDevQuizzes: WeekQuiz[] = [
         question: "What does HTML stand for?",
         options: [
           "Hyper Text Markup Language",
-          "High Tech Modern Language",
           "Home Tool Markup Language",
-          "Hyperlink and Text Markup Language"
+          "Hyperlink and Text Markup Language",
+          "High Tech Modern Language"
         ],
         correctAnswer: 0,
-        explanation: "HTML stands for Hyper Text Markup Language, which is the standard markup language for creating web pages."
+        explanation: "HTML stands for Hyper Text Markup Language, used to structure content on the web."
       },
       {
         id: "w1q2",
-        question: "Which CSS property is used to change the text color of an element?",
-        options: ["font-color", "text-color", "color", "foreground-color"],
-        correctAnswer: 2,
-        explanation: "The 'color' property in CSS is used to set the color of text content."
+        question: "Which HTML tag is used to define a container for navigation links?",
+        options: ["<nav>", "<link>", "<a>", "<section>"],
+        correctAnswer: 0,
+        explanation: "The <nav> tag is specifically used to define navigation links."
       },
       {
         id: "w1q3",
-        question: "What is the correct way to declare a variable in JavaScript?",
-        options: ["var myVar;", "variable myVar;", "v myVar;", "declare myVar;"],
-        correctAnswer: 0,
-        explanation: "In JavaScript, you can declare variables using 'var', 'let', or 'const' keywords."
+        question: "Which CSS property controls the spacing between elements?",
+        options: ["padding", "border", "spacing", "margin"],
+        correctAnswer: 3,
+        explanation: "The 'margin' property controls the space outside an element's border."
       },
       {
         id: "w1q4",
-        question: "Which HTML tag is used to create a hyperlink?",
-        options: ["<link>", "<a>", "<href>", "<url>"],
-        correctAnswer: 1,
-        explanation: "The <a> tag (anchor tag) is used to create hyperlinks in HTML."
+        question: "What does 'display: flex' do in CSS?",
+        options: [
+          "Aligns elements vertically only",
+          "Applies a block layout model",
+          "Makes a container a flex container",
+          "Centers content horizontally by default"
+        ],
+        correctAnswer: 2,
+        explanation: "'display: flex' makes the container a flex container for flexible box layout."
       },
       {
         id: "w1q5",
-        question: "What does CSS stand for?",
-        options: [
-          "Computer Style Sheets",
-          "Cascading Style Sheets",
-          "Creative Style Sheets",
-          "Colorful Style Sheets"
-        ],
+        question: "Which property defines how remaining space is distributed in a flex container?",
+        options: ["align-items", "flex-grow", "justify-items", "grid-area"],
         correctAnswer: 1,
-        explanation: "CSS stands for Cascading Style Sheets, used for styling HTML documents."
+        explanation: "'flex-grow' defines how much a flex item will grow relative to the rest."
       },
       {
         id: "w1q6",
-        question: "Which Git command is used to save changes to the local repository?",
-        options: ["git save", "git commit", "git push", "git store"],
+        question: "What does the CSS Grid property 'grid-template-columns: 1fr 2fr;' mean?",
+        options: [
+          "Creates one fixed and two fluid columns",
+          "First column takes 1 part, second takes 2 parts of available space",
+          "Creates 3 equal columns",
+          "Creates 2 columns with fixed width"
+        ],
         correctAnswer: 1,
-        explanation: "The 'git commit' command saves changes to the local repository with a commit message."
+        explanation: "It divides the space into 3 parts — the first column gets 1 part, the second gets 2."
       },
       {
         id: "w1q7",
-        question: "What is the purpose of the <head> section in HTML?",
-        options: [
-          "To display the main content",
-          "To contain metadata about the document",
-          "To create navigation links",
-          "To add images"
-        ],
+        question: "In JavaScript, what is the output of: typeof null?",
+        options: ["'null'", "'object'", "'undefined'", "'number'"],
         correctAnswer: 1,
-        explanation: "The <head> section contains metadata, title, links to stylesheets, and other information not displayed on the page."
+        explanation: "Due to a historical bug in JS, typeof null returns 'object'."
       },
       {
         id: "w1q8",
-        question: "Which CSS selector targets elements with a specific class?",
-        options: ["#classname", ".classname", "*classname", "classname"],
+        question: "Which JavaScript keyword is block-scoped and can be reassigned?",
+        options: ["var", "let", "const", "function"],
         correctAnswer: 1,
-        explanation: "The dot notation (.classname) is used to select elements with a specific CSS class."
+        explanation: "'let' is block-scoped and allows reassignment."
       },
       {
         id: "w1q9",
-        question: "What is the difference between '==' and '===' in JavaScript?",
-        options: [
-          "No difference",
-          "=== checks type and value, == only checks value",
-          "== checks type and value, === only checks value",
-          "=== is faster than =="
-        ],
-        correctAnswer: 1,
-        explanation: "=== (strict equality) checks both type and value, while == (loose equality) only compares values after type coercion."
+        question: "What will `console.log('5' == 5)` output?",
+        options: ["true", "false", "undefined", "error"],
+        correctAnswer: 0,
+        explanation: "== does type coercion, so '5' == 5 returns true."
       },
       {
         id: "w1q10",
-        question: "Which protocol is primarily used for web communication?",
-        options: ["FTP", "SMTP", "HTTP", "SSH"],
+        question: "Which of the following is a **primitive** data type in JavaScript?",
+        options: ["Array", "Function", "String", "Object"],
         correctAnswer: 2,
-        explanation: "HTTP (HyperText Transfer Protocol) is the primary protocol used for communication between web browsers and servers."
+        explanation: "'String' is a primitive type. Others are objects or complex types."
       }
     ]
-  },
+  }
+  ,
   {
     weekId: 2,
     title: "Advanced JavaScript and DOM Quiz",

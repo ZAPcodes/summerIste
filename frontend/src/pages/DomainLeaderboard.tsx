@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Trophy, ArrowLeft, Calendar, Clock, Users, Star, Crown, Medal, Award } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { getLeaderboard, LeaderboardEntry } from "@/services/api";
+import { getLeaderboard, LeaderboardEntry, getQuizSchedule, QuizSchedule } from "@/services/api";
 import { toast } from "react-toastify";
 
 const DomainLeaderboard = () => {
@@ -17,6 +16,7 @@ const DomainLeaderboard = () => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [quizSchedule, setQuizSchedule] = useState<QuizSchedule | null>(null);
 
   const domainNames = {
     webdev: "Web Development",
@@ -52,8 +52,20 @@ const DomainLeaderboard = () => {
       setLeaderboard(data);
     } catch (err: any) {
       setError(err.message || "Failed to load leaderboard");
-      if (err.message.includes("still ongoing")) {
-        toast.info("Quiz is still ongoing. Leaderboard will be available after the quiz ends.");
+      // Fetch quiz schedule to determine if it hasn't started yet
+      try {
+        const schedule = await getQuizSchedule(domain, parseInt(selectedWeek));
+        setQuizSchedule(schedule);
+        const currentTime = new Date();
+        const quizStartTime = new Date(schedule.startTime);
+
+        if (currentTime < quizStartTime) {
+          toast.info("Quiz hasn't started yet. Leaderboard will be available after the quiz ends.");
+        } else {
+          toast.info("Quiz is still ongoing. Leaderboard will be available after the quiz ends.");
+        }
+      } catch (scheduleErr: any) {
+        toast.error(scheduleErr.message || "Failed to fetch quiz schedule.");
       }
     } finally {
       setLoading(false);

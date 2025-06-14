@@ -9,7 +9,7 @@ import { Calendar, Clock, CheckCircle, PlayCircle, FileText, Brain, ChevronDown,
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
-import { dsaQuizzes } from "@/data/dsaQuizzes";
+import { dsaQuizzes, WeekQuiz } from "@/data/dsaQuizzes";
 import { useProgress } from "@/hooks/useProgress";
 import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
@@ -47,6 +47,7 @@ interface Week {
 const DataStructures = () => {
   const navigate = useNavigate();
   const { progress, loading, error, toggleTask, updateQuizProgress } = useProgress("dsa");
+  const [currentView, setCurrentView] = useState<'course' | 'quiz' | 'results'>('course');
   const [currentQuizWeek, setCurrentQuizWeek] = useState<number | null>(null);
   const [quizState, setQuizState] = useState<"not_started" | "in_progress" | "completed">("not_started");
   const [quizResults, setQuizResults] = useState<any>(null);
@@ -156,6 +157,12 @@ const DataStructures = () => {
       }
     }
 
+    // Add domain to quiz data
+    const quizData = dsaQuizzes.find((q) => q.weekId === weekId);
+    if (quizData) {
+      (quizData as WeekQuiz).domain = "dsa";
+    }
+
     setQuizState("in_progress");
   };
 
@@ -165,6 +172,7 @@ const DataStructures = () => {
 
     setQuizResults({ score, totalQuestions, answers, quizData, timeUsed });
     setQuizState("completed");
+    setCurrentView('results');
 
     const passed = true;
 
@@ -181,6 +189,7 @@ const DataStructures = () => {
   };
 
   const backToCourse = () => {
+    setCurrentView('course');
     setCurrentQuizWeek(null);
     setQuizState("not_started");
     setQuizResults(null);
@@ -376,7 +385,7 @@ const DataStructures = () => {
       <QuizResults
         score={quizResults.score}
         totalQuestions={quizResults.totalQuestions}
-        // passingScore={quizResults.quizData.passingScore}
+        passingScore={70}
         timeUsed={quizResults.timeUsed || 0}
         timeLimit={quizResults.quizData.timeLimit}
         answers={quizResults.answers}
@@ -492,7 +501,7 @@ const DataStructures = () => {
                     <div className="text-right">
                       <div className="text-sm text-gray-400 mb-1">Progress</div>
                       <div className="text-lg font-semibold text-orange-400">{Math.round(week.progress)}%</div>
-                      {week.quizScore && (
+                      {week.quizScore !== undefined && (
                         <div className="text-sm text-green-400">Quiz: {Math.round(week.quizScore || 0)}%</div>
                       )}
                     </div>

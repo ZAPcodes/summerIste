@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRouter = require('./routes/auth.routes.js');
+const userRouter = require('./routes/user.routes.js');
 const connectDB = require('./config/db.js');
 const cookieParser = require('cookie-parser');
 const progressRouter = require('./routes/progress.routes.js');
@@ -35,6 +36,7 @@ app.listen(process.env.PORT || 5000, () => {
 
 
 app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 app.use('/api/progress', progressRouter);
 app.use('/api/quiz', quizRouter);
 

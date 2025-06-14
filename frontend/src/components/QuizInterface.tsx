@@ -104,6 +104,7 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
       return acc;
     }, {});
 
+    console.log(`[QuizInterface] Attempting to submit quiz. Domain: ${quizToUse.domain}, WeekId: ${quizToUse.weekId}`);
     // Submit to API if domain and week are available
     if (quizToUse.domain && quizToUse.weekId) {
       try {
@@ -119,6 +120,8 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
         console.error("Failed to submit quiz:", error);
         toast.error("Failed to submit quiz to server");
       }
+    } else {
+      console.warn("[QuizInterface] Quiz submission skipped: Domain or WeekId is missing.", { domain: quizToUse.domain, weekId: quizToUse.weekId });
     }
 
     onComplete(score, quizToUse.questions.length, answersObject, timeUsed);

@@ -266,15 +266,6 @@ const WebDevelopment = () => {
                 </Button>
               );
             })()}
-            {week.quizCompleted && (
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => resetQuizStatus(week.id)}
-              >
-                Reset Quiz Status
-              </Button>
-            )}
           </div>
         </div>
         {currentQuizWeek === week.id && !scheduleLoading && (

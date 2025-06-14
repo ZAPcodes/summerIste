@@ -18,24 +18,24 @@ const Profile = () => {
   const navigate = useNavigate();
   const { user, logout: authLogout, isLoading } = useAuth();
   const [progressData, setProgressData] = useState<any>(null);
-  console.log("Profile.tsx: Initial user object:", user);
-  console.log("Profile.tsx: Initial isLoading:", isLoading);
+  // console.log("Profile.tsx: Initial user object:", user);
+  // console.log("Profile.tsx: Initial isLoading:", isLoading);
 
   useEffect(() => {
-    console.log("Profile.tsx: useEffect triggered. Current user:", user);
+    // console.log("Profile.tsx: useEffect triggered. Current user:", user);
     if (!user) {
-      console.log("Profile.tsx: No user found, navigating to login.");
+      // console.log("Profile.tsx: No user found, navigating to login.");
       navigate('/login');
       return;
     }
-    console.log("Profile.tsx: User found. Enrolled domains:", user.enrolledDomains);
+    // console.log("Profile.tsx: User found. Enrolled domains:", user.enrolledDomains);
 
     // Fetch progress data for all enrolled domains
     const fetchProgressData = async () => {
       try {
         const progressPromises = user.enrolledDomains.map(domain => 
           apiService.getProgress(user._id, domain).catch(err => {
-            console.error(`Failed to fetch progress for domain ${domain}:`, err);
+            // console.error(`Failed to fetch progress for domain ${domain}:`, err);
             return null;
           })
         );
@@ -49,9 +49,9 @@ const Profile = () => {
         });
         
         setProgressData(progressMap);
-        console.log("Profile.tsx: Fetched progress data:", progressMap);
+        // console.log("Profile.tsx: Fetched progress data:", progressMap);
       } catch (error) {
-        console.error('Profile.tsx: Failed to fetch progress data in useEffect:', error);
+        // console.error('Profile.tsx: Failed to fetch progress data in useEffect:', error);
       }
     };
 
@@ -59,24 +59,24 @@ const Profile = () => {
   }, [user, navigate]);
 
   const handleLogout = async () => {
-    console.log("Profile.tsx: Logging out.");
+    // console.log("Profile.tsx: Logging out.");
     await authLogout();
     navigate('/dashboard');
   };
 
   const getDomainProgress = (domainId: string) => {
-    console.log(`Profile.tsx: Calculating progress for domain: ${domainId}`);
-    console.log("Profile.tsx: Full progressData passed to getDomainProgress:", progressData);
+    // console.log(`Profile.tsx: Calculating progress for domain: ${domainId}`);
+    // console.log("Profile.tsx: Full progressData passed to getDomainProgress:", progressData);
 
     if (!progressData?.[domainId]) {
-      console.log(`Profile.tsx: No progress data found for ${domainId} in progressData, returning 0.`);
+      // console.log(`Profile.tsx: No progress data found for ${domainId} in progressData, returning 0.`);
       return 0;
     }
     
     const backendProgress = progressData[domainId];
     const weeks = backendProgress.weeks;
-    console.log(`Profile.tsx: Backend progress for ${domainId}:`, backendProgress);
-    console.log(`Profile.tsx: Backend weeks for ${domainId}:`, weeks);
+    // console.log(`Profile.tsx: Backend progress for ${domainId}:`, backendProgress);
+    // console.log(`Profile.tsx: Backend weeks for ${domainId}:`, weeks);
 
     let curriculum: any[];
     switch (domainId) {
@@ -99,13 +99,13 @@ const Profile = () => {
         curriculum = designCurriculum;
         break;
       default:
-        console.log(`Profile.tsx: No curriculum found for domain: ${domainId}, returning 0.`);
+        // console.log(`Profile.tsx: No curriculum found for domain: ${domainId}, returning 0.`);
         return 0; // Return 0 if curriculum is not found
     }
-    console.log(`Profile.tsx: Loaded curriculum for ${domainId}:`, curriculum);
+    // console.log(`Profile.tsx: Loaded curriculum for ${domainId}:`, curriculum);
 
     if (!curriculum || curriculum.length === 0) {
-      console.log(`Profile.tsx: Curriculum is empty or null for ${domainId}, returning 0.`);
+      // console.log(`Profile.tsx: Curriculum is empty or null for ${domainId}, returning 0.`);
       return 0;
     }
 
@@ -158,34 +158,51 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
       {/* Navigation */}
-      <nav className="border-b border-blue-800/50 backdrop-blur-sm bg-black/20">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate('/dashboard')}
-              className="text-blue-300 hover:text-blue-200"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                <img src="/ISTE.png" alt="ISTE" className="w-full h-full object-cover" />
-              </div>
-              <span className="text-lg font-semibold">ISTE Summer School</span>
-            </div>
-            <Button
-              variant="outline"
-              onClick={handleLogout}
-              className="border-red-500 text-red-300 hover:bg-red-500/20"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
-          </div>
+      <nav className="border-b border-blue-800/50 backdrop-blur-sm bg-black/20 w-full">
+  <div className="container mx-auto px-4 py-3">
+    <div className="relative flex items-center justify-center">
+      
+      {/* Back Button */}
+      <div className="absolute left-0">
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/dashboard')}
+          className="text-blue-300 hover:text-blue-200 text-sm px-2"
+        >
+          <ArrowLeft className="w-4 h-4 mr-1" />
+          <span className="hidden sm:inline">Back to Home</span>
+          <span className="inline sm:hidden">Back</span>
+        </Button>
+      </div>
+
+      {/* Center Logo & Title */}
+      <div className="flex items-center gap-2 text-white">
+        <div className="w-7 h-7 sm:w-8 sm:h-8">
+          <img src="/ISTE.png" alt="ISTE Logo" className="w-full h-full object-contain" />
         </div>
-      </nav>
+        <span className="text-sm sm:text-lg font-semibold text-center whitespace-nowrap">
+          ISTE Summer School
+        </span>
+      </div>
+
+      {/* Logout Button */}
+      <div className="absolute right-0">
+        <Button
+          variant="outline"
+          onClick={handleLogout}
+          className="border-red-500 text-red-300 hover:bg-red-500/20 px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-2"
+        >
+          <LogOut className="w-4 h-4 mr-1" />
+          <span className="hidden sm:inline">Logout</span>
+          <span className="inline sm:hidden">Logout</span>
+        </Button>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
 
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-4xl mx-auto space-y-8">

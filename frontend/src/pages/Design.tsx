@@ -8,7 +8,7 @@ import { ArrowLeft, Palette, BookOpen, PlayCircle, ExternalLink, CheckCircle, Cl
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
-import { designQuizzes } from "@/data/designQuizzes";
+import { designQuizzes, WeekQuiz } from "@/data/designQuizzes";
 import { useProgress } from "@/hooks/useProgress";
 import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
@@ -141,6 +141,12 @@ const Design = () => {
         toast.error("Quiz has ended. Submissions are no longer accepted.");
         return;
       }
+    }
+
+    // Add domain to quiz data
+    const quizData = designQuizzes.find((q) => q.weekId === weekId);
+    if (quizData) {
+      (quizData as WeekQuiz).domain = "design";
     }
 
     setQuizState("in_progress");

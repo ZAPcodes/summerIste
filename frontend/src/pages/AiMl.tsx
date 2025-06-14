@@ -8,7 +8,7 @@ import { ArrowLeft, Brain, BookOpen, PlayCircle, ExternalLink, CheckCircle, Cloc
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
-import { aimlQuizzes } from "@/data/aimlQuizzes";
+import { aimlQuizzes, WeekQuiz } from "@/data/aimlQuizzes";
 import { useProgress } from "@/hooks/useProgress";
 import { useQuizSchedule } from "@/hooks/useQuizSchedule";
 import { toast } from "react-toastify";
@@ -42,6 +42,7 @@ const AiMl = () => {
   const [quizState, setQuizState] = useState<"not_started" | "in_progress" | "completed">("not_started");
   const [quizResults, setQuizResults] = useState<any>(null);
   const [weeks, setWeeks] = useState<Week[]>([]);
+  const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("aiml", currentQuizWeek || 1);
 
   const staticCurriculum: CurriculumWeekData[] = aimlCurriculum;
 
@@ -143,6 +144,12 @@ const AiMl = () => {
       }
     }
 
+    // Add domain to quiz data
+    const quizData = aimlQuizzes.find((q) => q.weekId === weekId);
+    if (quizData) {
+      (quizData as WeekQuiz).domain = "aiml";
+    }
+
     setQuizState("in_progress");
   };
 
@@ -194,7 +201,7 @@ const AiMl = () => {
 
   const getQuizButtonContent = (week: Week, weekId: number) => {
     // Ensure quizStatus is available within this scope
-    const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("aiml", weekId);
+    // const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("aiml", weekId);
 
     if (!currentQuizWeek || currentQuizWeek !== weekId) {
       if (week.quizCompleted) {

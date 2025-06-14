@@ -38,32 +38,6 @@ const QuizResults = ({
 }: QuizResultsProps) => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const { user } = useAuth();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    const submitResult = async () => {
-      if (!user?._id || isSubmitted) {
-        return;
-      }
-
-      try {
-        await apiService.submitQuizResult({
-          domain,
-          week,
-          answers: Object.values(answers),
-          score,
-          completionTime: timeUsed,
-        });
-        toast.success("Quiz results submitted successfully!");
-        setIsSubmitted(true);
-      } catch (error: any) {
-        console.error("Error submitting quiz result:", error);
-        toast.error(`Failed to submit quiz results: ${error.message || "Unknown error"}`);
-      }
-    };
-
-    submitResult();
-  }, [domain, week, answers, score, timeUsed, user, isSubmitted]);
 
   const referenceScore = 0; // For display purposes only
   const passed = score >= referenceScore;
@@ -181,20 +155,20 @@ const QuizResults = ({
             <CardTitle className="text-5xl font-bold text-white mb-4">
               {Math.round(score)}%
             </CardTitle>
-            <CardDescription className="text-xl mb-6">
+            <div className="text-xl mb-6 flex items-center justify-center gap-3">
               <Badge
                 className={`${
                   passed
                     ? "bg-green-900/50 text-green-300 border-green-500/50"
                     : "bg-red-900/50 text-red-300 border-red-500/50"
-                } mr-3 px-4 py-2 text-lg font-semibold`}
+                } px-4 py-2 text-lg font-semibold`}
               >
                 {passed ? "PASSED" : "FAILED"}
               </Badge>
               <span className="text-gray-300">
                 {correctAnswers} out of {totalQuestions} correct
               </span>
-            </CardDescription>
+            </div>
           </CardHeader>
           <CardContent className="relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
