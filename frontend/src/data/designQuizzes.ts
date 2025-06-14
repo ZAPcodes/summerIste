@@ -17,108 +17,123 @@ export interface WeekQuiz {
 
 export const designQuizzes: WeekQuiz[] = [
   {
-    "weekId": 1,
-    "title": "Design Foundations Quiz",
-    "timeLimit": 20,
-    "passingScore": 70,
-    "questions": [
-      {
-        "id": "design-1-1",
-        "question": "What is the primary purpose of Figma?",
-        "options": [
-          "Video editing",
-          "UI/UX design and prototyping",
-          "Photo manipulation",
-          "3D modeling"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Figma is primarily used for UI/UX design, prototyping, and collaborative design work."
-      },
-      {
-        "id": "design-1-2",
-        "question": "Which design principle refers to the visual weight distribution in a design?",
-        "options": ["Contrast", "Balance", "Unity", "Emphasis"],
-        "correctAnswer": 1,
-        "explanation": "Balance refers to the distribution of visual weight in a design, creating stability and harmony."
-      },
-      {
-        "id": "design-1-3",
-        "question": "What is the main advantage of using vector graphics?",
-        "options": [
-          "Smaller file sizes",
-          "Better photo quality",
-          "Scalability without quality loss",
-          "Faster loading times"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Vector graphics can be scaled to any size without losing quality because they're made of mathematical paths."
-      },
-      {
-        "id": "design-1-4",
-        "question": "What does UI stand for?",
-        "options": ["User Interface", "Universal Integration", "Unified Input", "User Interaction"],
-        "correctAnswer": 0,
-        "explanation": "UI stands for User Interface, which is the visual elements users interact with in digital products."
-      },
-      {
-        "id": "design-1-5",
-        "question": "What is a wireframe in design?",
-        "options": [
-          "A 3D model",
-          "A basic structural blueprint of a page",
-          "A color palette",
-          "A font selection"
-        ],
-        "correctAnswer": 1,
-        "explanation": "A wireframe is a basic structural blueprint that shows the layout and functionality of a page or screen."
-      },
-      {
-        "id": "design-1-6",
-        "question": "Which color model is typically used for digital displays?",
-        "options": ["CMYK", "RGB", "HSB", "LAB"],
-        "correctAnswer": 1,
-        "explanation": "RGB (Red, Green, Blue) is the color model used for digital displays and screens."
-      },
-      {
-        "id": "design-1-7",
-        "question": "What is kerning in typography?",
-        "options": [
-          "The space between lines",
-          "The space between individual characters",
-          "The size of the font",
-          "The weight of the font"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Kerning is the adjustment of space between individual characters in a font."
-      },
-      {
-        "id": "design-1-8",
-        "question": "What does UX stand for?",
-        "options": ["User Experience", "Universal Exchange", "User Extension", "Unified Experience"],
-        "correctAnswer": 0,
-        "explanation": "UX stands for User Experience, which encompasses all aspects of a user's interaction with a product."
-      },
-      {
-        "id": "design-1-9",
-        "question": "Which design principle creates visual interest and draws attention?",
-        "options": ["Unity", "Balance", "Contrast", "Proximity"],
-        "correctAnswer": 2,
-        "explanation": "Contrast creates visual interest by making elements stand out and draws the viewer's attention."
-      },
-      {
-        "id": "design-1-10",
-        "question": "What is a style guide in design?",
-        "options": [
-          "A tutorial for beginners",
-          "A document defining design standards and rules",
-          "A collection of design templates",
-          "A software manual"
-        ],
-        "correctAnswer": 1,
-        "explanation": "A style guide is a document that defines design standards, rules, and guidelines for consistent visual identity."
-      }
-    ]
-  }
+  "weekId": 1,
+  "title": "Design Foundations Quiz Canva & Figma",
+  "timeLimit": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "design-1-1",
+      "question": "What is the primary use of Figma?",
+      "options": [
+        "Video editing",
+        "UI/UX design and prototyping",
+        "Photo editing",
+        "Presentation design"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Figma is a collaborative design tool mainly used for UI/UX design, wireframing, and prototyping interfaces."
+    },
+    {
+      "id": "design-1-2",
+      "question": "Which of the following features is unique to Figma among design tools?",
+      "options": [
+        "Offline editing",
+        "Multi-user real-time collaboration",
+        "Raster-based editing",
+        "Layer masking"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Figma allows multiple users to edit the same file simultaneously in real-time, making collaboration seamless."
+    },
+    {
+      "id": "design-1-3",
+      "question": "In Canva, what is the main purpose of a 'Brand Kit'?",
+      "options": [
+        "To store photos",
+        "To create animations",
+        "To save brand logos, colors, and fonts",
+        "To export videos"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Brand Kit helps maintain visual consistency by saving your brand logos, colors, and fonts for easy reuse."
+    },
+    {
+      "id": "design-1-4",
+      "question": "Which design principle involves distributing visual weight equally across a layout?",
+      "options": ["Contrast", "Balance", "Hierarchy", "Proximity"],
+      "correctAnswer": 1,
+      "explanation": "Balance ensures that no one part of the design feels heavier than another, creating visual harmony."
+    },
+    {
+      "id": "design-1-5",
+      "question": "What is the difference between a frame and a group in Figma?",
+      "options": [
+        "A frame is a type of component; a group is not",
+        "Groups can contain frames; frames cannot contain groups",
+        "Frames act like containers with layout controls, while groups are basic collections of layers",
+        "They are interchangeable and have the same functions"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Frames provide layout and responsive design features, while groups are used simply to organize layers."
+    },
+    {
+      "id": "design-1-6",
+      "question": "Which tool allows you to design presentations, social media posts, and videos quickly using templates?",
+      "options": ["Figma", "Canva", "Photoshop", "Blender"],
+      "correctAnswer": 1,
+      "explanation": "Canva offers thousands of templates for fast design creation, especially for non-designers."
+    },
+    {
+      "id": "design-1-7",
+      "question": "What does 'prototype' refer to in Figma?",
+      "options": [
+        "A final published website",
+        "A coded application",
+        "An interactive mockup showing navigation and flow",
+        "A collection of design templates"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A prototype in Figma simulates user interactions to test the flow and usability of the design."
+    },
+    {
+      "id": "design-1-8",
+      "question": "What is kerning in typography?",
+      "options": [
+        "The space between lines",
+        "The vertical size of text",
+        "The spacing between characters",
+        "The typeface thickness"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Kerning refers to the adjustment of space between individual characters for better visual appeal."
+    },
+    {
+      "id": "design-1-9",
+      "question": "Which Canva feature helps ensure alignment of elements?",
+      "options": [
+        "Smart Guides and Gridlines",
+        "Animations",
+        "Export settings",
+        "Template Locking"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Canva provides smart guides and gridlines to help align and distribute design elements evenly."
+    },
+    {
+      "id": "design-1-10",
+      "question": "What is the purpose of 'Auto Layout' in Figma?",
+      "options": [
+        "To automatically export designs",
+        "To fix alignment issues manually",
+        "To create responsive and dynamic layouts",
+        "To change file formats"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Auto Layout in Figma allows elements to adjust automatically based on content and screen size."
+    }
+  ]
+}
      
   // Add more weeks following similar pattern
 ];
