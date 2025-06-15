@@ -50,7 +50,7 @@ export const aimlQuizzes: WeekQuiz[] = [
         "id": "aiml-1-3",
         "question": "What will be the output of the following NumPy operation?\n\n```python\nimport numpy as np\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[2, 0], [1, 2]])\nprint(np.dot(A, B))\n```",
         "options": [
-          "[[4, 2], [10, 8]]",
+          "[[4, 4], [10, 8]]",
           "[[4, 2], [6, 4]]",
           "[[2, 4], [2, 10]]",
           "[[6, 4], [10, 8]]"
