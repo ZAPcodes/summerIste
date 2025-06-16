@@ -51,9 +51,9 @@ export const aimlCurriculum: CurriculumWeekData[] = [
       { id: "2-4", title: "Implement regression and classification models", description: "Apply basic regression and classification algorithms to solve real-world problems.", type: "assignment" }
     ],
     resources: [
-      { id: "2-resource-1", title: "Data Preprocessing Techniques", type: "video", url: "https://youtube.com/playlist?list=PLfP3JxW-T70HkhNxdgZeApdpiOfL6KAQE&si=CVu9Bv0SQbHuoEPl" },
-      { id: "2-resource-2", title: "Matplotlib Tutorial", type: "video", url: "https://youtu.be/3Xc3CA655Y4?si=PMqyJFOUl_DF0MfN" },
-      { id: "2-resource-3", title: "Seaborn Tutorial", type: "video", url: "https://youtu.be/ooqXQ37XHMM?si=zf8VqNsIGGoFHO5v" },
+      { id: "2-resource-1", title: "Matplotlib Tutorial", type: "video", url: "https://youtu.be/3Xc3CA655Y4?si=PMqyJFOUl_DF0MfN" },
+      { id: "2-resource-2", title: "Seaborn Tutorial", type: "video", url: "https://youtu.be/ooqXQ37XHMM?si=zf8VqNsIGGoFHO5v" },
+      { id: "2-resource-3", title: "Data Preprocessing Techniques", type: "video", url: "https://youtube.com/playlist?list=PLfP3JxW-T70HkhNxdgZeApdpiOfL6KAQE&si=CVu9Bv0SQbHuoEPl" },
       { id: "2-resource-4", title: "Andrew Ng ML (Weeks 1 & 2)", type: "documentation", url: "https://www.coursera.org/learn/machine-learning?specialization=machine-learning-introduction" },
       { id: "2-resource-5", title: "Linear Regression from Scratch", type: "video", url: "https://youtu.be/VmbA0pi2cRQ?si=MfBl_YphuFN8OVno" },
       { id: "2-resource-6", title: "Logistic Regression (Coursera)", type: "documentation", url: "https://www.coursera.org/learn/machine-learning-with-python/home/week/4" }
