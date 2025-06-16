@@ -45,8 +45,8 @@ export const aimlCurriculum: CurriculumWeekData[] = [
     id: 2,
     title: "Data Handling and Visualization",
     tasks: [
-      { id: "2-1", title: "Clean and preprocess data", description: "Learn techniques for cleaning raw data and preparing it for analysis.", type: "assignment" },
-      { id: "2-2", title: "Visualize data", description: "Master data visualization using libraries like Matplotlib and Seaborn to gain insights.", type: "video" },
+      { id: "2-1", title: "Visualize data", description: "Learn techniques for cleaning raw data and preparing it for analysis.", type: "video" },
+      { id: "2-2", title: "Clean and preprocess", description: "Master data visualization using libraries like Matplotlib and Seaborn to gain insights.", type: "assignment" },
       { id: "2-3", title: "Perform feature engineering", description: "Understand how to create new features from existing data to improve model performance.", type: "reading" },
       { id: "2-4", title: "Implement regression and classification models", description: "Apply basic regression and classification algorithms to solve real-world problems.", type: "assignment" }
     ],
