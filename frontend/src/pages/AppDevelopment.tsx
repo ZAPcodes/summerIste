@@ -349,6 +349,11 @@ const AppDevelopment = () => {
                   await updateQuizProgress("appdev", 2, true, 100);
                   toast.success("Quiz marked as completed!");
                   setShowMarkCompleted(false);
+                  setWeeks(prevWeeks =>
+                    prevWeeks.map(w =>
+                      w.id === 2 ? { ...w, quizCompleted: true } : w
+                    )
+                  );
                 } catch {
                   toast.error("Failed to update quiz progress");
                 }
