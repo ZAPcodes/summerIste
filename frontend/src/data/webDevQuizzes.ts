@@ -118,15 +118,15 @@ export const webDevQuizzes: WeekQuiz[] = [
     questions: [
       {
         id: "w2q1",
-        question: "What does DOM stand for?",
+        question: "Which of the following best describes how the DOM is structured?",
         options: [
-          "Document Object Model",
-          "Data Object Management",
-          "Dynamic Object Method",
-          "Document Oriented Model"
+          "A linear representation of HTML tags",
+          "A flat object containing node values",
+          "A hierarchical tree of nodes",
+          "A compiled representation of styles"
         ],
-        correctAnswer: 0,
-        explanation: "DOM stands for Document Object Model, which represents the HTML document as a tree structure."
+        correctAnswer: 2,
+        explanation: "The DOM is a hierarchical tree where each node represents a part of the document (elements, text, etc.)."
       },
       {
         id: "w2q2",

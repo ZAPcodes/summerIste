@@ -200,6 +200,57 @@ const QuizResults = ({
           </CardContent>
         </Card>
 
+        {/* Detailed Question Feedback */}
+        <Card className="bg-black/50 border-blue-800/40 mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl text-white">Question Review</CardTitle>
+            <CardDescription className="text-blue-200">See which questions you got right or wrong, and the correct answers.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {questions.map((q, idx) => {
+                // answers can be an object with keys as string indices or numbers
+                const userAnswerIdx = answers[q.id] ?? answers[idx] ?? answers[String(idx)];
+                const isCorrect = userAnswerIdx === q.correctAnswer;
+                return (
+                  <div
+                    key={idx}
+                    className={`p-4 rounded-lg border ${isCorrect ? 'border-green-600 bg-green-900/10' : 'border-red-600 bg-red-900/10'}`}
+                  >
+                    <div className="font-semibold text-lg text-white mb-2">
+                      Q{idx + 1}. {q.question}
+                    </div>
+                    <div className="space-y-1 ml-2">
+                      {q.options.map((opt, optIdx) => {
+                        const isUser = userAnswerIdx === optIdx;
+                        const isRight = q.correctAnswer === optIdx;
+                        return (
+                          <div
+                            key={optIdx}
+                            className={`flex items-center gap-2 px-2 py-1 rounded-md
+                              ${isUser && isRight ? 'bg-green-700/60 text-white font-bold' :
+                                isUser && !isRight ? 'bg-red-700/60 text-white font-bold' :
+                                isRight ? 'bg-green-600/30 text-green-200' :
+                                'text-gray-300'}
+                            `}
+                          >
+                            {isUser && (
+                              isRight ? <CheckCircle className="w-4 h-4 text-green-300" /> : <XCircle className="w-4 h-4 text-red-300" />
+                            )}
+                            <span>{opt}</span>
+                            {isRight && !isUser && <span className="ml-2 text-xs text-green-300">Correct Answer</span>}
+                            {isUser && !isRight && <span className="ml-2 text-xs text-red-300">Your Answer</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Actions */}
         <div className="flex gap-4 justify-center flex-wrap">
           <Button

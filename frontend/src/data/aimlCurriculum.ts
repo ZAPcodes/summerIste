@@ -60,14 +60,108 @@ export const aimlCurriculum: CurriculumWeekData[] = [
     ],
   },
   {
-    id: 3,
-    title: "Regression Techniques",
-    tasks: [
-      { id: "3-1", title: "Build regression models", description: "Construct and evaluate various regression models such as Linear and Logistic Regression.", type: "assignment" },
-      { id: "3-2", title: "Use evaluation metrics", description: "Learn and apply metrics like R-squared, MSE, RMSE, and accuracy to assess model performance.", type: "reading" },
-      { id: "3-3", title: "Perform cross-validation", description: "Understand and implement cross-validation techniques to ensure model robustness.", type: "video" }
+    "id": 3,
+    "title": "Core ML Algorithms",
+    "tasks": [
+      {
+        "id": "3-1",
+        "title": "Learn Decision Trees and KNN",
+        "description": "Explore how Decision Trees and K-Nearest Neighbors work and are implemented for classification.",
+        "type": "video"
+      },
+      {
+        "id": "3-2",
+        "title": "Understand Support Vector Machines",
+        "description": "Dive into SVM theory, practical implementation, and mathematical formulation.",
+        "type": "reading"
+      },
+      {
+        "id": "3-3",
+        "title": "Explore Foundational ML Resources",
+        "description": "Strengthen your ML understanding through foundational courses and detailed articles.",
+        "type": "reading"
+      }
     ],
-    resources: [],
+    "resources": [
+      {
+        "id": "3-resource-1",
+        "title": "Coursera ML with Python (Week 3)",
+        "type": "documentation",
+        "url": "https://www.coursera.org/learn/machine-learning-with-python/home/week/3"
+      },
+      {
+        "id": "3-resource-2",
+        "title": "SVM Guide for Beginners (Analytics Vidhya)",
+        "type": "article",
+        "url": "https://www.analyticsvidhya.com/blog/2021/10/support-vector-machinessvm-a-complete-guide-for-beginners/"
+      },
+      {
+        "id": "3-resource-3",
+        "title": "Implementing SVM From Scratch (Towards Data Science)",
+        "type": "article",
+        "url": "https://towardsdatascience.com/implementing-svm-from-scratch-784e4ad0bc6a/"
+      },
+      {
+        "id": "3-resource-4",
+        "title": "SVM Theory and Applications (ResearchGate)",
+        "type": "documentation",
+        "url": "https://www.researchgate.net/publication/221621494_Support_Vector_Machines_Theory_and_Applications"
+      },
+      {
+        "id": "3-resource-5",
+        "title": "Andrew Ng's SVM Notes (Stanford CS229)",
+        "type": "documentation",
+        "url": "https://see.stanford.edu/materials/aimlcs229/cs229-notes3.pdf"
+      },
+      {
+        "id": "3-resource-6",
+        "title": "Andrew Ng's Full ML Course (Stanford CS229)",
+        "type": "video",
+        "url": "https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU"
+      },
+      {
+        "id": "3-resource-7",
+        "title": "StatQuest YouTube Channel",
+        "type": "video",
+        "url": "https://www.youtube.com/@statquest"
+      },
+      {
+        "id": "3-resource-8",
+        "title": "Linear Regression — Detailed View (Towards Data Science)",
+        "type": "article",
+        "url": "https://towardsdatascience.com/linear-regression-detailed-view-ea73175f6e86"
+      },
+      {
+        "id": "3-resource-9",
+        "title": "Simple Linear Regression Tutorial (DataCamp)",
+        "type": "article",
+        "url": "https://www.datacamp.com/tutorial/simple-linear-regression"
+      },
+      {
+        "id": "3-resource-10",
+        "title": "Simple Linear Regression Tutorial (Scribbr)",
+        "type": "article",
+        "url": "https://www.scribbr.com/statistics/simple-linear-regression/"
+      },
+      {
+        "id": "3-resource-11",
+        "title": "Linear Regression Cheat Sheet (ML Cheatsheet)",
+        "type": "documentation",
+        "url": "https://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html"
+      },
+      {
+        "id": "3-resource-12",
+        "title": "Linear Regression Cheat Sheet (Codecademy)",
+        "type": "documentation",
+        "url": "https://www.codecademy.com/learn/linear-regression-mssp/modules/simple-linear-regression-mssp/cheatsheet"
+      },
+      {
+        "id": "3-resource-13",
+        "title": "Logistic Regression — Detailed Overview (Towards Data Science)",
+        "type": "article",
+        "url": "https://towardsdatascience.com/logistic-regression-detailed-overview-46c4da4303bc"
+      }
+    ]
   },
   {
     id: 4,

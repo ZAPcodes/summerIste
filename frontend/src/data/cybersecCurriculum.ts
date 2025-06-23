@@ -186,11 +186,10 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
         description: "Differentiate between data encoding and encryption techniques.",
         type: "reading",
         resources: [
-          { id: "3-1-resource-1", title: "Encoding vs. Encryption vs. Hashing", type: "article", url: "https://www.baeldung.com/cs/encoding-encryption-hashing" },
-          { id: "3-1-resource-2", title: "CTF Cryptography for Beginners", type: "article", url: "https://charcharbinks.com/post/ctf_crypto_for_beginners/" },
-          { id: "3-1-resource-3", title: "CyberChef Tool", type: "documentation", url: "https://gchq.github.io/CyberChef/" },
-          { id: "3-1-resource-4", title: "Cryptii", type: "documentation", url: "https://cryptii.com/" },
-          { id: "3-1-resource-5", title: "TryHackMe: Encryption - Crypto 101", type: "documentation", url: "https://tryhackme.com/room/encryptioncrypto101" }
+          { id: "3-1-resource-1", title: "CTF Cryptography for Beginners", type: "article", url: "https://charcharbinks.com/post/ctf_crypto_for_beginners/" },
+          { id: "3-1-resource-2", title: "CyberChef Tool", type: "documentation", url: "https://gchq.github.io/CyberChef/" },
+          { id: "3-1-resource-3", title: "Cryptii", type: "documentation", url: "https://cryptii.com/" },
+          { id: "3-1-resource-4", title: "TryHackMe: Encryption - Crypto 101", type: "documentation", url: "https://tryhackme.com/room/encryptioncrypto101" }
         ]
       },
       {
@@ -199,11 +198,10 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
         description: "Study common classical ciphers like Caesar cipher and Vigenere cipher.",
         type: "video",
         resources: [
-          { id: "3-2-resource-1", title: "Practical Cryptography: Classical Ciphers", type: "documentation", url: "http://practicalcryptography.com/ciphers/classical-era/" },
-          { id: "3-2-resource-2", title: "Crypto Corner: Vigenère Cipher", type: "documentation", url: "https://crypto.interactive-maths.com/vigenegravere-cipher.html" },
-          { id: "3-2-resource-3", title: "dCode Cipher Tools", type: "documentation", url: "https://www.dcode.fr/en" },
-          { id: "3-2-resource-4", title: "CrypTool Online", type: "documentation", url: "https://www.cryptool.org/en/cto/" },
-          { id: "3-2-resource-5", title: "Khan Academy: Cryptography", type: "video", url: "https://www.khanacademy.org/computing/computer-science/cryptography" }
+          { id: "3-2-resource-1", title: "Crypto Corner: Vigenère Cipher", type: "documentation", url: "https://crypto.interactive-maths.com/vigenegravere-cipher.html" },
+          { id: "3-2-resource-2", title: "dCode Cipher Tools", type: "documentation", url: "https://www.dcode.fr/en" },
+          { id: "3-2-resource-3", title: "CrypTool Online", type: "documentation", url: "https://www.cryptool.org/en/cto/" },
+          { id: "3-2-resource-4", title: "Khan Academy: Cryptography", type: "video", url: "https://www.khanacademy.org/computing/computer-science/cryptography" }
         ]
       },
       {
@@ -212,11 +210,10 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
         description: "Practice with various base encodings such as Base64, Base32, and Base16.",
         type: "assignment",
         resources: [
-          { id: "3-3-resource-1", title: "Base64 Encoding Explained", type: "article", url: "https://medium.com/swlh/base64-encoding-explained-e0a7a22ce9df" },
-          { id: "3-3-resource-2", title: "Base Encoding Guide", type: "documentation", url: "https://cryptii.com/pipes/base64-to-base32" },
-          { id: "3-3-resource-3", title: "Linux Command Line Encoding Tools", type: "article", url: "https://linuxhint.com/bash_base64_encode_decode/" },
-          { id: "3-3-resource-4", title: "CyberChef Base Encoding Operations", type: "documentation", url: "https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')" },
-          { id: "3-3-resource-5", title: "PicoCTF Base Encoding Challenges", type: "documentation", url: "https://play.picoctf.org/practice" }
+          { id: "3-3-resource-1", title: "Base Encoding Guide", type: "documentation", url: "https://cryptii.com/pipes/base64-to-base32" },
+          { id: "3-3-resource-2", title: "Linux Command Line Encoding Tools", type: "article", url: "https://linuxhint.com/bash_base64_encode_decode/" },
+          { id: "3-3-resource-3", title: "CyberChef Base Encoding Operations", type: "documentation", url: "https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')" },
+          { id: "3-3-resource-4", title: "PicoCTF Base Encoding Challenges", type: "documentation", url: "https://play.picoctf.org/practice" }
         ]
       },
       {
@@ -229,7 +226,6 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
           { id: "3-4-resource-2", title: "RSA CTF Tool", type: "documentation", url: "https://github.com/RsaCtfTool/RsaCtfTool" },
           { id: "3-4-resource-3", title: "Crypto Hack: RSA Challenges", type: "documentation", url: "https://cryptohack.org/challenges/rsa/" },
           { id: "3-4-resource-4", title: "Understanding RSA Cryptography", type: "video", url: "https://www.youtube.com/watch?v=wXB-V_Keiu8" },
-          { id: "3-4-resource-5", title: "PicoCTF RSA Challenges Walkthrough", type: "documentation", url: "https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/Mind_your_Ps_and_Qs.md" }
         ]
       },
       {
@@ -242,7 +238,6 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
           { id: "3-5-resource-2", title: "Steghide Tutorial", type: "documentation", url: "https://www.kali.org/tools/steghide/" },
           { id: "3-5-resource-3", title: "StegOnline", type: "documentation", url: "https://stegonline.georgeom.net/upload" },
           { id: "3-5-resource-4", title: "Digital Invisible Ink Toolkit", type: "documentation", url: "https://diit.sourceforge.net/" },
-          { id: "3-5-resource-5", title: "TryHackMe: Steganography Room", type: "documentation", url: "https://tryhackme.com/room/ccstego" }
         ]
       },
       {

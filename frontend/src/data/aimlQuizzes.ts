@@ -146,103 +146,122 @@ export const aimlQuizzes: WeekQuiz[] = [
   },
   // Add more weeks here - for brevity showing just week 1
   {
-    weekId: 2,
-    title: "Data Handling and Visualization Quiz",
-    timeLimit: 20,
-    passingScore: 70,
-    questions: [
+    "weekId": 2,
+    "title": "Data Handling and Visualization Quiz",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
       {
-        id: "aiml-2-1",
-        question: "What is data preprocessing?",
-        options: [
-          "Creating new data",
-          "Cleaning and preparing data for analysis",
-          "Visualizing data",
-          "Storing data in databases"
+        "id": "aiml-2-1",
+        "question": "Which of these is a valid method to drop missing values in a Pandas DataFrame?",
+        "options": ["remove()", "dropna()", "deleteNull()", "clear()"],
+        "correctAnswer": 1,
+        "explanation": "The `dropna()` method is used to remove rows or columns containing missing values."
+      },
+      {
+        "id": "aiml-2-2",
+        "question": "What is the role of `fillna()` in data preprocessing?",
+        "options": [
+          "Removes all rows",
+          "Fills missing values with specified data",
+          "Plots the data",
+          "Normalizes the data"
         ],
-        correctAnswer: 1,
-        explanation: "Data preprocessing involves cleaning, transforming, and preparing raw data for analysis."
-      },
-      // Add 9 more questions for week 2
-      {
-        id: "aiml-2-2",
-        question: "Which library is commonly used for data visualization in Python?",
-        options: ["NumPy", "Pandas", "Matplotlib", "Requests"],
-        correctAnswer: 2,
-        explanation: "Matplotlib is the primary library for creating static, animated, and interactive visualizations in Python."
+        "correctAnswer": 1,
+        "explanation": "`fillna()` is used to fill missing values with a specific value, like mean or median."
       },
       {
-        id: "aiml-2-3",
-        question: "What is feature engineering?",
-        options: [
-          "Building software features",
-          "Creating or modifying variables for machine learning",
-          "Engineering physical features",
-          "Testing software features"
+        "id": "aiml-2-3",
+        "question": "Which function in Pandas is used to check for missing values?",
+        "options": ["isnull()", "isempty()", "checknull()", "detect_missing()"],
+        "correctAnswer": 0,
+        "explanation": "`isnull()` returns a boolean same-sized object indicating if the values are missing."
+      },
+      {
+        "id": "aiml-2-4",
+        "question": "Which of the following best describes the use of `groupby()` in Pandas?",
+        "options": [
+          "To sort data",
+          "To perform operations like sum/mean by grouping rows by column values",
+          "To plot graphs",
+          "To drop duplicates"
         ],
-        correctAnswer: 1,
-        explanation: "Feature engineering is the process of creating or modifying variables (features) to improve machine learning model performance."
+        "correctAnswer": 1,
+        "explanation": "`groupby()` groups data based on a column and performs aggregate functions like sum, mean, etc."
       },
       {
-        id: "aiml-2-4",
-        question: "What does NaN stand for in data analysis?",
-        options: ["Not a Number", "New Analysis Node", "Null and Nil", "Numeric Analysis"],
-        correctAnswer: 0,
-        explanation: "NaN stands for 'Not a Number' and represents missing or undefined numerical values."
-      },
-      {
-        id: "aiml-2-5",
-        question: "Which method is used to remove missing values in Pandas?",
-        options: ["remove()", "delete()", "dropna()", "clear()"],
-        correctAnswer: 2,
-        explanation: "The dropna() method is used to remove rows or columns with missing values in Pandas."
-      },
-      {
-        id: "aiml-2-6",
-        question: "What type of data visualization is best for showing relationships between two continuous variables?",
-        options: ["Bar chart", "Pie chart", "Scatter plot", "Line chart"],
-        correctAnswer: 2,
-        explanation: "Scatter plots are ideal for showing relationships and correlations between two continuous variables."
-      },
-      {
-        id: "aiml-2-7",
-        question: "In supervised learning, what is the target variable also called?",
-        options: ["Feature", "Label", "Input", "Parameter"],
-        correctAnswer: 1,
-        explanation: "In supervised learning, the target variable is also called a label or dependent variable."
-      },
-      {
-        id: "aiml-2-8",
-        question: "What is the purpose of data normalization?",
-        options: [
-          "To make data look normal",
-          "To scale features to similar ranges",
-          "To remove outliers",
-          "To create new features"
+        "id": "aiml-2-5",
+        "question": "What does the method `.describe()` in Pandas return?",
+        "options": [
+          "Only mean of all values",
+          "Basic summary statistics like mean, std, min, and max",
+          "Plots the histogram",
+          "Drops duplicate values"
         ],
-        correctAnswer: 1,
-        explanation: "Data normalization scales features to similar ranges, preventing features with larger scales from dominating the model."
+        "correctAnswer": 1,
+        "explanation": "`.describe()` returns descriptive statistics including count, mean, std deviation, min, and max."
       },
       {
-        id: "aiml-2-9",
-        question: "Which of these is NOT a measure of central tendency?",
-        options: ["Mean", "Median", "Mode", "Range"],
-        correctAnswer: 3,
-        explanation: "Range is a measure of variability, not central tendency. Mean, median, and mode are measures of central tendency."
-      },
-      {
-        id: "aiml-2-10",
-        question: "What does EDA stand for in data science?",
-        options: [
-          "Exploratory Data Analysis",
-          "Extended Data Application",
-          "Experimental Data Assessment",
-          "Electronic Data Analysis"
+        "id": "aiml-2-6",
+        "question": "In a Linear Regression model, what does the slope represent?",
+        "options": [
+          "Intercept value",
+          "The rate at which the dependent variable changes with the independent variable",
+          "The residual error",
+          "The threshold value"
         ],
-        correctAnswer: 0,
-        explanation: "EDA stands for Exploratory Data Analysis, the process of analyzing datasets to summarize their main characteristics."
+        "correctAnswer": 1,
+        "explanation": "The slope indicates how much the dependent variable is expected to increase when the independent variable increases by one unit."
+      },
+      {
+        "id": "aiml-2-7",
+        "question": "Which of the following is NOT an assumption of linear regression?",
+        "options": [
+          "Linearity",
+          "Homoscedasticity",
+          "Multicollinearity",
+          "Dependent variable should be categorical"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Linear regression requires the dependent variable to be continuous, not categorical."
+      },
+      {
+        "id": "aiml-2-8",
+        "question": "Why is feature scaling important before linear regression?",
+        "options": [
+          "It improves visualization",
+          "It helps convergence in optimization algorithms and ensures fair weighting of features",
+          "It makes data cleaner",
+          "It reduces number of features"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Scaling ensures all features contribute equally and allows gradient descent to converge faster."
+      },
+      {
+        "id": "aiml-2-9",
+        "question": "Of the circumstances below, for which one is feature scaling particularly helpful?",
+        "options": [
+          "Feature scaling is helpful when one feature is much larger (or smaller) than another feature.",
+          "Feature scaling is helpful when all the features in the original data (before scaling is applied) range from 0 to 1.",
+          "Feature scaling is only required for classification problems.",
+          "Feature scaling is never needed if you use decision trees."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Feature scaling is especially useful when features have vastly different magnitudes, to ensure equal importance."
+      },
+      {
+        "id": "aiml-2-10",
+        "question": "You are helping a grocery store predict its revenue and have data on items sold per week and price per item. What could be a useful engineered feature?",
+        "options": [
+          "For each product, calculate the number of items sold times price per item.",
+          "For each product, calculate the number of items sold divided by the price per item.",
+          "For each product, calculate the square root of the number of items sold.",
+          "For each product, use the total number of products in the store as a new feature."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Revenue is calculated as the product of quantity sold and price per item, making it a valuable engineered feature."
       }
     ]
-  }
+  }  
   // Continue with weeks 3-6 following similar pattern
 ];

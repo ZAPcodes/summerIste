@@ -47,15 +47,15 @@ export const webDevCurriculum: WeekData[] = [
     id: 3,
     title: "Frontend with React + Tailwind",
     tasks: [
-      { id: "3-1", title: "React Basics: JSX, components, props, state, useState, useEffect" },
-      { id: "3-2", title: "JavaScript integration in React: Component logic, API calls" },
-      { id: "3-3", title: "Responsive UI with Tailwind CSS" },
-      { id: "3-4", title: "Build a Movie Search App using OMDB API" },
-      { id: "3-5", title: "Responsive layout using Tailwind CSS" }
+      { id: "3-1", title: "Tailwind CSS" },
+      { id: "3-2", title: "React Complete" },
+      { id: "3-3", title: "React Redux" },
+      { id: "3-4", title: "Build a Movie Search App using OMDB API" }
     ],
     resources: [
-      { id: "resource-3-1", title: "JavaScript integration in React: Component logic, API calls (Video)", type: "video", url: "https://youtu.be/CgkZ7MvWUAA" },
-      { id: "resource-3-2", title: "Responsive UI with Tailwind CSS (Video)", type: "video", url: "https://youtu.be/6biMWgD6_JY" }
+      { id: "resource-3-1", title: "Tailwind CSS (Video)", type: "video", url: "https://youtu.be/6biMWgD6_JY" },
+      { id: "resource-3-2", title: "React Complete", type: "video", url: "https://youtu.be/CgkZ7MvWUAA?si=oAxkIrj-sFZyCSAw" },
+      { id: "resource-3-3", title: "React Redux", type: "video", url: "https://youtu.be/zrs7u6bdbUw?si=2LmwmNakrdvfM_kL" }
     ],
   },
   {

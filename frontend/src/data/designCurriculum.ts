@@ -85,14 +85,47 @@ export const designCurriculum: CurriculumWeekData[] = [
   },
   {
     id: 3,
-    title: "UI Components and Prototyping",
+    title: "Merch Design",
     tasks: [
-      { id: "3-1", title: "Design buttons and forms", description: "Learn to design interactive UI components like buttons, input fields, and forms.", type: "assignment" },
-      { id: "3-2", title: "Create reusable components", description: "Master the creation and usage of reusable components and variants in Figma.", type: "video" },
-      { id: "3-3", title: "Learn prototyping in Figma", description: "Understand how to create interactive prototypes to simulate user flows.", type: "video" },
-      { id: "3-4", title: "Prototype a mobile app screen", description: "Build an interactive prototype for a mobile application screen in Figma.", type: "assignment" }
+      {
+        id: "3-1",
+        title: "Mug Design with Canva",
+        description: "Learn how to design custom mugs using Canva's design tools and templates.",
+        type: "video"
+      },
+      {
+        id: "3-2",
+        title: "T-Shirt Design with Canva x AI",
+        description: "Explore the use of AI in Canva to design creative and trendy T-shirts.",
+        type: "video"
+      },
+      {
+        id: "3-3",
+        title: "Custom Hoodie Design with Canva",
+        description: "Understand how to create unique hoodie designs suitable for print-on-demand.",
+        type: "video"
+      }
     ],
-    resources: [],
+    resources: [
+      {
+        id: "3-resource-1",
+        title: "Mug Design with Canva",
+        url: "https://youtu.be/KyiReVUPEQE?si=jwlg02ewtArcOIsr",
+        type: "video"
+      },
+      {
+        id: "3-resource-2",
+        title: "T-Shirt design with Canva x AI",
+        url: "https://youtu.be/6iFHeN7rwD0?si=LzdR1XDdsQ4kCMLT",
+        type: "video"
+      },
+      {
+        id: "3-resource-3",
+        title: "Custom Hoodie Design with Canva",
+        url: "https://youtu.be/P8961WkBCU8?si=7neLvjt6aLZskOwl",
+        type: "video"
+      }
+    ]
   },
   {
     id: 4,

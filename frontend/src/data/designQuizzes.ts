@@ -133,7 +133,134 @@ export const designQuizzes: WeekQuiz[] = [
       "explanation": "Auto Layout in Figma allows elements to adjust automatically based on content and screen size."
     }
   ]
+},
+{
+  "weekId": 2,
+  "title": "Illustrator Basics & Logo Design Quiz",
+  "timeLimit": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "design-2-1",
+      "question": "Which of these best describes a situation where you should avoid using a raster image?",
+      "options": [
+        "Designing a photo collage",
+        "Editing high-resolution photographs",
+        "Creating a logo that will be printed on a variety of sizes",
+        "Posting a screenshot on social media"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Raster images lose clarity when scaled, so vector graphics are better for logos that need to stay sharp at all sizes."
+    },
+    {
+      "id": "design-2-2",
+      "question": "In Illustrator, what does the Control Panel at the top typically reflect?",
+      "options": [
+        "A list of installed fonts",
+        "General workspace layout settings",
+        "Options related to the currently selected tool or object",
+        "Recent files opened"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Control Panel is dynamic and shows contextual options based on the selected tool or object."
+    },
+    {
+      "id": "design-2-3",
+      "question": "You want to move a single anchor point without affecting the rest of the shape. Which tool will help you do this?",
+      "options": [
+        "Selection Tool",
+        "Direct Selection Tool",
+        "Magic Wand Tool",
+        "Lasso Tool"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Direct Selection Tool lets you select and modify individual anchor points on a path."
+    },
+    {
+      "id": "design-2-4",
+      "question": "While refining your logo sketch in Illustrator, you decide to adjust a curved path. Which tool should you choose to smooth the curve by manipulating its handles?",
+      "options": [
+        "Convert Anchor Point Tool",
+        "Add Anchor Point Tool",
+        "Line Segment Tool",
+        "Eraser Tool"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Convert Anchor Point Tool lets you control the handles of anchor points for precision curves."
+    },
+    {
+      "id": "design-2-5",
+      "question": "Which tool would be most helpful if you want to draw a quick circle or ellipse in your logo design?",
+      "options": [
+        "Ellipse Tool",
+        "Pencil Tool",
+        "Rectangle Tool",
+        "Type Tool"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Ellipse Tool is designed specifically for drawing circular and oval shapes easily."
+    },
+    {
+      "id": "design-2-6",
+      "question": "Which of these type tools would you use if you want your text to follow the curve of a logo symbol?",
+      "options": [
+        "Area Type Tool",
+        "Type on a Path Tool",
+        "Type Tool",
+        "Point Type Tool"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Type on a Path Tool allows you to flow text along curved paths or shapes — perfect for curved logo text."
+    },
+    {
+      "id": "design-2-7",
+      "question": "You’re selecting multiple non-contiguous shapes in your design to change their color at once. Which Illustrator tool helps you do that quickly based on attributes?",
+      "options": [
+        "Selection Tool",
+        "Direct Selection Tool",
+        "Magic Wand Tool",
+        "Pen Tool"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Magic Wand Tool selects objects that share similar attributes, such as fill color or stroke weight."
+    },
+    {
+      "id": "design-2-8",
+      "question": "Which step in the logo design process ensures your logo maintains clarity whether it's printed on a business card or blown up on a billboard?",
+      "options": [
+        "Sketching multiple ideas",
+        "Vectorizing your design",
+        "Choosing a color palette",
+        "Researching brand values"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Vectorizing your design ensures scalability without losing quality, a crucial trait for logos."
+    },
+    {
+      "id": "design-2-9",
+      "question": "You’re working on a logo and want to create multiple concepts with different fonts and alignments in a single file. What Illustrator feature would best support this workflow?",
+      "options": [
+        "Swatches panel",
+        "Artboards",
+        "Layers",
+        "Guides"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Artboards allow you to design multiple layouts or versions side by side within the same file."
+    },
+    {
+      "id": "design-2-10",
+      "question": "You're at the stage of choosing a logo style. A brand wants an icon-based symbol without text. Which type fits this best?",
+      "options": [
+        "Wordmark",
+        "Lettermark",
+        "Abstract mark",
+        "Combination mark"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An abstract mark uses shapes or forms to represent the brand without relying on text."
+    }
+  ]
 }
-     
   // Add more weeks following similar pattern
 ];

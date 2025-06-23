@@ -130,70 +130,130 @@ export const dsaQuizzes: WeekQuiz[] = [
     ]
   },
   {
-    weekId: 2,
-    title: "Week 2 Quiz - Recursion and Linear Data Structures",
-    timeLimit: 30,
-    passingScore: 70,
-    questions: [
+    "weekId": 2,
+    "title": "Week 2 Quiz - Recursion, Sorting, Strings, and Stacks/Queues",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
       {
-        id: "1",
-        question: "What is the base case in recursion?",
-        options: [
-          "The first function call",
-          "The condition that stops the recursion",
-          "The recursive call itself",
-          "The return statement"
+        "id": "1",
+        "question": "Which of the following problems is best solved using recursion?",
+        "options": [
+          "Calculating the average of an array",
+          "Checking if a number is prime",
+          "Traversing a tree structure",
+          "Finding the maximum of two numbers"
         ],
-        correctAnswer: 1,
-        explanation: "The base case is the condition that stops the recursion from continuing indefinitely."
+        "correctAnswer": 2,
+        "explanation": "Recursive traversal is ideal for hierarchical data like trees."
       },
       {
-        id: "2",
-        question: "Which data structure follows LIFO principle?",
-        options: [
-          "Queue",
-          "Array",
-          "Stack",
-          "Linked List"
+        "id": "2",
+        "question": "Quick Sort performs worst when the pivot element divides the array into:",
+        "options": [
+          "Two equal halves",
+          "One part with all elements and one empty",
+          "One part with odd numbers and one with even numbers",
+          "Sorted subarrays"
         ],
-        correctAnswer: 2,
-        explanation: "Stack follows Last In First Out (LIFO) principle."
+        "correctAnswer": 1,
+        "explanation": "Worst case happens when pivot causes highly unbalanced partitioning."
       },
       {
-        id: "3",
-        question: "What is the time complexity of quicksort in the average case?",
-        options: [
+        "id": "3",
+        "question": "Which of the following operations is *not* typically supported by a stack?",
+        "options": [
+          "push()",
+          "peek()",
+          "enqueue()",
+          "pop()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "enqueue() is a queue operation, not a stack operation."
+      },
+      {
+        "id": "4",
+        "question": "What is the auxiliary space complexity of merge sort?",
+        "options": [
+          "O(1)",
+          "O(log n)",
           "O(n)",
-          "O(n log n)",
-          "O(n²)",
-          "O(log n)"
+          "O(n log n)"
         ],
-        correctAnswer: 1,
-        explanation: "Quicksort has an average time complexity of O(n log n)."
+        "correctAnswer": 2,
+        "explanation": "Merge sort requires additional O(n) space to merge arrays."
       },
       {
-        id: "4",
-        question: "Which operation is not efficient in a queue?",
-        options: [
-          "Enqueue",
-          "Dequeue", 
-          "Access middle element",
-          "Check if empty"
+        "id": "5",
+        "question": "Which of the following statements about recursion is FALSE?",
+        "options": [
+          "Every recursive function must have a base case",
+          "Recursive solutions are always more efficient than iterative ones",
+          "Recursion uses function call stack",
+          "A recursive function can call itself with modified parameters"
         ],
-        correctAnswer: 2,
-        explanation: "Accessing the middle element in a queue requires O(n) time, making it inefficient."
+        "correctAnswer": 1,
+        "explanation": "Recursion is elegant but not always more efficient than iteration."
       },
       {
-        id: "5",
-        question: "What happens if a recursive function doesn't have a base case?",
-        options: [
-          "It returns 0",
-          "It causes infinite recursion",
-          "It throws an error immediately",
-          "It executes once"
+        "id": "6",
+        "question": "You are given a string. Which approach is best for checking if it's a palindrome?",
+        "options": [
+          "Use a stack to compare characters from both ends",
+          "Sort the string and compare it to the reverse",
+          "Use a queue to insert each character",
+          "Use merge sort to rearrange it"
         ],
-        correctAnswer: 1,
-        explanation: "Without a base case, recursive function will call itself indefinitely, causing stack overflow."
+        "correctAnswer": 0,
+        "explanation": "Stack can be used to compare the first and last characters efficiently."
+      },
+      {
+        "id": "7",
+        "question": "Which of the following algorithms is *not* stable by default?",
+        "options": [
+          "Merge Sort",
+          "Insertion Sort",
+          "Bubble Sort",
+          "Quick Sort"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Quick Sort is not stable unless specifically modified to be so."
+      },
+      {
+        "id": "8",
+        "question": "If a queue is implemented using a circular array, how do you detect it is full?",
+        "options": [
+          "front == rear",
+          "(rear + 1) % size == front",
+          "rear == size",
+          "rear == -1"
+        ],
+        "correctAnswer": 1,
+        "explanation": "In a circular queue, this condition indicates the buffer is full."
+      },
+      {
+        "id": "9",
+        "question": "Which of these recursive functions has exponential time complexity?",
+        "options": [
+          "Binary Search",
+          "Tower of Hanoi",
+          "Factorial",
+          "Linear Search"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Tower of Hanoi follows 2^n time complexity due to its branching recursion."
+      },
+      {
+        "id": "10",
+        "question": "What does the following logic compute? reverse(reverse(S)) == S",
+        "options": [
+          "String is a palindrome",
+          "String is empty",
+          "Nothing can be concluded",
+          "String remains unchanged after double reverse"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Reversing a reversed string gives back the original string."
       }
     ]
   },

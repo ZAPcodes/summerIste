@@ -144,28 +144,48 @@ export const dsaCurriculum: WeekData[] = [
         id: "3-1", 
         title: "Learn pointer basics", 
         description: "Understand memory addresses and pointers", 
-        type: "video"
+        type: "video",
+        resources: [
+          { id: "r3-1", title: "Pointers in CPP", type: "video", url: "https://youtu.be/qYEjR6M0wSk?si=moEOScgKacQVKyNl" },
+          { id: "r3-2", title: "Pointers in Java", type: "video", url: "https://youtu.be/X0b2kp-WSMM?si=MKGfIy4cwLVL80X9" },
+          { id: "r3-3", title: "Two Pointers", type: "video", url: "https://youtu.be/On03HWe2tZM?si=lWjI_-dmxXEYfIb3" }
+        ]
       },
       { 
         id: "3-2", 
         title: "Implement singly linked lists", 
         description: "Create and manipulate singly linked lists", 
-        type: "assignment"
+        type: "video",
+        resources: [
+          { id: "r3-4", title: "SLL", type: "video", url: "https://youtu.be/Nq7ok-OyEpg?si=jtql0pUmsSBHw5_9" }
+        ]
       },
       { 
         id: "3-3", 
         title: "Implement doubly linked lists", 
         description: "Build bidirectional linked lists", 
-        type: "assignment"
+        type: "video",
+        resources: [
+          { id: "r3-5", title: "DLL", type: "video", url: "https://youtu.be/0eKMU10uEDI?si=UnJUsNWbkPv75bX-" }
+        ]
       },
       { 
         id: "3-4", 
-        title: "Solve reverse coding challenge", 
+        title: "Implement Circular Linked List", 
+        description: "Create and manipulate circular linked list", 
+        type: "video",
+        resources: [
+          { id: "r3-6", title: "CLL", type: "video", url: "https://youtu.be/e6lZY5Yha8U?si=hRA0ciSfb8KP3hp-" }
+        ]
+      },
+      { 
+        id: "3-5", 
+        title: "DIY: Solve reverse coding challenge", 
         description: "Reverse a linked list problem", 
         type: "assignment"
       },
       { 
-        id: "3-5", 
+        id: "3-6", 
         title: "Complete HackerRank linked list problems", 
         description: "Practice linked list algorithms", 
         type: "assignment"

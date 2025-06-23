@@ -43,6 +43,7 @@ const AppDevelopment = () => {
   const [quizResults, setQuizResults] = useState<any>(null);
   const [weeks, setWeeks] = useState<Week[]>([]);
   const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("appdev", currentQuizWeek || 1);
+  const [showMarkCompleted, setShowMarkCompleted] = useState(false);
 
   const staticCurriculum: CurriculumWeekData[] = appDevCurriculum;
 
@@ -196,6 +197,39 @@ const AppDevelopment = () => {
   };
 
   const getQuizButtonContent = (week: Week, weekId: number, quizStatus: any, scheduleLoading: boolean) => {
+    if (weekId === 2) {
+      if (!currentQuizWeek || currentQuizWeek !== weekId) {
+        if (week.quizCompleted) {
+          return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
+        }
+        if (!week.quizAvailable) {
+          return { text: "Complete Tasks First", disabled: true, variant: "secondary" as const };
+        }
+        return { text: "Check Quiz Status", disabled: false, variant: "default" as const };
+      }
+      if (scheduleLoading) {
+        return { text: "Checking...", disabled: true, variant: "secondary" as const };
+      }
+      if (!quizStatus.hasStarted && quizStatus.timeUntilStart) {
+        return {
+          text: `Starts in ${formatTimeRemaining(quizStatus.timeUntilStart)}`,
+          disabled: true,
+          variant: "secondary" as const
+        };
+      }
+      if (quizStatus.hasEnded) {
+        return { text: "Quiz Ended", disabled: true, variant: "secondary" as const };
+      }
+      if (quizStatus.isLive) {
+        return {
+          text: `Start Quiz (External Form)`,
+          disabled: false,
+          variant: "default" as const
+        };
+      }
+      return { text: "Quiz Not Available", disabled: true, variant: "secondary" as const };
+    }
+
     if (!currentQuizWeek || currentQuizWeek !== weekId) {
       if (week.quizCompleted) {
         return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
@@ -234,6 +268,7 @@ const AppDevelopment = () => {
   };
 
   const QuizSection = ({ week, quizStatus, scheduleLoading }: { week: Week; quizStatus: any; scheduleLoading: boolean }) => {
+    const isWeek2 = week.id === 2;
     return (
       <div className="border-t border-gray-700 pt-4">
         <div className="flex items-center justify-between mb-2">
@@ -245,7 +280,7 @@ const AppDevelopment = () => {
                 Completed ({Math.round(week.quizScore || 0)}%)
               </Badge>
             )}
-            {currentQuizWeek === week.id && quizStatus.isLive && (
+            {currentQuizWeek === week.id && quizStatus.isLive && !isWeek2 && (
               <Badge className="bg-green-600 text-white animate-pulse">
                 <div className="w-2 h-2 bg-white rounded-full mr-1"></div>
                 LIVE
@@ -253,23 +288,40 @@ const AppDevelopment = () => {
             )}
           </div>
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate(`/leaderboard/appdev/${week.id}`)}
-              className="text-green-400 border-green-400 hover:bg-green-400/10"
-            >
-              <Trophy className="w-4 h-4 mr-1" />
-              Leaderboard
-            </Button>
+            {!isWeek2 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate(`/leaderboard/appdev/${week.id}`)}
+                className="text-green-400 border-green-400 hover:bg-green-400/10"
+              >
+                <Trophy className="w-4 h-4 mr-1" />
+                Leaderboard
+              </Button>
+            )}
             {(() => {
               const buttonConfig = getQuizButtonContent(week, week.id, quizStatus, scheduleLoading);
+              if (isWeek2 && buttonConfig.text === "Start Quiz (External Form)" && !week.quizCompleted) {
+                return (
+                  <Button
+                    disabled={buttonConfig.disabled}
+                    onClick={() => {
+                      window.open("https://forms.cloud.microsoft/r/3FhR8cBuvx", "_blank");
+                      setShowMarkCompleted(true);
+                    }}
+                    className={`bg-green-600 hover:bg-green-700`}
+                  >
+                    {buttonConfig.text}
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                );
+              }
               return (
                 <Button
                   disabled={buttonConfig.disabled}
                   onClick={() => {
                     if (buttonConfig.text === "Check Quiz Status") {
-                      setCurrentQuizWeek(week.id); // Trigger useQuizSchedule for this week
+                      setCurrentQuizWeek(week.id);
                     } else if (buttonConfig.text.includes("Take Quiz")) {
                       startQuiz(week.id);
                     }
@@ -287,17 +339,36 @@ const AppDevelopment = () => {
             })()}
           </div>
         </div>
+        {isWeek2 && showMarkCompleted && !week.quizCompleted && (
+          <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg flex items-center gap-4">
+            <span className="text-blue-200">After submitting the form, click below to mark your quiz as completed:</span>
+            <Button
+              className="bg-green-600 hover:bg-green-700"
+              onClick={async () => {
+                try {
+                  await updateQuizProgress("appdev", 2, true, 100);
+                  toast.success("Quiz marked as completed!");
+                  setShowMarkCompleted(false);
+                } catch {
+                  toast.error("Failed to update quiz progress");
+                }
+              }}
+            >
+              Mark as Completed
+            </Button>
+          </div>
+        )}
         {currentQuizWeek === week.id && !scheduleLoading && (
           <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
             <div className="flex items-start gap-2">
-              {quizStatus.isLive ? (
+              {quizStatus.isLive && !isWeek2 ? (
                 <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
               ) : (
                 <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
               )}
               <div>
                 <p className="text-sm font-medium text-blue-200">
-                  {quizStatus.isLive ? "Quiz is Live!" : 
+                  {quizStatus.isLive && !isWeek2 ? "Quiz is Live!" : 
                    !quizStatus.hasStarted ? "Quiz hasn't started yet" : "Quiz has ended"}
                 </p>
                 {quizStatus.schedule && (
@@ -342,7 +413,7 @@ const AppDevelopment = () => {
     );
   }
 
-  if (quizState === "in_progress" && currentQuizWeek) {
+  if (quizState === "in_progress" && currentQuizWeek && currentQuizWeek !== 2) {
     const quizData = appdevQuizzes.find((q) => q.weekId === currentQuizWeek);
     if (quizData) {
       return <QuizInterface quiz={quizData} onComplete={handleQuizComplete} />;
