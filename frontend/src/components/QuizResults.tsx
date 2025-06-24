@@ -244,6 +244,12 @@ const QuizResults = ({
                         );
                       })}
                     </div>
+                    {q.explanation && (
+                      <div className="mt-3 p-3 bg-gray-800/20 rounded-lg border border-gray-700/50 text-sm">
+                        <p className="font-semibold text-blue-300 mb-1">Explanation:</p>
+                        <p className="text-gray-300">{q.explanation}</p>
+                      </div>
+                    )}
                   </div>
                 );
               })}
