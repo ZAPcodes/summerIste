@@ -258,70 +258,130 @@ export const dsaQuizzes: WeekQuiz[] = [
     ]
   },
   {
-    weekId: 3,
-    title: "Week 3 Quiz - Pointers and Linked Lists",
-    timeLimit: 30,
-    passingScore: 70,
-    questions: [
+    "weekId": 3,
+    "title": "Week 3 Quiz – Pointers and Linked Lists",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
       {
-        id: "1",
-        question: "What does a pointer store?",
-        options: [
-          "A value",
-          "A memory address",
-          "A function",
-          "A data type"
+        "id": "1",
+        "question": "What does a pointer in C/C++ store?",
+        "options": [
+          "The value of a variable",
+          "The memory address of a variable",
+          "The type of a variable",
+          "The name of a variable"
         ],
-        correctAnswer: 1,
-        explanation: "A pointer stores the memory address of another variable."
+        "correctAnswer": 1,
+        "explanation": "A pointer holds the memory address of another variable."
       },
       {
-        id: "2",
-        question: "What is the advantage of a doubly linked list over a singly linked list?",
-        options: [
-          "Uses less memory",
-          "Faster insertion",
-          "Can traverse in both directions",
-          "Simpler implementation"
+        "id": "2",
+        "question": "What is the correct way to pass an array to a function using pointers?",
+        "options": [
+          "int arr[]",
+          "int *arr",
+          "int arr[10]",
+          "All of the above"
         ],
-        correctAnswer: 2,
-        explanation: "Doubly linked lists can be traversed in both forward and backward directions."
+        "correctAnswer": 3,
+        "explanation": "All are syntactically valid ways; arrays decay to pointers when passed to functions."
       },
       {
-        id: "3",
-        question: "What is the time complexity of inserting at the beginning of a linked list?",
-        options: [
+        "id": "3",
+        "question": "What will happen if you dereference a NULL pointer?",
+        "options": [
+          "It prints 0",
+          "It accesses random memory",
+          "It causes a segmentation fault",
+          "It creates a new memory address"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Dereferencing a NULL pointer leads to undefined behavior and usually crashes the program."
+      },
+      {
+        "id": "4",
+        "question": "What is the time complexity to reverse a singly linked list iteratively?",
+        "options": [
           "O(1)",
+          "O(n log n)",
           "O(n)",
-          "O(log n)",
           "O(n²)"
         ],
-        correctAnswer: 0,
-        explanation: "Inserting at the beginning of a linked list takes constant time O(1)."
+        "correctAnswer": 2,
+        "explanation": "Each node is visited once while adjusting links; hence, linear time."
       },
       {
-        id: "4",
-        question: "What happens when you dereference a NULL pointer?",
-        options: [
-          "Returns 0",
-          "Segmentation fault",
-          "Compiler error",
-          "Returns garbage value"
+        "id": "5",
+        "question": "In a singly linked list, which operation is inefficient compared to an array?",
+        "options": [
+          "Insertion at beginning",
+          "Insertion at end (without tail)",
+          "Deletion at head",
+          "Traversal"
         ],
-        correctAnswer: 1,
-        explanation: "Dereferencing a NULL pointer causes a segmentation fault at runtime."
+        "correctAnswer": 1,
+        "explanation": "Without a tail pointer, inserting at the end requires traversal, unlike arrays."
       },
       {
-        id: "5",
-        question: "How do you reverse a singly linked list?",
-        options: [
-          "Swap values of nodes",
-          "Change the next pointers",
-          "Create a new list",
-          "Use recursion only"
+        "id": "6",
+        "question": "Which of these operations is more efficient in a doubly linked list than a singly linked list?",
+        "options": [
+          "Insertion at head",
+          "Deletion of a given node",
+          "Traversing forward",
+          "Appending at end"
         ],
-        correctAnswer: 1,
-        explanation: "To reverse a singly linked list, you change the direction of next pointers."
+        "correctAnswer": 1,
+        "explanation": "In DLL, deleting a given node is more efficient as you can go backward using the previous pointer."
+      },
+      {
+        "id": "7",
+        "question": "In a singly linked list with 'n' nodes, how many pointers (next references) are there in total?",
+        "options": [
+          "n",
+          "n - 1",
+          "n + 1",
+          "2n"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Each node (except the last) points to the next node, so there are (n - 1) next pointers in total."
+      },
+      {
+        "id": "8",
+        "question": "What does the following code snippet do?\n`Node* temp = head; while(temp != NULL) { temp = temp->next; }`",
+        "options": [
+          "Deletes the linked list",
+          "Finds the middle node",
+          "Traverses the linked list",
+          "Creates a loop"
+        ],
+        "correctAnswer": 2,
+        "explanation": "It simply traverses from head to the end of the list."
+      },
+      {
+        "id": "9",
+        "question": "What is the primary difference between a pointer and a reference in C++?",
+        "options": [
+          "References can be reassigned, pointers can't",
+          "Pointers are safer than references",
+          "References cannot be NULL, while pointers can",
+          "There is no difference"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Unlike pointers, references must be initialized and cannot be NULL."
+      },
+      {
+        "id": "10",
+        "question": "You are given a singly linked list. Which of the following operations requires O(n) time in the worst case?",
+        "options": [
+          "Insertion at the beginning",
+          "Insertion at the end",
+          "Deletion from the front",
+          "Checking if list is empty"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Insertion at the end requires traversal if there is no tail pointer."
       }
     ]
   },

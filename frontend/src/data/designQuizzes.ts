@@ -261,6 +261,134 @@ export const designQuizzes: WeekQuiz[] = [
       "explanation": "An abstract mark uses shapes or forms to represent the brand without relying on text."
     }
   ]
+},
+{
+  "weekId": 3,
+  "title": "Merch Design in Canva & Photoshop Quiz",
+  "timeLimit": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "design-3-1",
+      "question": "What is a key feature of Canva that makes it beginner-friendly for merch design?",
+      "options": [
+        "Non-destructive editing",
+        "Drag-and-drop interface",
+        "Layer masking",
+        "Vector path editing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Canva’s drag-and-drop interface makes it easy for beginners to create designs without complex tools."
+    },
+    {
+      "id": "design-3-2",
+      "question": "In Photoshop, which tool is commonly used to remove the background of a product image?",
+      "options": [
+        "Crop Tool",
+        "Move Tool",
+        "Magic Wand Tool",
+        "Gradient Tool"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Magic Wand Tool selects and removes backgrounds based on color similarity, useful for product photos."
+    },
+    {
+      "id": "design-3-3",
+      "question": "Which Canva feature allows you to quickly apply your brand’s colors, fonts, and logo?",
+      "options": [
+        "Color Picker",
+        "Smart Mockup",
+        "Brand Kit",
+        "Design Wizard"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Brand Kit in Canva helps maintain brand consistency by storing colors, fonts, and logos in one place."
+    },
+    {
+      "id": "design-3-4",
+      "question": "When designing T-shirts in Photoshop, which color mode is best to use for accurate printing?",
+      "options": [
+        "RGB",
+        "CMYK",
+        "Grayscale",
+        "Indexed Color"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CMYK color mode is optimized for print materials and ensures color accuracy in physical merch."
+    },
+    {
+      "id": "design-3-5",
+      "question": "What file format is most suitable for exporting transparent background designs for merch printing?",
+      "options": [
+        "JPEG",
+        "BMP",
+        "PNG",
+        "PDF"
+      ],
+      "correctAnswer": 2,
+      "explanation": "PNG supports transparency, making it ideal for merch printing where the background should be invisible."
+    },
+    {
+      "id": "design-3-6",
+      "question": "In Canva, how can you ensure your merch design elements are evenly spaced?",
+      "options": [
+        "Use the Ruler",
+        "Enable Smart Guides",
+        "Press the Spacebar",
+        "Use Transparency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Smart Guides in Canva help align and space elements evenly while designing."
+    },
+    {
+      "id": "design-3-7",
+      "question": "Which of the following Photoshop features helps create realistic shadows on mockups?",
+      "options": [
+        "Filter Gallery",
+        "Drop Shadow Layer Style",
+        "Gaussian Blur",
+        "Clipping Mask"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Drop Shadow Layer Style simulates realistic shadows, enhancing the look of your mockup."
+    },
+    {
+      "id": "design-3-8",
+      "question": "What does DPI stand for in design, and what is the recommended DPI for merch printing?",
+      "options": [
+        "Dots Per Inch, 300 DPI",
+        "Digital Print Image, 150 DPI",
+        "Dynamic Pixel Index, 72 DPI",
+        "Design Pattern Index, 200 DPI"
+      ],
+      "correctAnswer": 0,
+      "explanation": "DPI means Dots Per Inch, and 300 DPI is the standard for high-quality print output."
+    },
+    {
+      "id": "design-3-9",
+      "question": "Which Canva tool is useful for previewing a merch design on a realistic T-shirt or mug?",
+      "options": [
+        "Magic Resize",
+        "SmartMockups",
+        "Background Remover",
+        "Canva Pro Assets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SmartMockups in Canva lets you preview your design on real-world products like T-shirts or mugs."
+    },
+    {
+      "id": "design-3-10",
+      "question": "In Photoshop, what is the use of the “Clipping Mask” in merch design layers?",
+      "options": [
+        "To crop canvas",
+        "To apply filters",
+        "To make text bold",
+        "To confine artwork inside a specific shape"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Clipping Masks limit visibility to the shape of the layer beneath, perfect for shaping designs precisely."
+    }
+  ]
 }
   // Add more weeks following similar pattern
 ];

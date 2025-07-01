@@ -69,7 +69,7 @@ export const webDevCurriculum: WeekData[] = [
       { id: "4-5", title: "Test endpoints using Postman or curl" }
     ],
     resources: [
-      { id: "resource-4-1", title: "REST API design + JSON handling (Playlist - Complete till 18th Video)", type: "playlist", url: "https://youtube.com/playlist?list=PLu71SKxNbfoBGh_8p_NS-ZAh6v7HhYqHW&si=XstqQ8LuzRIrBrwr" }
+      { id: "resource-4-1", title: "Complete Backend with Node.js & Express (Complete the playlist)", type: "playlist", url: "https://youtube.com/playlist?list=PLu71SKxNbfoBGh_8p_NS-ZAh6v7HhYqHW&si=XstqQ8LuzRIrBrwr" }
     ],
   },
   {

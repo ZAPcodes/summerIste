@@ -262,6 +262,115 @@ export const aimlQuizzes: WeekQuiz[] = [
         "explanation": "Revenue is calculated as the product of quantity sold and price per item, making it a valuable engineered feature."
       }
     ]
-  }  
+  },
+  {
+    "weekId": 3,
+    "title": "Core ML Algorithms Quiz",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
+      {
+        "id": "aiml-3-1",
+        "question": "What is the key idea behind Decision Trees?",
+        "options": [
+          "Random guessing",
+          "Sequential prediction",
+          "Splitting data based on feature values",
+          "Combining multiple trees"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Decision Trees work by splitting data based on feature values to make decisions."
+      },
+      {
+        "id": "aiml-3-2",
+        "question": "Which metric is commonly used to decide a split in a Decision Tree?",
+        "options": ["Mean Absolute Error", "Gini Impurity", "R-squared", "Euclidean distance"],
+        "correctAnswer": 1,
+        "explanation": "Gini Impurity is used in classification trees to measure how often a randomly chosen element would be incorrectly labeled."
+      },
+      {
+        "id": "aiml-3-3",
+        "question": "What problem can occur if a decision tree is too deep?",
+        "options": ["Underfitting", "Overfitting", "Low variance", "High bias"],
+        "correctAnswer": 1,
+        "explanation": "A very deep tree can overfit the training data and perform poorly on unseen data."
+      },
+      {
+        "id": "aiml-3-4",
+        "question": "What is K in K-Nearest Neighbors (KNN)?",
+        "options": [
+          "Number of features",
+          "Number of classes",
+          "Number of neighbors to consider for voting",
+          "The depth of the tree"
+        ],
+        "correctAnswer": 2,
+        "explanation": "K defines how many nearby points to consider when making a prediction."
+      },
+      {
+        "id": "aiml-3-5",
+        "question": "Which distance metric is most commonly used in KNN?",
+        "options": ["Cosine similarity", "Manhattan distance", "Euclidean distance", "Chebyshev distance"],
+        "correctAnswer": 2,
+        "explanation": "Euclidean distance is the default metric used in KNN for calculating the distance between data points."
+      },
+      {
+        "id": "aiml-3-6",
+        "question": "Why is KNN considered a lazy learner?",
+        "options": [
+          "It memorizes the model weights",
+          "It doesn’t perform computation until prediction time",
+          "It builds the model during training",
+          "It only works with small datasets"
+        ],
+        "correctAnswer": 1,
+        "explanation": "KNN stores all training data and only performs computations during prediction, hence it's a lazy learner."
+      },
+      {
+        "id": "aiml-3-7",
+        "question": "What is the goal of Support Vector Machines (SVM)?",
+        "options": [
+          "Minimize variance",
+          "Maximize the margin between classes",
+          "Reduce the number of features",
+          "Build decision trees"
+        ],
+        "correctAnswer": 1,
+        "explanation": "SVM aims to find a hyperplane that maximizes the margin between different classes."
+      },
+      {
+        "id": "aiml-3-8",
+        "question": "Which kernel is commonly used to handle non-linearly separable data in SVM?",
+        "options": ["Linear", "Sigmoid", "Polynomial", "Radial Basis Function (RBF)"],
+        "correctAnswer": 3,
+        "explanation": "RBF is a popular kernel in SVM that helps separate non-linear data by mapping it to higher dimensions."
+      },
+      {
+        "id": "aiml-3-9",
+        "question": "In SVM, what does the regularization parameter C control?",
+        "options": [
+          "The number of clusters",
+          "The kernel width",
+          "The trade-off between misclassification and margin width",
+          "The number of features used"
+        ],
+        "correctAnswer": 2,
+        "explanation": "C controls the trade-off between achieving a low error on training data and maintaining a large margin."
+      },
+      {
+        "id": "aiml-3-10",
+        "question": "What happens if the value of C is too large in an SVM model?",
+        "options": [
+          "The model underfits",
+          "The model becomes more tolerant to misclassification",
+          "The model may overfit to noise in the training data",
+          "The margin becomes wider"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A high C encourages the model to classify all training examples correctly, which can lead to overfitting."
+      }
+    ]
+  }
+  
   // Continue with weeks 3-6 following similar pattern
 ];

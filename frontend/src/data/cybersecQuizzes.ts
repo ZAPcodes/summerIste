@@ -246,7 +246,99 @@ export const cybersecQuizzes: WeekQuiz[] = [
         "explanation": "OAuth 2.0 is an authorization protocol that lets users grant limited access to their resources without sharing credentials."
       }
     ]
-  }
-  
+  },
+  {
+    "weekId": 3,
+    "title": "Cryptography and Steganography Basics",
+    "timeLimit": 30,
+    "passingScore": 70,
+    "questions": [
+      {
+        "id": "cybersec-3-1",
+        "question": "What is the primary purpose of cryptography?",
+        "options": [
+          "To hide data within images",
+          "To transmit data over HTTP",
+          "To secure communication through encoding",
+          "To speed up data transmission"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Cryptography ensures secure communication by encoding messages to prevent unauthorized access."
+      },
+      {
+        "id": "cybersec-3-2",
+        "question": "Which of the following is a symmetric encryption algorithm?",
+        "options": ["RSA", "AES", "ECC", "DSA"],
+        "correctAnswer": 1,
+        "explanation": "AES (Advanced Encryption Standard) is a symmetric encryption algorithm where the same key is used for encryption and decryption."
+      },
+      {
+        "id": "cybersec-3-3",
+        "question": "What is steganography?",
+        "options": [
+          "Encrypting data using a key",
+          "Hiding data within another file or medium",
+          "Creating a hash of data",
+          "Breaking encrypted data"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Steganography is the practice of concealing messages or information within other non-secret data (like images, audio)."
+      },
+      {
+        "id": "cybersec-3-4",
+        "question": "In RSA encryption, what type of key is used to decrypt data?",
+        "options": ["Public key", "Symmetric key", "Private key", "Shared key"],
+        "correctAnswer": 2,
+        "explanation": "In RSA, the public key encrypts the data and the corresponding private key is used for decryption."
+      },
+      {
+        "id": "cybersec-3-5",
+        "question": "Which tool is commonly used for hiding and extracting data in steganography?",
+        "options": ["Hydra", "Wireshark", "Steghide", "Hashcat"],
+        "correctAnswer": 2,
+        "explanation": "Steghide is a commonly used tool to embed and extract hidden data in media files like images and audio."
+      },
+      {
+        "id": "cybersec-3-6",
+        "question": "Which cryptographic concept ensures that a message has not been altered?",
+        "options": ["Confidentiality", "Non-repudiation", "Integrity", "Obfuscation"],
+        "correctAnswer": 2,
+        "explanation": "Integrity ensures that the message has not been changed or tampered with during transmission."
+      },
+      {
+        "id": "cybersec-3-7",
+        "question": "What is a hash function primarily used for?",
+        "options": [
+          "Encrypting files for privacy",
+          "Checking data integrity",
+          "Generating random numbers",
+          "Hiding data in images"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Hash functions are used to verify the integrity of data by producing a fixed-size hash value."
+      },
+      {
+        "id": "cybersec-3-8",
+        "question": "Which of the following is **not** a common hashing algorithm?",
+        "options": ["SHA-256", "MD5", "Blowfish", "SHA-1"],
+        "correctAnswer": 2,
+        "explanation": "Blowfish is a symmetric encryption algorithm, not a hashing algorithm."
+      },
+      {
+        "id": "cybersec-3-9",
+        "question": "What does a digital signature provide?",
+        "options": ["Encryption of data", "Steganographic encoding", "Authentication and integrity", "Decryption key"],
+        "correctAnswer": 2,
+        "explanation": "Digital signatures provide assurance that a message came from a verified source and was not altered."
+      },
+      {
+        "id": "cybersec-3-10",
+        "question": "Which of the following formats can **hide** data using steganography?",
+        "options": ["JPEG", "TXT", "PDF", "All of the above"],
+        "correctAnswer": 3,
+        "explanation": "Steganography can be used to hide data in images (like JPEG), text files, PDFs, and more."
+      }
+    ]
+  }  
   // Add more weeks following similar pattern
 ];

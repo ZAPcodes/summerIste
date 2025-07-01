@@ -128,15 +128,36 @@ export const designCurriculum: CurriculumWeekData[] = [
     ]
   },
   {
-    id: 4,
-    title: "Design Systems and Collaboration",
-    tasks: [
-      { id: "4-1", title: "Understand design systems", description: "Learn the importance and structure of design systems for consistent and scalable design.", type: "reading" },
-      { id: "4-2", title: "Create a mini design system", description: "Develop a small-scale design system including style guides and components.", type: "assignment" },
-      { id: "4-3", title: "Collaborate on a Figma project", description: "Practice collaborative design workflows using Figma's real-time collaboration features.", type: "video" },
-      { id: "4-4", title: "Design a multi-page website", description: "Design a complete multi-page website based on a given brief, applying all learned principles.", type: "assignment" }
+    "id": 4,
+    "title": "Premiere Pro Basics",
+    "tasks": [
+      {
+        "id": "4-1",
+        "title": "Premiere Pro Beginner Tutorial",
+        "description": "Get started with Adobe Premiere Pro by learning the basic tools, layout, and editing workflow.",
+        "type": "video"
+      },
+      {
+        "id": "4-2",
+        "title": "Complete Premiere Pro Tutorial",
+        "description": "Understand the full process of editing videos in Premiere Pro with a step-by-step tutorial for beginners.",
+        "type": "video"
+      }
     ],
-    resources: [],
+    resources: [
+      {
+        id: "4-resource-1",
+        title: "Premiere Pro Beginner Tutorial",
+        url: "https://m.youtube.com/watch?v=eCsM0r3RNc4&pp=ygUNcHJlbWllcmUgcHJvIA%3D%3D",
+        type: "video"
+      },
+      {
+        id: "4-resource-2",
+        title: "Complete Premiere Pro Tutorial",
+        url: "https://m.youtube.com/watch?v=oLMdXC_B1vQ&pp=ygUVcHJlbWllcmUgcHJvIHR1dG9yaWFs",
+        type: "video"
+      }
+    ]
   },
   {
     id: 5,

@@ -263,68 +263,63 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
     ]
   },
   {
-    id: 4,
-    title: "Reverse Engineering and OSINT",
-    tasks: [
+    "id": 4,
+    "title": "Reverse Engineering and OSINT",
+    "tasks": [
       {
-        id: "4-1",
-        title: "Perform dynamic analysis",
-        description: "Learn techniques for analyzing software during its execution.",
-        type: "video",
-        resources: [
-          { id: "4-1-resource-1", title: "GDB Tutorial", type: "documentation", url: "https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf" },
-          { id: "4-1-resource-2", title: "Dynamic Analysis with GDB", type: "article", url: "https://www.cyberwiredtraining.net/blog/gdb-for-reverse-engineering-in-ctfs" },
-          { id: "4-1-resource-3", title: "Introduction to Dynamic Analysis", type: "article", url: "https://0x00sec.org/t/re-guide-for-beginners-methodology-and-tools/2242" },
-          { id: "4-1-resource-4", title: "TryHackMe: Intro to x86-64", type: "documentation", url: "https://tryhackme.com/room/introtox8664" },
-          { id: "4-1-resource-5", title: "LiveOverflow Binary Exploitation", type: "video", url: "https://www.youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN" }
+        "id": "4-1",
+        "title": "Learn Reverse Engineering Basics",
+        "description": "Understand the fundamental concepts and methodologies of reverse engineering.",
+        "type": "reading",
+        "resources": [
+          { "id": "4-1-resource-1", "title": "Introduction · Reverse Engineering", "type": "article", "url": "https://0xinfection.github.io/reversing/" },
+          { "id": "4-1-resource-2", "title": "How To Start Reverse Engineering — A Guide", "type": "article", "url": "https://medium.com/@arkaghosh08/how-to-start-reverse-engineering-a-guide-b50b6c8112cf" },
+          { "id": "4-1-resource-3", "title": "Reverse Engineering 101 - Malware Unicorn", "type": "documentation", "url": "https://malwareunicorn.org/workshops/re101.html" },
+          { "id": "4-1-resource-4", "title": "Reverse engineering - Wikipedia", "type": "documentation", "url": "https://en.wikipedia.org/wiki/Reverse_engineering" }
         ]
       },
       {
-        id: "4-2",
-        title: "Reverse engineer C binaries",
-        description: "Practice disassembling and analyzing compiled C programs.",
-        type: "assignment",
-        resources: [
-          { id: "4-2-resource-1", title: "Ghidra Documentation", type: "documentation", url: "https://ghidra-sre.org/CheatSheet.html" },
-          { id: "4-2-resource-2", title: "Reverse Engineering for Beginners", type: "documentation", url: "https://beginners.re/" },
-          { id: "4-2-resource-3", title: "Practical Binary Analysis", type: "documentation", url: "https://practicalbinaryanalysis.com/" },
-          { id: "4-2-resource-4", title: "CTF Wiki: Reverse Engineering", type: "documentation", url: "https://ctf-wiki.org/reverse/introduction/introduction/" },
-          { id: "4-2-resource-5", title: "Challenges.re", type: "documentation", url: "https://challenges.re/" }
+        "id": "4-2",
+        "title": "Explore Reverse Engineering Tools",
+        "description": "Familiarize with common tools used in reverse engineering.",
+        "type": "reading",
+        "resources": [
+          { "id": "4-2-resource-1", "title": "Best Reverse Engineering Tools - Apriorit", "type": "article", "url": "https://www.apriorit.com/dev-blog/366-software-reverse-engineering-tools" },
+          { "id": "4-2-resource-2", "title": "IDA Pro", "type": "documentation", "url": "https://www.hex-rays.com/products/ida/" },
+          { "id": "4-2-resource-3", "title": "Ghidra is a software reverse engineering (SRE) framework", "type": "documentation", "url": "https://github.com/NationalSecurityAgency/ghidra" },
+          { "id": "4-2-resource-4", "title": "Binary Ninja", "type": "documentation", "url": "https://binary.ninja/" }
         ]
       },
       {
-        id: "4-3",
-        title: "Use OSINT tools",
-        description: "Explore Open-Source Intelligence (OSINT) tools for gathering information.",
-        type: "video",
-        resources: [
-          { id: "4-3-resource-1", title: "OSINT Framework", type: "documentation", url: "https://osintframework.com/" },
-          { id: "4-3-resource-2", title: "OSINT Techniques", type: "documentation", url: "https://www.osinttechniques.com/osint-tools.html" },
-          { id: "4-3-resource-3", title: "OSINT CTF Beginner Roadmap", type: "article", url: "https://xelessaway.medium.com/@techmindxperts/osint-ctf-beginner-roadmap-191d1601e48f" },
-          { id: "4-3-resource-4", title: "The Beginner's Guide to OSINT", type: "article", url: "https://medium.com/@techmindxperts/the-beginners-guide-to-open-source-intelligence-osint-techniques-and-tools-6a91b9c37ee1" },
-          { id: "4-3-resource-5", title: "OSINT Tools and Techniques", type: "video", url: "https://www.youtube.com/playlist?list=PLT3EmOikjcyYMMNpS3J5SsI1JD6tq5V7t" }
+        "id": "4-3",
+        "title": "Understand OSINT Techniques",
+        "description": "Learn various techniques for gathering open-source intelligence.",
+        "type": "reading",
+        "resources": [
+          { "id": "4-3-resource-1", "title": "OSINT Techniques - Home", "type": "article", "url": "https://www.osinttechniques.com/" },
+          { "id": "4-3-resource-2", "title": "Open-Source Intelligence (OSINT) | Techniques & Tools - Imperva", "type": "article", "url": "https://www.imperva.com/learn/application-security/open-source-intelligence-osint/" },
+          { "id": "4-3-resource-3", "title": "OSINT Techniques - Elevating Open Source Data Gathering And ...", "type": "article", "url": "https://www.neotas.com/osint-techniques/" },
+          { "id": "4-3-resource-4", "title": "The Beginner's Guide to Open-Source Intelligence (OSINT) - Medium", "type": "article", "url": "https://medium.com/@techmindxperts/the-beginners-guide-to-open-source-intelligence-osint-techniques-and-tools-6a91b9c37ee1" }
         ]
       },
       {
-        id: "4-4",
-        title: "Solve picoCTF challenges",
-        description: "Apply reverse engineering and OSINT skills to solve CTF problems.",
-        type: "assignment",
-        resources: [
-          { id: "4-4-resource-1", title: "PicoCTF Reverse Engineering Challenges", type: "documentation", url: "https://play.picoctf.org/practice" },
-          { id: "4-4-resource-2", title: "PicoCTF 2024 Reverse Engineering Challenges Writeup", type: "documentation", url: "https://hackmd.io/@tahaafarooq/picoctf-2024-reverse-engineering" },
-          { id: "4-4-resource-3", title: "Crackmes.one", type: "documentation", url: "https://crackmes.one/" },
-          { id: "4-4-resource-4", title: "Trace Labs CTF", type: "documentation", url: "https://www.tracelabs.org/" },
-          { id: "4-4-resource-5", title: "HackTheBox OSINT Challenges", type: "documentation", url: "https://app.hackthebox.com/challenges" }
+        "id": "4-4",
+        "title": "Explore OSINT Tools",
+        "description": "Familiarize with common tools used in open-source intelligence.",
+        "type": "reading",
+        "resources": [
+          { "id": "4-4-resource-1", "title": "OSINT Framework", "type": "documentation", "url": "https://osintframework.com/" },
+          { "id": "4-4-resource-2", "title": "Top 15 OSINT Tools for Expert Intelligence Gathering", "type": "article", "url": "https://www.recordedfuture.com/threat-intelligence-101/tools-and-technologies/osint-tools" },
+          { "id": "4-4-resource-3", "title": "Epieos, the ultimate OSINT tool", "type": "documentation", "url": "https://epieos.com/" },
+          { "id": "4-4-resource-4", "title": "FREE TOOLS | OSINT Combine | NexusXplore", "type": "documentation", "url": "https://www.osintcombine.com/tools" }
         ]
       }
     ],
-    resources: [
-      { id: "4-main-resource-1", title: "x86 Assembly Guide", type: "documentation", url: "https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" },
-      { id: "4-main-resource-2", title: "OSINT Tools Cheat Sheet", type: "documentation", url: "https://inteltechniques.com/links.html" },
-      { id: "4-main-resource-3", title: "Reverse Engineering Cheat Sheet", type: "documentation", url: "https://www.cyberwiredtraining.net/blog/reverse-engineering-cheat-sheet" },
-      { id: "4-main-resource-4", title: "Binary Exploitation by LiveOverflow", type: "video", url: "https://www.youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN" },
-      { id: "4-main-resource-5", title: "OSINT Curious Project", type: "documentation", url: "https://osintcurio.us/" }
+    "resources": [
+      { "id": "4-main-resource-1", "title": "Self-Learning Reverse Engineering in 2022 - YouTube", "type": "video", "url": "https://www.youtube.com/watch?v=gPsYkV7-yJk" },
+      { "id": "4-main-resource-2", "title": "Open-Source Intelligence (OSINT) in 5 Hours - Full Course - YouTube", "type": "video", "url": "https://www.youtube.com/watch?v=qwA6MmbeGNo" },
+      { "id": "4-main-resource-3", "title": "List of awesome reverse engineering resources - GitHub", "type": "documentation", "url": "https://github.com/wtsxDev/reverse-engineering" },
+      { "id": "4-main-resource-4", "title": "OSINT: Common Tools and How to use them Safely - BU", "type": "documentation", "url": "https://www.bu.edu/tech/files/2020/08/BU-Security-Camp-2020-OSINT.pdf" }
     ]
   },
   {

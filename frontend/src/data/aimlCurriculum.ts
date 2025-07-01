@@ -182,14 +182,132 @@ export const aimlCurriculum: CurriculumWeekData[] = [
   }
   ,
   {
-    id: 4,
-    title: "Classification and Deep Learning",
-    tasks: [
-      { id: "4-1", title: "Learn neural networks", description: "Explore the basics of neural networks, including their architecture and functioning.", type: "video" },
-      { id: "4-2", title: "Tune hyperparameters", description: "Learn techniques for optimizing model performance by tuning hyperparameters.", type: "assignment" },
-      { id: "4-3", title: "Build classification models", description: "Develop and implement advanced classification models using deep learning frameworks.", type: "assignment" }
+    "id": 4,
+    "title": "Neural Networks and Model Evaluation",
+    "tasks": [
+      {
+        "id": "4-1",
+        "title": "Learn Forward and Backward Propagation",
+        "description": "Understand how neural networks compute and learn through forward and backward passes.",
+        "type": "reading"
+      },
+      {
+        "id": "4-2",
+        "title": "Explore Neural Network Intuition and Implementation",
+        "description": "Dive into tutorials and intuitive explanations of feed-forward networks and backpropagation.",
+        "type": "video"
+      },
+      {
+        "id": "4-3",
+        "title": "Master Model Evaluation Techniques",
+        "description": "Study common evaluation metrics and their significance in assessing ML model performance.",
+        "type": "reading"
+      }
     ],
-    resources: [],
+    "resources": [
+      {
+        "id": "4-resource-1",
+        "type": "video",
+        "title": "Forward Propagation Simplified (TowardsDataScience)",
+        "url": "https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-andcode-version-bbcfef6f9250"
+      },
+      {
+        "id": "4-resource-2",
+        "title": "Understanding Neural Networks (TowardsDataScience)",
+        "type": "documentation",
+        "url": "https://towardsdatascience.com/understanding-neural-networks-19020b758230"
+      },
+      {
+        "id": "4-resource-3",
+        "title": "Forward Propagation Blog (QuantInsti)",
+        "type": "documentation",
+        "url": "https://blog.quantinsti.com/forward-propagation-neural-networks/"
+      },
+      {
+        "id": "4-resource-4",
+        "type": "article",
+        "title": "Coding Forward & Backpropagation (TowardsDataScience)",
+        "url": "https://towardsdatascience.com/coding-neural-network-forward-propagation-andbackpropagtion-ccf8cf369f76"
+      },
+      {
+        "id": "4-resource-5",
+        "type": "article",
+        "title": "NLP Research Lab Example (DistrictDataLabs)",
+        "url": "https://www.districtdatalabs.com/nlp-research-lab-part-3-forward-propagation-1"
+      },
+      {
+        "id": "4-resource-6",
+        "type": "article",
+        "title": "Feed Forward NN Intuition (AnalyticsVidhya)",
+        "url": "https://www.analyticsvidhya.com/blog/2021/10/feed-forward-neural-networks-intuition-onforward-propagation/"
+      },
+      {
+        "id": "4-resource-7",
+        "type": "video",
+        "title": "Video Explanation (YouTube)",
+        "url": "https://youtu.be/aircAruvnKk?si=IONdBCAc7MOd9F5D"
+      },
+      {
+        "id": "4-resource-8",
+        "type": "documentation",
+        "title": "CS231n Backpropagation Notes",
+        "url": "https://cs231n.github.io/optimization-2/"
+      },
+      {
+        "id": "4-resource-9",
+        "type": "video",
+        "title": "3Blue1Brown Deep Learning (Playlist)",
+        "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+      },
+      {
+        "id": "4-resource-10",
+        "type": "video",
+        "title": "Stanford Full Explanation (YouTube)",
+        "url": "https://www.youtube.com/watch?v=i94OvYb6noo"
+      },
+      {
+        "id": "4-resource-11",
+        "type": "article",
+        "title": "Backpropagation Algorithm (TowardsDataScience)",
+        "url": "https://towardsdatascience.com/understanding-backpropagation-algorithm7bb3aa2f95fd"
+      },
+      {
+        "id": "4-resource-12",
+        "type": "article",
+        "title": "Backpropagation Simplified (TowardsDataScience)",
+        "url": "https://towardsdatascience.com/back-propagation-simplified-218430e21ad0"
+      },
+      {
+        "id": "4-resource-13",
+        "type": "article",
+        "title": "Step-by-step Backpropagation Implementation",
+        "url": "https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-andbackpropagation-d58bda486110"
+      },
+      {
+        "id": "4-resource-14",
+        "type": "video",
+        "title": "Andrew Ng's Deep Learning Specialization (Playlist)",
+        "url": "https://www.youtube.com/watch?v=CS4cs9xVecg&list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0"
+      },
+      {
+        "id": "4-resource-15",
+        "type": "article",
+        "title": "12 Important Metrics (Analytics Vidhya)",
+        "url": "https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/"
+      },
+      {
+        "id": "4-resource-16",
+        "type": "article",
+        "title": "Evaluation Metrics Overview (GeeksforGeeks)",
+        "url": "https://www.geeksforgeeks.org/metrics-for-machine-learning-model/"
+      },
+      {
+        "id": "4-resource-17",
+        "type": "article",
+        "title": "Performance Metrics Guide (Neptune.ai)",
+        "url": "https://neptune.ai/blog/performance-metrics-in-machine-learning-complete-guide"
+      }
+    ]
   },
   {
     id: 5,
