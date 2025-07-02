@@ -199,32 +199,51 @@ export const dsaCurriculum: WeekData[] = [
     tasks: [
       { 
         id: "4-1", 
-        title: "Learn binary trees and BSTs", 
-        description: "Understand tree data structures", 
-        type: "video"
+        title: "Learn Trees", 
+        description: "Know about trees", 
+        type: "video",
+        resources: [
+          { id: "r4-1", title: "Trees basics", type: "video", url: "https://youtu.be/YAdLFsTG70w?si=u9nhnEhpjCiLStYe" },
+          { id: "r4-2", title: "Binary Trees", type: "video", url: "https://youtu.be/-DzowlcaUmE?si=U9EpaRVBahKM4D7M" }
+        ]
       },
       { 
         id: "4-2", 
-        title: "Implement tree traversals", 
-        description: "Code inorder, preorder, postorder traversals", 
-        type: "assignment"
+        title: "Learn Binary Search Trees", 
+        description: "Know about BST", 
+        type: "video",
+        resources: [
+          { id: "r4-3", title: "BST", type: "video", url: "https://youtu.be/RuF7dPfj27Q?si=pCEtE1JM4hheEbez" }
+        ]
       },
       { 
         id: "4-3", 
-        title: "Implement balanced BSTs", 
-        description: "Understand AVL and Red-Black trees", 
-        type: "assignment"
+        title: "Learn Traversals in Trees", 
+        description: "Know about Inorder, Preorder, Postorder, Level Order traversals", 
+        type: "video",
+        resources: [
+          { id: "r4-4", title: "Traversals in Binary Trees", type: "video", url: "https://youtu.be/eKJrXBCRuNQ?si=qjnzb6xHfVAz6Uur" }
+        ]
       },
       { 
         id: "4-4", 
-        title: "Use heaps and priority queues", 
-        description: "Implement heap data structure", 
-        type: "assignment"
+        title: "Heaps and Heap Sort", 
+        description: "Know about Heaps", 
+        type: "video",
+        resources: [
+          { id: "r4-5", title: "Heaps and Heap Sort", type: "video", url: "https://youtu.be/NKJnHewiGdc?si=XeuXCVax-oNKpuV7" }
+        ]
       },
       { 
         id: "4-5", 
-        title: "Solve HackerRank tree problems", 
-        description: "Practice tree algorithms", 
+        title: "DIY: Solve Various Operations on binary trees like insertion, deletion. Practice Heaps also", 
+        description: "Perform trees operations", 
+        type: "assignment"
+      },
+      { 
+        id: "4-6", 
+        title: "Complete HackerRank problems", 
+        description: "Practice Trees and Heaps", 
         type: "assignment"
       }
     ],
