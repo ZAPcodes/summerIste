@@ -207,104 +207,98 @@ export const aimlCurriculum: CurriculumWeekData[] = [
     "resources": [
       {
         "id": "4-resource-1",
-        "type": "video",
-        "title": "Forward Propagation Simplified (TowardsDataScience)",
-        "url": "https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-andcode-version-bbcfef6f9250"
+        "title": "Forward Propagation in Neural Networks (DataCamp)",
+        "type": "article",
+        "url": "https://www.datacamp.com/tutorial/forward-propagation-neural-networks"
       },
       {
         "id": "4-resource-2",
-        "title": "Understanding Neural Networks (TowardsDataScience)",
-        "type": "documentation",
-        "url": "https://towardsdatascience.com/understanding-neural-networks-19020b758230"
+        "title": "Forward Propagation in Neural Networks (GeeksforGeeks)",
+        "type": "article",
+        "url": "https://www.geeksforgeeks.org/deep-learning/what-is-forward-propagation-in-neural-networks/"
       },
       {
         "id": "4-resource-3",
         "title": "Forward Propagation Blog (QuantInsti)",
-        "type": "documentation",
+        "type": "article",
         "url": "https://blog.quantinsti.com/forward-propagation-neural-networks/"
       },
       {
         "id": "4-resource-4",
-        "type": "article",
-        "title": "Coding Forward & Backpropagation (TowardsDataScience)",
-        "url": "https://towardsdatascience.com/coding-neural-network-forward-propagation-andbackpropagtion-ccf8cf369f76"
-      },
-      {
-        "id": "4-resource-5",
-        "type": "article",
         "title": "NLP Research Lab Example (DistrictDataLabs)",
+        "type": "article",
         "url": "https://www.districtdatalabs.com/nlp-research-lab-part-3-forward-propagation-1"
       },
       {
-        "id": "4-resource-6",
-        "type": "article",
+        "id": "4-resource-5",
         "title": "Feed Forward NN Intuition (AnalyticsVidhya)",
-        "url": "https://www.analyticsvidhya.com/blog/2021/10/feed-forward-neural-networks-intuition-onforward-propagation/"
+        "type": "article",
+        "url": "https://www.analyticsvidhya.com/blog/2021/10/feed-forward-neural-networks-intuition-on-forward-propagation/"
       },
       {
-        "id": "4-resource-7",
-        "type": "video",
+        "id": "4-resource-6",
         "title": "Video Explanation (YouTube)",
+        "type": "video",
         "url": "https://youtu.be/aircAruvnKk?si=IONdBCAc7MOd9F5D"
       },
       {
-        "id": "4-resource-8",
-        "type": "documentation",
+        "id": "4-resource-7",
         "title": "CS231n Backpropagation Notes",
+        "type": "documentation",
         "url": "https://cs231n.github.io/optimization-2/"
       },
       {
+        "id": "4-resource-8",
+        "title": "Step-by-Step Backpropagation Example (Matt Mazur)",
+        "type": "article",
+        "url": "https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/"
+      },
+      {
         "id": "4-resource-9",
-        "type": "video",
-        "title": "3Blue1Brown Deep Learning (Playlist)",
-        "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+        "title": "Backpropagation in Neural Networks (GeeksforGeeks)",
+        "type": "article",
+        "url": "https://www.geeksforgeeks.org/machine-learning/backpropagation-in-neural-network/"
       },
       {
         "id": "4-resource-10",
-        "type": "video",
-        "title": "Stanford Full Explanation (YouTube)",
-        "url": "https://www.youtube.com/watch?v=i94OvYb6noo"
+        "title": "Mastering Backpropagation (DataCamp)",
+        "type": "article",
+        "url": "https://www.datacamp.com/tutorial/mastering-backpropagation"
       },
       {
         "id": "4-resource-11",
-        "type": "article",
-        "title": "Backpropagation Algorithm (TowardsDataScience)",
-        "url": "https://towardsdatascience.com/understanding-backpropagation-algorithm7bb3aa2f95fd"
+        "title": "3Blue1Brown Deep Learning (Playlist)",
+        "type": "video",
+        "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
       },
       {
         "id": "4-resource-12",
-        "type": "article",
-        "title": "Backpropagation Simplified (TowardsDataScience)",
-        "url": "https://towardsdatascience.com/back-propagation-simplified-218430e21ad0"
+        "title": "Stanford Full Explanation (YouTube)",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=i94OvYb6noo"
       },
       {
         "id": "4-resource-13",
-        "type": "article",
-        "title": "Step-by-step Backpropagation Implementation",
-        "url": "https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-andbackpropagation-d58bda486110"
-      },
-      {
-        "id": "4-resource-14",
-        "type": "video",
         "title": "Andrew Ng's Deep Learning Specialization (Playlist)",
+        "type": "video",
         "url": "https://www.youtube.com/watch?v=CS4cs9xVecg&list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0"
       },
       {
-        "id": "4-resource-15",
-        "type": "article",
+        "id": "4-resource-14",
         "title": "12 Important Metrics (Analytics Vidhya)",
+        "type": "article",
         "url": "https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/"
       },
       {
-        "id": "4-resource-16",
-        "type": "article",
+        "id": "4-resource-15",
         "title": "Evaluation Metrics Overview (GeeksforGeeks)",
+        "type": "article",
         "url": "https://www.geeksforgeeks.org/metrics-for-machine-learning-model/"
       },
       {
-        "id": "4-resource-17",
-        "type": "article",
+        "id": "4-resource-16",
         "title": "Performance Metrics Guide (Neptune.ai)",
+        "type": "documentation",
         "url": "https://neptune.ai/blog/performance-metrics-in-machine-learning-complete-guide"
       }
     ]
