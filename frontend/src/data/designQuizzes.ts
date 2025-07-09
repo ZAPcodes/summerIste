@@ -389,6 +389,134 @@ export const designQuizzes: WeekQuiz[] = [
       "explanation": "Clipping Masks limit visibility to the shape of the layer beneath, perfect for shaping designs precisely."
     }
   ]
+},
+{
+  "weekId": 4,
+  "title": "Fundamentals of Video Editing Quiz",
+  "timeLimit": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "video-4-1",
+      "question": "What is the main purpose of a timeline in video editing software?",
+      "options": [
+        "To organize files alphabetically",
+        "To record audio",
+        "To arrange video and audio clips in sequence",
+        "To create transitions"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The timeline is where editors arrange and trim clips to build the flow of the final video."
+    },
+    {
+      "id": "video-4-2",
+      "question": "Which term describes the transition between two clips where one fades out while the next fades in?",
+      "options": [
+        "Jump Cut",
+        "Fade In",
+        "Cross Dissolve",
+        "Hard Cut"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Cross Dissolve is a common transition that blends two clips together gradually."
+    },
+    {
+      "id": "video-4-3",
+      "question": "What does trimming a clip mean in video editing?",
+      "options": [
+        "Adding a filter to a clip",
+        "Reducing the duration by cutting the start or end",
+        "Increasing the playback speed",
+        "Duplicating the clip"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Trimming removes unwanted parts from the beginning or end of a clip to shorten it."
+    },
+    {
+      "id": "video-4-4",
+      "question": "Why is it important to use B-roll in video editing?",
+      "options": [
+        "To increase video resolution",
+        "To replace bad audio",
+        "To provide visual context and make cuts smoother",
+        "To compress the video file"
+      ],
+      "correctAnswer": 2,
+      "explanation": "B-roll adds visual interest and helps cover cuts or narration in the A-roll footage."
+    },
+    {
+      "id": "video-4-5",
+      "question": "What is the purpose of color grading in video editing?",
+      "options": [
+        "To organize media files",
+        "To apply music and voiceovers",
+        "To correct and stylize colors for a consistent look",
+        "To adjust the timeline speed"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Color grading enhances the visual tone and consistency of a video, often for mood or realism."
+    },
+    {
+      "id": "video-4-6",
+      "question": "Which frame rate is most commonly used for cinematic-style video?",
+      "options": [
+        "15 fps",
+        "24 fps",
+        "30 fps",
+        "60 fps"
+      ],
+      "correctAnswer": 1,
+      "explanation": "24 frames per second (fps) is the standard for film and cinematic video aesthetics."
+    },
+    {
+      "id": "video-4-7",
+      "question": "What is a 'jump cut' in video editing?",
+      "options": [
+        "A smooth transition between clips",
+        "A cut that removes part of a continuous shot, creating a sudden shift",
+        "A type of music edit",
+        "A camera zoom effect"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A jump cut creates a noticeable leap forward in time within the same shot, often used for stylistic or pacing reasons."
+    },
+    {
+      "id": "video-4-8",
+      "question": "What audio level range is considered safe for voiceovers in video editing?",
+      "options": [
+        "-30 dB to -20 dB",
+        "-18 dB to -12 dB",
+        "-6 dB to 0 dB",
+        "0 dB to +6 dB"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Voiceovers are best kept between -18 dB and -12 dB to avoid distortion while maintaining clarity."
+    },
+    {
+      "id": "video-4-9",
+      "question": "Why is it important to use transitions sparingly in video editing?",
+      "options": [
+        "They lower video quality",
+        "Too many can distract or look unprofessional",
+        "They reduce audio sync",
+        "They are difficult to export"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Overusing transitions can make a video feel cluttered or amateurish — clean cuts are often more effective."
+    },
+    {
+      "id": "video-4-10",
+      "question": "What is the role of a storyboard in video editing?",
+      "options": [
+        "To animate titles",
+        "To preview color grading",
+        "To plan the visual sequence before editing",
+        "To export the video"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A storyboard is a pre-production tool that helps plan the structure and flow of a video visually."
+    }
+  ]
 }
   // Add more weeks following similar pattern
 ];

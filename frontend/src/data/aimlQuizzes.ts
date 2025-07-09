@@ -370,7 +370,124 @@ export const aimlQuizzes: WeekQuiz[] = [
         "explanation": "A high C encourages the model to classify all training examples correctly, which can lead to overfitting."
       }
     ]
-  }
-  
+  },
+  {
+    "weekId": 4,
+    "title": "Neural Networks and Model Evaluation Quiz",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
+      {
+        "id": "aiml-4-1",
+        "question": "What is the main purpose of the activation function in a neural network?",
+        "options": [
+          "To normalize the weights",
+          "To add bias",
+          "To introduce non-linearity into the model",
+          "To initialize the weights"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Activation functions introduce non-linearity, enabling the network to learn complex patterns."
+      },
+      {
+        "id": "aiml-4-2",
+        "question": "Which activation function is most commonly used in hidden layers of deep networks?",
+        "options": ["Sigmoid", "Softmax", "Tanh", "ReLU"],
+        "correctAnswer": 3,
+        "explanation": "ReLU (Rectified Linear Unit) is widely used due to its efficiency and reduced vanishing gradient issues."
+      },
+      {
+        "id": "aiml-4-3",
+        "question": "In backpropagation, what does the gradient represent?",
+        "options": [
+          "The number of neurons in a layer",
+          "The learning rate",
+          "The change in output relative to weights",
+          "The input error"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The gradient tells us how much the loss would change with respect to small changes in weights."
+      },
+      {
+        "id": "aiml-4-4",
+        "question": "What issue does the vanishing gradient problem cause in deep networks?",
+        "options": [
+          "Faster convergence",
+          "Memory overload",
+          "Weights update too aggressively",
+          "Gradients become too small, preventing learning"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Very small gradients in early layers cause slow or no learning, a common problem in deep networks."
+      },
+      {
+        "id": "aiml-4-5",
+        "question": "In a neural network layer with weights W = [[0.2, -0.4], [0.7, 0.1]], input X = [1.0, 2.0], and bias B = [0.1, -0.2], what is the output after applying the ReLU activation?",
+        "options": [
+          "[1.7, 0.0]",
+          "[1.7, -0.4]",
+          "[0.7, 0.0]",
+          "[1.3, 0.2]"
+        ],
+        "correctAnswer": 0,
+        "explanation": "First, compute WX + B: [[0.2*1 + 0.7*2 + 0.1], [-0.4*1 + 0.1*2 - 0.2]] = [1.7, -0.4]. Applying ReLU(x)=max(0,x) -> [max(0,1.7),max(0,−0.4)] gives [1.7, 0.0]."
+      },
+      {
+        "id": "aiml-4-6",
+        "question": "What does a low bias and high variance model indicate?",
+        "options": [
+          "Underfitting",
+          "Overfitting",
+          "Balanced model",
+          "Unsupervised learning"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Overfitting occurs when the model memorizes the training data and fails to generalize well to new data."
+      },
+      {
+        "id": "aiml-4-7",
+        "question": "Which evaluation metric is best suited for imbalanced classification problems?",
+        "options": ["Accuracy", "Precision", "Recall", "F1 Score"],
+        "correctAnswer": 3,
+        "explanation": "F1 Score balances both precision and recall, making it more effective when class imbalance exists."
+      },
+      {
+        "id": "aiml-4-8",
+        "question": "Which of the following is NOT a step in the backpropagation process?",
+        "options": [
+          "Forward pass",
+          "Loss computation",
+          "Weight update",
+          "Data shuffling"
+        ],
+        "correctAnswer": 3,
+        "explanation": "While data shuffling is useful in training, it is not part of the backpropagation step."
+      },
+      {
+        "id": "aiml-4-9",
+        "question": "Which technique is used to mitigate overfitting in neural networks?",
+        "options": [
+          "Increasing the learning rate",
+          "Using dropout layers",
+          "Reducing training data",
+          "Removing hidden layers"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dropout randomly deactivates neurons during training, helping prevent overfitting by promoting robustness."
+      },
+      {
+        "id": "aiml-4-10",
+        "question": "Why is the softmax function used in the output layer of a classification neural network?",
+        "options": [
+          "To normalize the input",
+          "To make outputs binary",
+          "To convert outputs into probabilities",
+          "To reduce model complexity"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Softmax converts raw scores into probabilities, which is useful for multi-class classification."
+      }
+    ]
+  }  
   // Continue with weeks 3-6 following similar pattern
 ];

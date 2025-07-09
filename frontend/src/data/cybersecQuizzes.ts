@@ -339,6 +339,120 @@ export const cybersecQuizzes: WeekQuiz[] = [
         "explanation": "Steganography can be used to hide data in images (like JPEG), text files, PDFs, and more."
       }
     ]
-  }  
+  },
+  {
+    "weekId": 4,
+    "title": "Reverse Engineering and OSINT Basics",
+    "timeLimit": 30,
+    "passingScore": 70,
+    "questions": [
+      {
+        "id": "cybersec-4-1",
+        "question": "What is the primary goal of reverse engineering software?",
+        "options": [
+          "To create new software from scratch.",
+          "To understand the internal workings of a system or software.",
+          "To encrypt software for security purposes.",
+          "To optimize software performance without understanding its code."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Reverse engineering involves deconstructing an object to reveal its design, architecture, or to extract knowledge from it."
+      },
+      {
+        "id": "cybersec-4-2",
+        "question": "Which of the following tools is commonly used for static analysis in reverse engineering?",
+        "options": [
+          "Wireshark",
+          "IDA Pro",
+          "Metasploit",
+          "Nmap"
+        ],
+        "correctAnswer": 1,
+        "explanation": "IDA Pro is a widely used disassembler and debugger for static and dynamic analysis of software."
+      },
+      {
+        "id": "cybersec-4-3",
+        "question": "What is the purpose of a decompiler in reverse engineering?",
+        "options": [
+          "To convert source code into machine code.",
+          "To convert machine code back into a higher-level programming language.",
+          "To analyze network traffic.",
+          "To create exploits for vulnerabilities."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Decompilers attempt to reconstruct source code from compiled executables, making it easier to understand the program's logic."
+      },
+      {
+        "id": "cybersec-4-4",
+        "question": "Which of these is NOT a common phase in the reverse engineering process?",
+        "options": [
+          "Disassembly",
+          "Analysis",
+          "Redesign",
+          "Obfuscation"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Obfuscation is a technique used to make code harder to reverse engineer, not a phase in the reverse engineering process itself."
+      },
+      {
+        "id": "cybersec-4-5",
+        "question": "What is dynamic analysis in reverse engineering?",
+        "options": [
+          "Analyzing the code without executing it.",
+          "Analyzing the software while it is running.",
+          "Analyzing the software's design documents.",
+          "Analyzing the software's network communication only."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dynamic analysis involves observing the behavior of a program by executing it in a controlled environment, often using debuggers."
+      },
+      {
+        "id": "cybersec-4-6",
+        "question": "What does OSINT stand for?",
+        "options": [
+          "Open Software Investigation and Network Tracing",
+          "Online Security Integration and Network Tactics",
+          "Open Source Intelligence",
+          "Open Steganography in Networking Tools"
+        ],
+        "correctAnswer": 2,
+        "explanation": "OSINT stands for Open Source Intelligence — information collected from publicly available sources."
+      },
+      {
+        "id": "cybersec-4-7",
+        "question": "Which of the following is a common OSINT tool used for gathering information from social media?",
+        "options": ["John the Ripper", "ExifTool", "theHarvester", "Burp Suite"],
+        "correctAnswer": 2,
+        "explanation": "theHarvester is commonly used in OSINT for gathering email addresses, domain info, and social data from public sources."
+      },
+      {
+        "id": "cybersec-4-8",
+        "question": "What kind of data can ExifTool extract from an image?",
+        "options": [
+          "Encrypted payloads",
+          "Password hashes",
+          "Metadata such as GPS, device model, and timestamps",
+          "Network traffic information"
+        ],
+        "correctAnswer": 2,
+        "explanation": "ExifTool can extract metadata embedded in image files, including GPS coordinates, camera model, and timestamps."
+      },
+      {
+        "id": "cybersec-4-9",
+        "question": "Which file format is commonly analyzed when reverse engineering Windows applications?",
+        "options": ["APK", "ELF", "PE", "PDF"],
+        "correctAnswer": 2,
+        "explanation": "The Portable Executable (PE) format is used in Windows for executable files like `.exe` and `.dll`."
+      },
+      {
+        "id": "cybersec-4-10",
+        "question": "Which of the following techniques is commonly used in OSINT to gather location-based information from social media?",
+        "options": ["Geotagging", "Encryption", "Decompiling", "Hashing"],
+        "correctAnswer": 0,
+        "explanation": "Geotagging involves embedding GPS location data in posts, photos, or metadata, which OSINT tools can extract."
+      }
+    ]
+  }
+  
   // Add more weeks following similar pattern
 ];

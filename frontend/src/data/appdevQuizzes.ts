@@ -143,6 +143,134 @@ export const appdevQuizzes: WeekQuiz[] = [
         "explanation": "The ?? operator (null-coalescing operator) returns the left operand if it's not null, otherwise it returns the right operand, providing a default value for null cases."
       }
     ]
+  },
+  {
+    "weekId": 4,
+    "title": "Firebase",
+    "timeLimit": 20,
+    "passingScore": 70,
+    "questions": [
+      {
+        "id": "firebase-1-1",
+        "question": "What is Firebase Authentication primarily used for?",
+        "options": [
+          "Storing files",
+          "Managing user sign-in and identity",
+          "Querying NoSQL databases",
+          "Hosting web apps"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Firebase Authentication helps manage user sign-in with email, password, and social providers like Google and Facebook."
+      },
+      {
+        "id": "firebase-1-2",
+        "question": "Which Firebase service is best suited for storing user-generated images?",
+        "options": [
+          "Cloud Firestore",
+          "Realtime Database",
+          "Firebase Hosting",
+          "Firebase Storage"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Firebase Storage is used for uploading and storing large binary files like images, videos, and audio."
+      },
+      {
+        "id": "firebase-1-3",
+        "question": "What type of database is Firestore?",
+        "options": [
+          "Relational",
+          "Key-Value",
+          "Document-based NoSQL",
+          "Graph"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Cloud Firestore is a scalable, flexible NoSQL cloud database that stores data in documents organized into collections."
+      },
+      {
+        "id": "firebase-1-4",
+        "question": "What does real-time update mean in Firestore?",
+        "options": [
+          "UI refreshes only after reloading",
+          "Server manually pushes updates",
+          "Clients instantly receive data updates when data changes",
+          "Only admin gets updates"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Firestore enables real-time updates, meaning clients are notified instantly when data in the database changes."
+      },
+      {
+        "id": "firebase-1-5",
+        "question": "Before writing data to Firestore, what should be done first in most apps?",
+        "options": [
+          "Enable Firebase Analytics",
+          "Deploy Firebase Hosting",
+          "Authenticate the user",
+          "Create a custom server"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Firebase recommends authenticating users before accessing Firestore to enforce security rules and user-based access."
+      },
+      {
+        "id": "firebase-1-6",
+        "question": "Which method is used to upload a file to Firebase Storage in Flutter?",
+        "options": [
+          "putFile()",
+          "save()",
+          "storeFile()",
+          "upload()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "In Firebase Storage for Flutter, the putFile() method is used to upload files like images or videos."
+      },
+      {
+        "id": "firebase-1-7",
+      "question": "What is the purpose of Firebase Storage?",
+      "options": [
+        "Store user credentials",
+        "Host web pages",
+        "Store and serve user-generated files",
+        "Manage database queries"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Firebase Storage is used to store and serve user-generated content such as images, videos, and other files."
+      },
+      {
+        "id": "firebase-1-8",
+        "question": "What happens if Firebase security rules are not configured properly?",
+        "options": [
+          "The app won’t compile",
+          "Firebase blocks all reads and writes",
+          "Data may be publicly accessible or restricted incorrectly",
+          "Firebase shuts down your project"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Improperly set security rules may expose your database or prevent users from reading/writing data as needed."
+      },
+      {
+        "id": "firebase-1-9",
+        "question": "What is the purpose of Firebase Hosting?",
+        "options": [
+          "Running background tasks",
+          "Hosting static assets like HTML, CSS, JS",
+          "Sending push notifications",
+          "Monitoring performance"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Firebase Hosting is used to host static websites and assets like HTML, CSS, JS, and images."
+      },
+      {
+        "id": "firebase-1-10",
+        "question": "Which Firebase combination is most suitable for building a chat app?",
+        "options": [
+          "Firebase Auth + Firestore + Storage",
+          "Storage + Hosting",
+          "Firestore + Analytics",
+          "Auth + Hosting"
+        ],
+        "correctAnswer": 0,
+        "explanation": "For a chat app, you typically use Firebase Auth for user identity, Firestore for chat data, and Storage for media."
+      }
+    ]
   }
   // Add more weeks following similar pattern
 ];

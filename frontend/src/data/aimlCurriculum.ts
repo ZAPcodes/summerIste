@@ -305,14 +305,143 @@ export const aimlCurriculum: CurriculumWeekData[] = [
   },
   {
     id: 5,
-    title: "Deep Learning Specialization",
+    title: "Advanced Topics (CV or NLP Focus)",
     tasks: [
-      { id: "5-1", title: "Build CNNs", description: "Construct Convolutional Neural Networks for image recognition and computer vision tasks.", type: "assignment" },
-      { id: "5-2", title: "Implement YOLO object detection", description: "Learn to use YOLO (You Only Look Once) for real-time object detection.", type: "video" },
-      { id: "5-3", title: "Learn text preprocessing", description: "Understand techniques for cleaning and preparing text data for Natural Language Processing (NLP).", type: "reading" },
-      { id: "5-4", title: "Perform sentiment analysis", description: "Apply NLP techniques to perform sentiment analysis on text data.", type: "assignment" }
+      {
+        id: "5-1",
+        title: "Explore Computer Vision Concepts",
+        description: "Understand the foundations of computer vision using OpenCV and TensorFlow.",
+        type: "reading"
+      },
+      {
+        id: "5-2",
+        title: "Learn Natural Language Processing Basics",
+        description: "Dive into tokenization, text cleaning, and classic NLP pipelines.",
+        type: "reading"
+      },
+      {
+        id: "5-3",
+        title: "Understand Overfitting and Regularization",
+        description: "Explore the causes of overfitting and techniques to mitigate it using L1/L2 regularization.",
+        type: "reading"
+      }
     ],
-    resources: [],
+    resources: [
+      {
+        id: "5-resource-1",
+        title: "Computer Vision (GeeksforGeeks)",
+        type: "article",
+        url: "https://www.geeksforgeeks.org/computer-vision/"
+      },
+      {
+        id: "5-resource-2",
+        title: "Introduction to Computer Vision (IBM - Coursera)",
+        type: "video",
+        url: "https://www.coursera.org/learn/introduction-computer-vision-watson-opencv"
+      },
+      {
+        id: "5-resource-3",
+        title: "Computer Vision (TutorialsPoint)",
+        type: "documentation",
+        url: "https://www.tutorialspoint.com/computer-vision/index.htm"
+      },
+      {
+        id: "5-resource-4",
+        title: "Kaggle Learn - Computer Vision",
+        type: "documentation",
+        url: "https://www.kaggle.com/learn/computer-vision"
+      },
+      {
+        id: "5-resource-5",
+        title: "PyImageSearch Start Here Guide",
+        type: "documentation",
+        url: "https://pyimagesearch.com/start-here/"
+      },
+      {
+        id: "5-resource-6",
+        title: "NLP Tutorial (GeeksforGeeks)",
+        type: "article",
+        url: "https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/"
+      },
+      {
+        id: "5-resource-7",
+        title: "NLP Resources - DeepLearning.AI",
+        type: "documentation",
+        url: "https://www.deeplearning.ai/resources/natural-language-processing/"
+      },
+      {
+        id: "5-resource-8",
+        title: "NLP Tutorial (TutorialsPoint)",
+        type: "documentation",
+        url: "https://www.tutorialspoint.com/natural_language_processing/index.htm"
+      },
+      {
+        id: "5-resource-9",
+        title: "Beginner’s Guide to NLP (DataCamp)",
+        type: "article",
+        url: "https://www.datacamp.com/blog/what-is-natural-language-processing"
+      },
+      {
+        id: "5-resource-10",
+        title: "NLP from Basics to Advance (Analytics Vidhya)",
+        type: "article",
+        url: "https://www.analyticsvidhya.com/blog/2022/01/nlp-tutorials-part-i-from-basics-to-advance/"
+      },
+      {
+        id: "5-resource-11",
+        title: "NLP Learning Path (IBM Developer)",
+        type: "documentation",
+        url: "https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/next-steps/beginner-natural-language-processing"
+      },
+      {
+        id: "5-resource-12",
+        title: "Overfitting Explained (AWS)",
+        type: "article",
+        url: "https://aws.amazon.com/what-is/overfitting/"
+      },
+      {
+        id: "5-resource-13",
+        title: "Underfitting and Overfitting (GeeksforGeeks)",
+        type: "article",
+        url: "https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/"
+      },
+      {
+        id: "5-resource-14",
+        title: "Visual Guide to Overfitting (Reddit)",
+        type: "article",
+        url: "https://www.reddit.com/r/learnmachinelearning/comments/rlfkvk/what_is_overfitting_a_2minute_visual_guide/"
+      },
+      {
+        id: "5-resource-15",
+        title: "Regularization in ML (Simplilearn)",
+        type: "article",
+        url: "https://www.simplilearn.com/tutorials/machine-learning-tutorial/regularization-in-machine-learning"
+      },
+      {
+        id: "5-resource-16",
+        title: "L1 & L2 Regularization (GeeksforGeeks)",
+        type: "article",
+        url: "https://www.geeksforgeeks.org/overfitting-and-regularization-in-ml/"
+      },
+      {
+        id: "5-resource-17",
+        title: "L2 Regularization (Google Developers)",
+        type: "documentation",
+        url: "https://developers.google.com/machine-learning/crash-course/overfitting/regularization"
+      },
+      {
+        id: "5-resource-18",
+        title: "Regularization Guide (Dataquest)",
+        type: "documentation",
+        url: "https://www.dataquest.io/blog/regularization-in-machine-learning/"
+      },
+      {
+        id: "5-resource-19",
+        title: "Google ML Crash Course",
+        type: "documentation",
+        url: "https://developers.google.com/machine-learning/crash-course"
+      }
+    ]
   },
   {
     id: 6,

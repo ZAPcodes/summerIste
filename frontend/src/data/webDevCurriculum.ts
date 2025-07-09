@@ -76,13 +76,9 @@ export const webDevCurriculum: WeekData[] = [
     id: 5,
     title: "Capstone Project + Deployment",
     tasks: [
-      { id: "5-1", title: "Combine React frontend + Express backend + cloud DB" },
+      { id: "5-1", title: "Combine React frontend + Express backend + MongoDB" },
       { id: "5-2", title: "Capstone Ideas: Blog, Task Manager, Weather Dashboard, Habit Tracker" },
       { id: "5-3", title: "Deployment: Vercel/Netlify for frontend, Render/Railway for backend" },
-      { id: "5-4", title: "Add environment variables and learn GitHub deployment workflow" },
-      { id: "5-5", title: "Build and deploy your full-stack app" },
-      { id: "5-6", title: "Add it to your GitHub + Portfolio" },
-      { id: "5-7", title: "Write a proper README" }
     ],
     resources: [],
   }

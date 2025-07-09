@@ -323,81 +323,59 @@ export const cybersecCurriculum: CurriculumWeekData[] = [
     ]
   },
   {
-    id: 5,
-    title: "Forensics and Binary Exploitation",
-    tasks: [
+    "id": 5,
+    "title": "Binary Exploitation",
+    "tasks": [
       {
-        id: "5-1",
-        title: "Analyze PCAP with Wireshark",
-        description: "Learn to analyze network traffic captures using Wireshark for forensic investigations.",
-        type: "video",
-        resources: [
-          { id: "5-1-resource-1", title: "Wireshark User's Guide", type: "documentation", url: "https://www.wireshark.org/docs/wsug_html_chunked/" },
-          { id: "5-1-resource-2", title: "Wireshark Display Filters", type: "documentation", url: "https://wiki.wireshark.org/DisplayFilters" },
-          { id: "5-1-resource-3", title: "Network Forensics with Wireshark", type: "article", url: "https://medium.com/@magesh007/wireshark-the-basics-tryhackme-writeup-2b80efa5de9b" },
-          { id: "5-1-resource-4", title: "CTF 101: Wireshark", type: "documentation", url: "https://ctf101.org/forensics/what-is-wireshark/" },
-          { id: "5-1-resource-5", title: "Practical Packet Analysis", type: "video", url: "https://www.youtube.com/watch?v=8Crc1QmQwc0" }
+        "id": "5-1",
+        "title": "Learn Binary Exploitation Basics",
+        "description": "Understand the fundamental concepts and methodologies of binary exploitation.",
+        "type": "reading",
+        "resources": [
+          { "id": "5-1-resource-1", "title": "Intro to Binary Exploitation Skill Path - HTB Academy", "type": "article", "url": "https://academy.hackthebox.com/path/preview/intro-to-binary-exploitation" },
+          { "id": "5-1-resource-2", "title": "Binary Exploitation - CTF 101", "type": "article", "url": "https://ctf101.org/binary-exploitation/overview/" },
+          { "id": "5-1-resource-3", "title": "[PDF] Binary Exploitation - picoCTF", "type": "documentation", "url": "https://picoctf.org/learning_guides/Book-5-Binary-Exploitation.pdf" },
+          { "id": "5-1-resource-4", "title": "Delving into Binary Exploitation: A Beginner's Guide", "type": "article", "url": "https://medium.com/fmisec/delving-into-binary-exploitation-a-beginners-guide-63b0cc8058d5" }
         ]
       },
       {
-        id: "5-2",
-        title: "Perform memory dump analysis",
-        description: "Understand how to analyze memory dumps for forensic purposes.",
-        type: "assignment",
-        resources: [
-          { id: "5-2-resource-1", title: "Volatility Documentation", type: "documentation", url: "https://github.com/volatilityfoundation/volatility/wiki" },
-          { id: "5-2-resource-2", title: "Memory Forensics with Volatility", type: "video", url: "https://www.youtube.com/watch?v=dB5852eAgpc" },
-          { id: "5-2-resource-3", title: "The Art of Memory Forensics", type: "documentation", url: "https://www.memoryanalysis.net/amf" },
-          { id: "5-2-resource-4", title: "SANS Memory Forensics Cheat Sheet", type: "documentation", url: "https://www.sans.org/blog/memory-forensics-cheat-sheet/" },
-          { id: "5-2-resource-5", title: "Memory Samples for Practice", type: "documentation", url: "https://github.com/volatilityfoundation/volatility/wiki/Memory-Samples" }
+        "id": "5-2",
+        "title": "Understand Binary Exploitation Techniques",
+        "description": "Study common binary exploitation techniques like buffer overflows and format string vulnerabilities.",
+        "type": "reading",
+        "resources": [
+          { "id": "5-2-resource-1", "title": "Binary Exploitation Techniques - With Real World Examples", "type": "article", "url": "https://www.secquest.co.uk/white-papers/binary-exploitation-techniques" },
+          { "id": "5-2-resource-2", "title": "The most popular binary exploitation techniques | Infosec", "type": "article", "url": "https://www.infosecinstitute.com/resources/vulnerabilities/binary-exploitation-techniques/" },
+          { "id": "5-2-resource-3", "title": "Under the EDR Radar: Mastering Binary Exploitation Techniques", "type": "article", "url": "https://cymulate.com/blog/binary-exploitation/" }
         ]
       },
       {
-        id: "5-3",
-        title: "Learn buffer overflow basics",
-        description: "Grasp the concept of buffer overflows and how to exploit them.",
-        type: "video",
-        resources: [
-          { id: "5-3-resource-1", title: "Buffer Overflow Attack Explained", type: "video", url: "https://www.youtube.com/watch?v=1S0aBV-Waeo" },
-          { id: "5-3-resource-2", title: "LiveOverflow Buffer Overflow Series", type: "video", url: "https://www.youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN" },
-          { id: "5-3-resource-3", title: "Buffer Overflow Practice", type: "documentation", url: "https://github.com/justinsteven/dostackbufferoverflowgood" },
-          { id: "5-3-resource-4", title: "Exploit Development Learning Path", type: "documentation", url: "https://www.offensive-security.com/metasploit-unleashed/exploit-development/" },
-          { id: "5-3-resource-5", title: "Smashing The Stack For Fun And Profit", type: "article", url: "http://www-inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf" }
+        "id": "5-3",
+        "title": "Explore Binary Exploitation Tools",
+        "description": "Familiarize with common tools used in binary exploitation.",
+        "type": "assignment",
+        "resources": [
+          { "id": "5-3-resource-1", "title": "binary-exploitation - GitHub Topics (tools section)", "type": "documentation", "url": "https://github.com/topics/binary-exploitation" },
+          { "id": "5-3-resource-2", "title": "Binary Exploitation - CTF 101 (tools section)", "type": "documentation", "url": "https://ctf101.org/binary-exploitation/overview/" },
+          { "id": "5-3-resource-3", "title": "nightmare - intro to binary exploitation / reverse engineering course", "type": "documentation", "url": "https://www.sysnet.ucsd.edu/~abellon/brain/computer/security/binary-exploitation" }
         ]
       },
       {
-        id: "5-4",
-        title: "Solve picoCTF challenges",
-        description: "Solve CTF challenges involving forensics and binary exploitation.",
-        type: "assignment",
-        resources: [
-          { id: "5-4-resource-1", title: "PicoCTF Forensics Challenges", type: "documentation", url: "https://play.picoctf.org/practice" },
-          { id: "5-4-resource-2", title: "PicoCTF Binary Exploitation Challenges", type: "documentation", url: "https://play.picoctf.org/practice" },
-          { id: "5-4-resource-3", title: "Forensics CTF Challenges on CTFlearn", type: "documentation", url: "https://ctflearn.com/challenge/1/browse" },
-          { id: "5-4-resource-4", title: "Pwnable.kr", type: "documentation", url: "https://pwnable.kr/" },
-          { id: "5-4-resource-5", title: "MemLabs", type: "documentation", url: "https://github.com/stuxnet999/MemLabs" }
-        ]
-      },
-      {
-        id: "5-5",
-        title: "Participate in mini CTF event",
-        description: "Engage in a practical mini Capture The Flag event to apply learned skills.",
-        type: "assignment",
-        resources: [
-          { id: "5-5-resource-1", title: "CTF Field Guide", type: "documentation", url: "https://trailofbits.github.io/ctf/" },
-          { id: "5-5-resource-2", title: "CTF Time", type: "documentation", url: "https://ctftime.org/writeups" },
-          { id: "5-5-resource-3", title: "CTF 101", type: "documentation", url: "https://ctf101.org/" },
-          { id: "5-5-resource-4", title: "How to Approach CTF Challenges", type: "video", url: "https://www.youtube.com/watch?v=Lus7aNf2xDg" },
-          { id: "5-5-resource-5", title: "Effective CTF Team Strategies", type: "article", url: "https://medium.com/@teambi0s/how-to-get-started-in-ctf-complete-beginners-guide-5ab3eba7781c" }
+        "id": "5-4",
+        "title": "Practice with Binary Exploitation CTF Challenges",
+        "description": "Engage in Capture The Flag challenges related to binary exploitation.",
+        "type": "assignment",
+        "resources": [
+          { "id": "5-4-resource-1", "title": "Binary Exploitation - Level 1 - Hack The Box CTF", "type": "documentation", "url": "https://ctf.hackthebox.com/pack/binary-exploitation-level-1" },
+          { "id": "5-4-resource-2", "title": "Binary Exploits 1 - CTF Field Guide", "type": "documentation", "url": "https://trailofbits.github.io/ctf/exploits/binary1.html" },
+          { "id": "5-4-resource-3", "title": "BINARY EXPLOITATION - YouTube (CTF playlist)", "type": "video", "url": "https://www.youtube.com/playlist?list=PL1H1sBF1VAKVg451vJ-rx0y_ZuQMHPamH" }
         ]
       }
     ],
-    resources: [
-      { id: "5-main-resource-1", title: "Wireshark Cheat Sheet", type: "documentation", url: "https://www.comparitech.com/net-admin/wireshark-cheat-sheet/" },
-      { id: "5-main-resource-2", title: "Volatility Cheat Sheet", type: "documentation", url: "https://downloads.volatilityfoundation.org/releases/2.4/CheatSheet_v2.4.pdf" },
-      { id: "5-main-resource-3", title: "Binary Exploitation Cheat Sheet", type: "documentation", url: "https://ir0nstone.gitbook.io/notes/types/stack/introduction" },
-      { id: "5-main-resource-4", title: "TryHackMe Forensics Path", type: "documentation", url: "https://tryhackme.com/path-action/forensics/join" },
-      { id: "5-main-resource-5", title: "PCAPs for Practice", type: "documentation", url: "https://www.malware-traffic-analysis.net/training-exercises.html" }
+    "resources": [
+      { "id": "5-main-resource-1", "title": "How to Learn Binary Exploitation Roadmap", "type": "article", "url": "https://www.hoppersroppers.org/roadmap/training/pwning.html" },
+      { "id": "5-main-resource-2", "title": "Intro to Binary Exploitation (Pwn) - YouTube", "type": "video", "url": "https://www.youtube.com/playlist?list=PLHUKi1UlEgOIc07Rfk2Jgb5fZbxDPec94" },
+      { "id": "5-main-resource-3", "title": "Introduction to Binary Exploitation (PWN) - CyberHub", "type": "article", "url": "https://cyberhub.sa/posts/6556" }
     ]
-  }
+  }  
 ]; 

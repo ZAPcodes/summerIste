@@ -385,74 +385,134 @@ export const dsaQuizzes: WeekQuiz[] = [
       }
     ]
   },
-  {
-    weekId: 4,
-    title: "Week 4 Quiz - Trees and Heaps",
-    timeLimit: 30,
-    passingScore: 70,
-    questions: [
-      {
-        id: "1",
-        question: "What is the maximum number of children a node can have in a binary tree?",
-        options: [
-          "1",
-          "2", 
-          "3",
-          "Unlimited"
-        ],
-        correctAnswer: 1,
-        explanation: "In a binary tree, each node can have at most 2 children (left and right)."
-      },
-      {
-        id: "2",
-        question: "Which traversal visits the root node first?",
-        options: [
-          "Inorder",
-          "Preorder",
-          "Postorder",
-          "Level order"
-        ],
-        correctAnswer: 1,
-        explanation: "Preorder traversal visits the root node first, then left subtree, then right subtree."
-      },
-      {
-        id: "3",
-        question: "What property must a max heap satisfy?",
-        options: [
-          "Parent ≤ Children",
-          "Parent ≥ Children",
-          "Left child ≤ Right child",
-          "All leaves at same level"
-        ],
-        correctAnswer: 1,
-        explanation: "In a max heap, every parent node must be greater than or equal to its children."
-      },
-      {
-        id: "4",
-        question: "What is the time complexity of search in a balanced BST?",
-        options: [
-          "O(1)",
-          "O(log n)",
-          "O(n)",
-          "O(n log n)"
-        ],
-        correctAnswer: 1,
-        explanation: "Search in a balanced BST takes O(log n) time due to the tree's height."
-      },
-      {
-        id: "5",
-        question: "Which operation has O(log n) time complexity in a heap?",
-        options: [
-          "Find maximum",
-          "Insert",
-          "Build heap",
-          "Search arbitrary element"
-        ],
-        correctAnswer: 1,
-        explanation: "Insert operation in a heap takes O(log n) time to maintain heap property."
-      }
-    ]
-  },
+{
+  "weekId": 4,
+  "title": "Week 4 Quiz – Trees and Heaps",
+  "timeLimit": 20,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "1",
+      "question": "In a binary tree, what is the maximum number of nodes at level 'l'?",
+      "options": [
+        "2^l",
+        "2^l - 1",
+        "2^(l-1)",
+        "l^2"
+      ],
+      "correctAnswer": 2,
+      "explanation": "At level l (1-indexed), a binary tree can have at most 2^(l-1) nodes."
+    },
+    {
+      "id": "2",
+      "question": "Which of the following is NOT true for a min-heap?",
+      "options": [
+        "The root is the smallest element",
+        "It is a complete binary tree",
+        "In-order traversal gives sorted order",
+        "Each parent is less than or equal to its children"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In-order traversal of a min-heap does not necessarily give sorted order."
+    },
+    {
+      "id": "3",
+      "question": "What is the time complexity to insert an element into a binary max-heap of size n?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n log n)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Insertion in a heap takes O(log n) due to heapify-up operation."
+    },
+    {
+      "id": "4",
+      "question": "Which traversal of a binary search tree (BST) gives the nodes in ascending order?",
+      "options": [
+        "Pre-order",
+        "Post-order",
+        "In-order",
+        "Level-order"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In-order traversal of BST gives sorted order of elements."
+    },
+    {
+      "id": "5",
+      "question": "What is the height of a complete binary tree with 'n' nodes?",
+      "options": [
+        "n",
+        "log₂(n + 1)",
+        "log₂n",
+        "sqrt(n)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Height of a complete binary tree is floor(log₂n)."
+    },
+    {
+      "id": "6",
+      "question": "In a binary tree, the number of null pointers is always:",
+      "options": [
+        "Equal to number of nodes",
+        "One less than number of nodes",
+        "One more than number of nodes",
+        "Twice the number of nodes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A binary tree with n nodes has (n + 1) null pointers."
+    },
+    {
+      "id": "7",
+      "question": "Which of the following is true for a binary search tree?",
+      "options": [
+        "Left child is always smaller, right child is always greater",
+        "Every node has exactly two children",
+        "It is always balanced",
+        "In-order traversal gives descending order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "BST property: left subtree < root < right subtree."
+    },
+    {
+      "id": "8",
+      "question": "What is the number of edges in a full binary tree with 'n' internal nodes?",
+      "options": [
+        "n",
+        "n - 1",
+        "2n",
+        "2n + 1"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In a full binary tree, the number of edges is 2n because each internal node has exactly two children."
+    },
+    {
+      "id": "9",
+      "question": "In a heap, which operation requires the most time in the worst case?",
+      "options": [
+        "Find minimum",
+        "Insert",
+        "Delete root",
+        "Heapify"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Deleting the root requires O(log n) time due to heapify-down operation."
+    },
+    {
+      "id": "10",
+      "question": "Which property distinguishes a binary tree from a binary heap?",
+      "options": [
+        "Heap is always complete",
+        "Tree has no duplicates",
+        "Heap is balanced and sorted",
+        "Binary tree has fixed depth"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A binary heap is always a complete binary tree, while a general binary tree does not follow that constraint."
+    }
+  ]
+},
   {
     weekId: 5,
     title: "Week 5 Quiz - Graphs and Hashing",

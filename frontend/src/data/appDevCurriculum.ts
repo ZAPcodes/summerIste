@@ -128,5 +128,14 @@ export const appDevCurriculum: CurriculumWeekData[] = [
       }
     ],
     resources: []
+  },
+  {
+    id: 5,
+    title: "Project",
+    tasks: [
+      { id: "4-1", title: "Will be informed through the discord server", description: "Will be informed through the discord server", type: "video",
+      }
+    ],
+    resources: []
   }
 ]; 

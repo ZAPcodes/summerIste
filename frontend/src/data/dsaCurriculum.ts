@@ -249,44 +249,58 @@ export const dsaCurriculum: WeekData[] = [
     ],
     resources: [],
   },
-  {
+ 
+{
     id: 5,
-    title: "Graphs and Hashing",
+    title: "Graphs and Revision",
     tasks: [
       { 
         id: "5-1", 
-        title: "Learn graph representations", 
-        description: "Adjacency matrix and list", 
-        type: "video"
+        title: "Learn Graphs", 
+        description: "About Graphs", 
+        type: "video",
+        resources: [
+          { id: "r5-1", title: "Graphs Representation", type: "video", url: "https://youtu.be/M3_pLsDdeuU?si=BRVxsI75DaZmWXYr" }
+        ]
       },
       { 
         id: "5-2", 
-        title: "Implement BFS and DFS", 
-        description: "Traverse graphs", 
-        type: "assignment"
+        title: "Graph Representations", 
+        description: "Two ways of Representing graph", 
+        type: "video",
+        resources: [
+          { id: "r5-2", title: "Adjacency List & Adjacency Matrix in CPP", type: "video", url: "https://youtu.be/3oI-34aPMWM?si=vbhfkGuxa0HSRC70" },
+          { id: "r5-3", title: "Adjacency List & Adjacency Matrix in Java", type: "video", url: "https://youtu.be/OsNklbh9gYI?si=3geca8IW_javj8lz" }
+        ]
       },
       { 
         id: "5-3", 
-        title: "Use Dijkstra and Floyd-Warshall", 
-        description: "Solve shortest path problems", 
-        type: "assignment"
+        title: "BFS", 
+        description: "Learn BFS", 
+        type: "video",
+        resources: [
+          { id: "r5-4", title: "BFS", type: "video", url: "https://youtu.be/-tgVpUgsQ5k?si=kepbcKs06_TeJW4o" }
+        ]
       },
       { 
         id: "5-4", 
-        title: "Understand hashing and hash tables", 
-        description: "Learn collision resolution techniques", 
-        type: "video"
+        title: "DFS", 
+        description: "Learn DFS", 
+        type: "video",
+        resources: [
+          { id: "r5-5", title: "DFS", type: "video", url: "https://youtu.be/Qzf1a--rhp8?si=UDgypYWFNv7iOgeL" }
+        ]
       },
       { 
         id: "5-5", 
-        title: "Implement hash map", 
-        description: "Build custom hash map", 
+        title: "Revision", 
+        description: "Go through all the topics you have learned and ask doubts (if any)", 
         type: "assignment"
       },
       { 
         id: "5-6", 
-        title: "Solve HackerRank graph problems", 
-        description: "Practice graph algorithms", 
+        title: "Complete HackerRank problems", 
+        description: "Practice Graphs", 
         type: "assignment"
       }
     ],
