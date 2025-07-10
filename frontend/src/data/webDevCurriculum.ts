@@ -77,9 +77,11 @@ export const webDevCurriculum: WeekData[] = [
     title: "Capstone Project + Deployment",
     tasks: [
       { id: "5-1", title: "Combine React frontend + Express backend + MongoDB" },
-      { id: "5-2", title: "Capstone Ideas: Blog, Task Manager, Weather Dashboard, Habit Tracker" },
+      { id: "5-2", title: "Build a expense tracker website" },
       { id: "5-3", title: "Deployment: Vercel/Netlify for frontend, Render/Railway for backend" },
     ],
-    resources: [],
+    resources: [
+      { id: "resource-5-1", title: "Follow the tutorial", type: "video", url: "https://youtu.be/PQnbtnsYUho?si=8pXgBcJPa_fBbqpW" }
+    ],
   }
 ]; 
