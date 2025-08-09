@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 import { apiService, Progress } from '@/services/api';
 
 interface UseProgressReturn {
@@ -29,22 +28,20 @@ const setLocalProgress = (domain: string, progress: Progress) => {
 };
 
 export const useProgress = (domain: string): UseProgressReturn => {
-  const { user, isLoading: authLoading } = useAuth();
+  // Public mode: no auth required
+  const user: any = null;
+  const authLoading = false;
   const [progress, setProgress] = useState<Progress | null>(() => getLocalProgress(domain));
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchProgress = useCallback(async () => {
-    if (authLoading) {
-      setLoading(true);
-      return;
-    }
+  // Public mode: skip waiting for auth
 
     await new Promise(resolve => setTimeout(resolve, 50));
 
-    const currentUser = user;
-
-    if (!currentUser?._id) {
+  const currentUser = user;
+  if (!currentUser?._id) {
       const localProgress = getLocalProgress(domain);
       if (localProgress) {
         setProgress(localProgress);

@@ -108,13 +108,13 @@ const QuizInterface = ({ quiz, quizData, onComplete, onClose }: QuizInterfacePro
     // Submit to API if domain and week are available
     if (quizToUse.domain && quizToUse.weekId) {
       try {
-        await apiService.submitQuizResult({
-          domain: quizToUse.domain,
-          week: quizToUse.weekId,
-          answers: answers,
-          score: score,
-          completionTime: timeUsed
-        });
+        // await apiService.submitQuizResult({
+        //   domain: quizToUse.domain,
+        //   week: quizToUse.weekId,
+        //   answers: answers,
+        //   score: score,
+        //   completionTime: timeUsed
+        // });
         toast.success("Quiz submitted successfully!");
       } catch (error) {
         console.error("Failed to submit quiz:", error);

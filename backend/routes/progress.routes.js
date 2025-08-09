@@ -4,12 +4,12 @@ const { protect } = require('../middlewares/auth.middlewares');
 const { updateTaskProgress, getProgress, updateQuizProgress } = require('../controllers/progress.controllers.js');
 
 // Update task progress
-router.post('/task', protect, updateTaskProgress);
+router.post('/task', updateTaskProgress);
 
 // Update quiz progress
-router.post('/quiz', protect, updateQuizProgress);
+router.post('/quiz', updateQuizProgress);
 
 // Get progress for a specific user and domain
-router.get('/:userId/:domain', protect, getProgress);
+router.get('/:userId/:domain', getProgress);
 
 module.exports = router;

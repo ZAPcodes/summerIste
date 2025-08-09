@@ -2,8 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import WebDevelopment from "./pages/WebDevelopment";
 import AiMl from "./pages/AiMl";
@@ -19,113 +18,57 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode; domain?: string }> = ({ children, domain }) => {
-  const { user, isLoading } = useAuth();
-  const location = useLocation();
 
-  if (isLoading) {
-    return <div className="text-white text-center">Loading...</div>;
-  }
+import { useState } from "react";
 
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  if (domain && !user.enrolledDomains.includes(domain)) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return <>{children}</>;
+const GuestBanner = () => {
+  const [visible, setVisible] = useState(() => {
+    // Hide for session if dismissed
+    return sessionStorage.getItem('hideGuestBanner') !== 'true';
+  });
+  if (!visible) return null;
+  return (
+    <div className="w-full bg-yellow-400 text-black text-center py-2 px-4 font-medium flex items-center justify-center z-50 relative">
+      <span className="mr-2">You are in guest mode. Your progress is stored only in this browser.</span>
+      <button
+        className="ml-2 px-2 py-1 rounded bg-yellow-500 hover:bg-yellow-600 text-xs font-bold"
+        onClick={() => {
+          setVisible(false);
+          sessionStorage.setItem('hideGuestBanner', 'true');
+        }}
+        aria-label="Dismiss guest mode banner"
+      >
+        Dismiss
+      </button>
+    </div>
+  );
 };
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <div className="overflow-x-hidden">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Index />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/webdev"
-              element={
-                <ProtectedRoute domain="webdev">
-                  <WebDevelopment />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/aiml"
-              element={
-                <ProtectedRoute domain="aiml">
-                  <AiMl />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/design"
-              element={
-                <ProtectedRoute domain="design">
-                  <Design />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/cybersec"
-              element={
-                <ProtectedRoute domain="cybersec">
-                  <Cybersecurity />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/appdev"
-              element={
-                <ProtectedRoute domain="appdev">
-                  <AppDevelopment />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dsa"
-              element={
-                <ProtectedRoute domain="dsa">
-                  <DataStructures />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/leaderboard/:domain/:week"
-              element={
-                <ProtectedRoute>
-                  <DomainLeaderboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </TooltipProvider>
-    </AuthProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <GuestBanner />
+      <div className="overflow-x-hidden">
+        <Routes>
+          {/* Public routes (authentication removed) */}
+          {/* <Route path="/login" element={<Login />} /> */}
+          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route path="/dashboard" element={<Index />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/webdev" element={<WebDevelopment />} />
+          <Route path="/aiml" element={<AiMl />} />
+          <Route path="/design" element={<Design />} />
+          <Route path="/cybersec" element={<Cybersecurity />} />
+          <Route path="/appdev" element={<AppDevelopment />} />
+          <Route path="/dsa" element={<DataStructures />} />
+          <Route path="/leaderboard/:domain/:week" element={<DomainLeaderboard />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

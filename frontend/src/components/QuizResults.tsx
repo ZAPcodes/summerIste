@@ -5,9 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, Clock, Target, TrendingUp, ArrowLeft, Trophy, Award, Star, Zap } from "lucide-react";
 import { QuizQuestion } from "@/data/webDevQuizzes";
 import Leaderboard from "./Leaderboard";
-import { apiService } from '@/services/api';
-import { useAuth } from '@/contexts/AuthContext';
-import { toast } from "react-toastify";
+// Public mode: remove auth/api usage here
 
 interface QuizResultsProps {
   score: number;
@@ -37,7 +35,6 @@ const QuizResults = ({
   onBackToCourse,
 }: QuizResultsProps) => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
-  const { user } = useAuth();
 
   const referenceScore = 0; // For display purposes only
   const passed = score >= referenceScore;

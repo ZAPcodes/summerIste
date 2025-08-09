@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Shield, BookOpen, PlayCircle, ExternalLink, CheckCircle, Clock, Target, ChevronDown, ChevronRight, FileText, Trophy, AlertCircle } from "lucide-react";
+import { ArrowLeft, Shield, BookOpen, PlayCircle, ExternalLink, CheckCircle, Target, ChevronDown, ChevronRight, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuizInterface from "@/components/QuizInterface";
 import QuizResults from "@/components/QuizResults";
 import { cybersecQuizzes, WeekQuiz } from "@/data/cybersecQuizzes";
 import { useProgress } from "@/hooks/useProgress";
-import { useQuizSchedule } from "@/hooks/useQuizSchedule";
+// Scheduling checks disabled in public mode
 import { toast } from "react-toastify";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { cybersecCurriculum, Resource as CurriculumResource, CurriculumTaskData, CurriculumWeekData } from "@/data/cybersecCurriculum";
@@ -42,14 +42,14 @@ const Cybersecurity = () => {
   const [quizState, setQuizState] = useState<"not_started" | "in_progress" | "completed">("not_started");
   const [quizResults, setQuizResults] = useState<any>(null);
   const [weeks, setWeeks] = useState<Week[]>([]);
-  const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("cybersec", currentQuizWeek || 1);
+  // const { status: quizStatus, loading: scheduleLoading } = useQuizSchedule("cybersec", currentQuizWeek || 1);
 
   const staticCurriculum: CurriculumWeekData[] = cybersecCurriculum;
 
   useEffect(() => {
-    if (progress && !loading) {
+    if (!loading) {
       const updatedWeeks: Week[] = staticCurriculum.map((weekData, index) => {
-        const backendWeek = progress.weeks.find((w) => w.weekNumber === weekData.id);
+        const backendWeek = progress?.weeks.find((w) => w.weekNumber === weekData.id);
         const completedTaskIndices = backendWeek?.tasksCompleted || [];
         const quizPassed = backendWeek?.quizPassed || false;
 
@@ -64,7 +64,8 @@ const Cybersecurity = () => {
         const completedTasksCount = tasksWithCompletion.filter((task) => task.completed).length;
         const progressPercentage = tasksWithCompletion.length > 0 ? (completedTasksCount / tasksWithCompletion.length) * 100 : 0;
 
-        const isUnlocked = weekData.id === 1 || (progress.weeks.some(w => w.weekNumber === weekData.id - 1 && w.quizPassed));
+  // Make all weeks unlocked for public access
+  const isUnlocked = true;
 
         return {
           id: weekData.id,
@@ -75,7 +76,8 @@ const Cybersecurity = () => {
           quizCompleted: quizPassed,
           quizScore: backendWeek?.quizScore || 0,
           progress: progressPercentage,
-          quizAvailable: progressPercentage === 100 && !quizPassed,
+          // Make quiz always available; remove dependency on tasks completion
+          quizAvailable: true,
           isExpanded: index === 0,
         };
       });
@@ -130,25 +132,10 @@ const Cybersecurity = () => {
 
   const startQuiz = (weekId: number) => {
     setCurrentQuizWeek(weekId);
-    
-    // Check if quiz is available
-    if (!quizStatus.isLive) {
-      if (!quizStatus.hasStarted) {
-        toast.error("Quiz hasn't started yet. Please wait for the scheduled time.");
-        return;
-      }
-      if (quizStatus.hasEnded) {
-        toast.error("Quiz has ended. Submissions are no longer accepted.");
-        return;
-      }
-    }
-
-    // Add domain to quiz data
     const quizData = cybersecQuizzes.find((q) => q.weekId === weekId);
     if (quizData) {
       (quizData as WeekQuiz).domain = "cybersec";
     }
-    
     setQuizState("in_progress");
   };
 
@@ -187,54 +174,7 @@ const Cybersecurity = () => {
     );
   };
 
-  const formatTimeRemaining = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    
-    if (hours > 0) {
-      return `${hours}h ${minutes}m ${secs}s`;
-    }
-    return `${minutes}m ${secs}s`;
-  };
-
-  const getQuizButtonContent = (week: Week, weekId: number) => {
-    if (!currentQuizWeek || currentQuizWeek !== weekId) {
-      if (week.quizCompleted) {
-        return { text: "Quiz Passed", disabled: true, variant: "secondary" as const };
-      }
-      if (!week.quizAvailable) {
-        return { text: "Complete Tasks First", disabled: true, variant: "secondary" as const };
-      }
-      return { text: "Check Quiz Status", disabled: false, variant: "default" as const };
-    }
-
-    if (scheduleLoading) {
-      return { text: "Checking...", disabled: true, variant: "secondary" as const };
-    }
-
-    if (!quizStatus.hasStarted && quizStatus.timeUntilStart) {
-      return { 
-        text: `Starts in ${formatTimeRemaining(quizStatus.timeUntilStart)}`, 
-        disabled: true, 
-        variant: "secondary" as const 
-      };
-    }
-
-    if (quizStatus.hasEnded) {
-      return { text: "Quiz Ended", disabled: true, variant: "secondary" as const };
-    }
-
-    if (quizStatus.isLive) {
-      return { 
-        text: `Take Quiz (${formatTimeRemaining(quizStatus.timeRemaining || 0)} left)`, 
-        disabled: false, 
-        variant: "default" as const 
-      };
-    }
-
-    return { text: "Quiz Not Available", disabled: true, variant: "secondary" as const };
-  };
+  const getQuizButtonContent = () => ({ text: "Start Quiz", disabled: false, variant: "default" as const });
 
   if (loading) {
     return (
@@ -479,35 +419,14 @@ const Cybersecurity = () => {
                                   Completed ({Math.round(week.quizScore || 0)}%)
                                 </Badge>
                               )}
-                              {currentQuizWeek === week.id && quizStatus.isLive && (
-                                <Badge className="bg-green-600 text-white animate-pulse">
-                                  <div className="w-2 h-2 bg-white rounded-full mr-1"></div>
-                                  LIVE
-                                </Badge>
-                              )}
                             </div>
                             <div className="flex gap-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => navigate(`/leaderboard/cybersec/${week.id}`)}
-                                className="text-red-400 border-red-400 hover:bg-red-400/10"
-                              >
-                                <Trophy className="w-4 h-4 mr-1" />
-                                Leaderboard
-                              </Button>
                               {(() => {
-                                const buttonConfig = getQuizButtonContent(week, week.id);
+                                const buttonConfig = getQuizButtonContent();
                                 return (
                                   <Button
                                     disabled={buttonConfig.disabled}
-                                    onClick={() => {
-                                      if (buttonConfig.text === "Check Quiz Status") {
-                                        setCurrentQuizWeek(week.id);
-                                      } else if (buttonConfig.text.includes("Take Quiz")) {
-                                        startQuiz(week.id);
-                                      }
-                                    }}
+                                    onClick={() => startQuiz(week.id)}
                                     className={`${
                                       buttonConfig.variant === "default"
                                         ? "bg-red-600 hover:bg-red-700"
@@ -515,36 +434,12 @@ const Cybersecurity = () => {
                                     }`}
                                   >
                                     {buttonConfig.text}
-                                    <Clock className="w-4 h-4 ml-2" />
                                   </Button>
                                 );
                               })()}
                             </div>
                           </div>
-                          {currentQuizWeek === week.id && !scheduleLoading && (
-                            <div className="mt-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-                              <div className="flex items-start gap-2">
-                                {quizStatus.isLive ? (
-                                  <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
-                                ) : (
-                                  <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
-                                )}
-                                <div>
-                                  <p className="text-sm font-medium text-blue-200">
-                                    {quizStatus.isLive ? "Quiz is Live!" : 
-                                     !quizStatus.hasStarted ? "Quiz hasn't started yet" :
-                                     "Quiz has ended"}
-                                  </p>
-                                  {quizStatus.schedule && (
-                                    <p className="text-xs text-blue-300 mt-1">
-                                      Scheduled: {new Date(quizStatus.schedule.startTime).toLocaleString()} 
-                                      ({quizStatus.schedule.duration} minutes)
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          )}
+                          {/* Scheduling/status panel removed in public mode */}
                         </div>
                       </div>
                     </CardContent>

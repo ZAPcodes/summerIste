@@ -4,9 +4,9 @@ const { submitQuizResult, getLeaderboard, getQuizSchedule, setQuizSchedule } = r
 const { protect } = require("../middlewares/auth.middlewares");
 const adminMiddleware = require("../middlewares/admin.middlewares");
 
-router.post("/submit", protect, submitQuizResult);
+router.post("/submit", submitQuizResult);
 router.get("/leaderboard/:domain/:week", getLeaderboard);
 router.get("/schedule/:domain/:week", getQuizSchedule);
-router.post("/schedule", protect, adminMiddleware, setQuizSchedule);
+router.post("/schedule", adminMiddleware, setQuizSchedule);
 
 module.exports = router;

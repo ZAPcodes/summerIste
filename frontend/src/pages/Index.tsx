@@ -6,16 +6,13 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, Users, Award, Clock, ChevronRight, Code, Brain, Shield, Palette, Smartphone, Database, User, LogOut, Star, Zap, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+// Public mode: auth removed
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user, logout: authLogout, isLoading } = useAuth();
+  const user = null;
+  const isLoading = false;
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
-
-  const handleLogout = async () => {
-    await authLogout();
-  };
 
   const domains = [
     {
@@ -127,20 +124,7 @@ const Index = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6"></div>
-          <div className="space-y-2">
-            <div className="h-2 w-32 bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-2 w-24 bg-gray-700 rounded animate-pulse mx-auto"></div>
-          </div>
-          <p className="text-gray-300 mt-4 animate-pulse">Loading your dashboard...</p>
-        </div>
-      </div>
-    );
-  }
+  // Public mode: no auth loading
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
@@ -163,42 +147,7 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              {user ? (
-                <>
-                  <Button
-                    variant="ghost"
-                    onClick={() => navigate('/profile')}
-                    className="text-blue-300 hover:text-white hover:bg-blue-500/20 transition-all duration-200 group"
-                  >
-                    <User className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                    {user.name}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={handleLogout}
-                    className="border-red-500/50 text-red-300 hover:bg-red-500/20 hover:border-red-400 transition-all duration-200"
-                  >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button 
-                    variant="outline" 
-                    className="border-blue-500/50 text-blue-300 hover:bg-blue-500/20 hover:border-blue-400 transition-all duration-200"
-                    onClick={() => navigate('/login')}
-                  >
-                    Login
-                  </Button>
-                  <Button 
-                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-200"
-                    onClick={() => navigate('/signup')}
-                  >
-                    Sign Up
-                  </Button>
-                </>
-              )}
+              {/* Public mode: remove login/signup buttons */}
             </div>
           </div>
         </div>
